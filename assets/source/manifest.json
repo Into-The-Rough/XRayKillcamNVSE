@@ -1,0 +1,432 @@
+{
+  "bodyparts3d_url": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/partof_BP3D_4.0_obj_99.zip",
+  "brainder_url": "https://s3.us-east-2.amazonaws.com/brainder/software/brain4blender/smallfiles/pial_Full_obj.tar.bz2",
+  "files": [
+    {
+      "path": "bodyparts3d/skull/FJ3200.obj",
+      "sha256": "9a01d88bd564b462ecadd6ad5bb3bb2274105baa3d211e0f444210d3f499ed64"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3263.obj",
+      "sha256": "c6477a98607e712a2bdefd4c2732ce22a990b8cd8783b7b7a6453192443961cd"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3265.obj",
+      "sha256": "8ad400f81a74d51e3193ab1dc92ec39df5dc1c104a6ced970d430bca3d0f9c9c"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3269.obj",
+      "sha256": "a56eeb3723f4b3cd1d96b113eaba8f253ed49ff76220ba48ac0d1d086b80ff60"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3272.obj",
+      "sha256": "cc03a0b61102415dfa66cc55210f65c71ca9466e6e043d350449eac71b414a24"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3273.obj",
+      "sha256": "dacf96918a971758cbf25e3884b15e6c2b0a112a863b773332fb916431676368"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3274.obj",
+      "sha256": "df63a28fa604ff67828d8f382c66cfa46f40306b1b4c17a8062029764047d0e3"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3281.obj",
+      "sha256": "47cc46f1480c54fe14a2d22361c3b93fcb964538f23d5b425ac718854cff2673"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3287.obj",
+      "sha256": "9cfd8fd359816b5fa5ed9758f26d942c7ada0900aa7f614aff39949fdad3ddee"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3289.obj",
+      "sha256": "6ae0d7fde4221302f1c74d9e9933e2e05c36efef273bb27a78326d108d140ce8"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3309.obj",
+      "sha256": "37172b4706d23d51ebb3ce3839cc59c6e4cb4931039901f395703bc7dff52761"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3369.obj",
+      "sha256": "681194f0df836eb03818110633c22976f9e4cb9e4e77bb194cec3f61cdf2a80b"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3371.obj",
+      "sha256": "d8160ed34abb66d2539e6f05eadc431bd18774e5d1def1a4cb9bc40e3e4a32c5"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3375.obj",
+      "sha256": "a1be9480b632355859507e590be68146a591d343ad671ca85c43d7be50d8b43c"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3378.obj",
+      "sha256": "1acb8f803fb2cd9679eccd1634768b1bbee0714ebef7cf2de041d9332da88acf"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3379.obj",
+      "sha256": "629876377eca1ae98eefc496121e950367c49bf215febf17cf58a7f9687845dd"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3380.obj",
+      "sha256": "fb69a19eaa0585509f45ce1ebb5e8d91af0442629e52cfe1cfd190ca8f2f72b0"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3386.obj",
+      "sha256": "cae2e4dc5211d50b06e70893eef3bdaf19564ab8ae7923260e800c3498f65f88"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3392.obj",
+      "sha256": "e2c25d922162e3a76131e40ddf0356709947fa554b46640fa1880c381bb749c7"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3394.obj",
+      "sha256": "9255a2f02b16d0cf87c68fbfdc7afc4709d1afef94c2e2bb1e035b7f7852aca0"
+    },
+    {
+      "path": "bodyparts3d/skull/FJ3395.obj",
+      "sha256": "fcbfac8ca1992059a3026b445fbf55c5b5fa5a54786ed468a6ee8259230101d4"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1732.obj",
+      "sha256": "661e99ae245f0392bd7bfd63aa65074f61fb47e9c35641310f1804c9973acb9a"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1733.obj",
+      "sha256": "4f154c33e0c43d68d75aaec659b9a6f65ca42ef4b8ea6462a4482e2178b92a0f"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1739.obj",
+      "sha256": "26feea54a830b6cf523926e9a50f64935591d30206511f2804cfe79bed423d11"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1740.obj",
+      "sha256": "deb04b668a1aa817aa01472ab0191add32393a1bdba518b19d5c8f29431d136f"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1744.obj",
+      "sha256": "055774da0ba432560fb8e65b2b474ddaf5ac1a683f5b4fbcc1e8cac6e9536c25"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1745.obj",
+      "sha256": "6210acb1780932a25c00b2f4cbdf5ab28cd9ed95eef46ef792ab3647a42c1b47"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1746.obj",
+      "sha256": "4be36eec071bfe6d1878acfa535e74dbf91c773c351dea9bc9a4704e3db3fe2e"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1747.obj",
+      "sha256": "0e04dea5d156768ae580670b771197c882d9b652132358ef6197ae3f823640f6"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1748.obj",
+      "sha256": "deca1e77a904006224aa6cc34e3710c8d963d1fc89e474ac42258e1f2f3315fd"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1749.obj",
+      "sha256": "564190a0427db7acf0b27dc124673d028ff99c3dbd0aaa54ec0c236ee3baf754"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1750.obj",
+      "sha256": "ac3d98925d313c0db553ec22a26c20520657f3d9f78c07b0b3cc6d72c5837e93"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1751.obj",
+      "sha256": "8f66e76ffc8bccc07a7fb14e49441bc061e23ba1251571439b8197f82acd50df"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1758.obj",
+      "sha256": "017e0c54769998fa71f65b60918a6f721bbc723e441bc22ea580284567e708a2"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1759.obj",
+      "sha256": "f64b3cea9f760a352cb8981f6cb577700a66392d8a8395ffb45dfebdccee7344"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1767.obj",
+      "sha256": "17b278c20399a85a9d373ba6a934f9fe61901dd9c9480107baaef2b513f22ee3"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1783.obj",
+      "sha256": "2ea98ec904ba5de8229ed9aeff99c1b34f4030a080e758bdd063f8cc7e92d5f3"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1784.obj",
+      "sha256": "b6e11d4565f77ca8c0b815540a6a7cc77f48616f81263cb6352c183cdbd0f1da"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1785.obj",
+      "sha256": "87db9ae2691ad71d47210ad27a8d56353fb3e9400f68f1b1350f59cfdf4880b4"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1786.obj",
+      "sha256": "9f4a8e120131ee6041a48635c3b6dc74cac8d6dcd50e80ef38b2aec56a66ce38"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1787.obj",
+      "sha256": "9bc4568f6633e999f98ba932ac18608251aa36d689433fbbb536f72d6c4d3d6d"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1788.obj",
+      "sha256": "e72da8ed193cd1b514207a4056bfb41fef1fabd548090dcc4cd5108ded280fa8"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1789.obj",
+      "sha256": "4985721171ebf94eb7607822073dba045e42bec2428982a7befa96204b4b4c1a"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1790.obj",
+      "sha256": "47b2ce1a7536c8dccaeba6e14139475ce65805b2d0af6036cda4db18aabe4559"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1791.obj",
+      "sha256": "b8f2b6ac30aaf72f9ef0e7c00892edd7d4b27b1a6589971d25c973a8894e09f2"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1792.obj",
+      "sha256": "860b8fd92e2fae9dd28f782c88170fb591d00b3154da78b57098ff5119692d96"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1797.obj",
+      "sha256": "030dbec5dbfc8f29059727f18f867e962fc5debfeea4cab45883edc2c996ec6b"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1798.obj",
+      "sha256": "a7c633819d776ef3610be33e0c2ddf47e7da39b6da476b7876418f8245f27c25"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1800.obj",
+      "sha256": "34c447cb8bf5e98493cfe52911af1fa9ebd0eaf32c7c5578457666575f5d8cc0"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1801.obj",
+      "sha256": "f8ddd0851486a930ef02ff586badabd34cbcf31b034dd7b5ad1b6466f12d28c3"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1806.obj",
+      "sha256": "1581396feaf5a2afee55eac865273c126dd0862ef64e756b189b97f85bc898b5"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1807.obj",
+      "sha256": "6ae0c7024c63059599eedabc36fe4650e5979d99ca7d8f9b8bd2389c89d6c5a4"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1814.obj",
+      "sha256": "38ca1d48bc0518256be6ee7a947169f24a402e91a49dde23bced70fc59a6a5d3"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1833.obj",
+      "sha256": "8f4548f67acff09574bc46bfc9c78c31ad8d4f16a34cfe28b95e19b640d2208c"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1834.obj",
+      "sha256": "9a52d502e5af633cb6d1cae76e5e9230e60f78ee987982c23b02776fd3adc9ea"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1835.obj",
+      "sha256": "d8c6c241f6e98a6b8bfa9cd97943173d18a91251a66029d9a5681fc09f691be4"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1836.obj",
+      "sha256": "367b62ae6f27730d3587f4776ad948ad114f9182be35e776faf7aa576d97ae41"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1841.obj",
+      "sha256": "473636ae8d030582d4d7a76d6fa93d2fc785a415060411fe9b93ce63738ee2bf"
+    },
+    {
+      "path": "bodyparts3d/brain/FJ1842.obj",
+      "sha256": "dd46c1ccde03f979fb0e23071ab5816d7a4bda05776b66604e784f735127c0c2"
+    },
+    {
+      "path": "bodyparts3d/cerebellum/FJ1781.obj",
+      "sha256": "6f66f4912c7519ea6a018324ef4f6d46eb266350574d05a905afeb2c88c575ed"
+    },
+    {
+      "path": "bodyparts3d/cerebellum/FJ1830.obj",
+      "sha256": "d35574d86994e5e49e0e1ee41174a927c666735d7eb7b9cbdae2a709ae4a0bb9"
+    },
+    {
+      "path": "brainder/lh.pial.obj",
+      "sha256": "e48056ddf5087eb9a7fe9a75d6c6775ffb853e0a2f4115e31aff5c39467e6ecf"
+    },
+    {
+      "path": "brainder/rh.pial.obj",
+      "sha256": "f6de3057c426f613fa012729e3c193465ca5b332cd45aadbe22288d51dff69d5"
+    },
+    {
+      "path": "partof_element_parts.txt",
+      "sha256": "3f5f6df1028eb122b30de77c711597b6bb8e5541658e5985859fd228adbf88ea"
+    },
+    {
+      "path": "bodyparts3d/eyes/FJ1317.obj",
+      "sha256": "81a184bd0d3d8602af3c2186405a16565bcabd0d305fcbad7e02b979335d9582"
+    },
+    {
+      "path": "bodyparts3d/eyes/FJ1368.obj",
+      "sha256": "6fce2e1842730573a8d1360a88a9512b2ee5fe0ebe55e669cd265601da663b49"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1254.obj",
+      "sha256": "7ac5ee013326492b1d51795eb292a7e5bba0647b74c30b09dc715f9a1dc28754"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1255.obj",
+      "sha256": "6cbac9debf9b9cd9825f096c5ac84911f91020a36ec6f95fdfc49f10a679822b"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1256.obj",
+      "sha256": "a5dfb507dc76447d6ca09e4a5e11b8750571227d13b582cfffac1d2f35cd1bec"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1257.obj",
+      "sha256": "b4e2d2cb7d5e7d41d82bc6e48b3de5cb628a0786ae0d82abadd39250f6dff3a7"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1258.obj",
+      "sha256": "56fe0ccb8277f4ae0c945d3f2b3cf0a3a816ec2edf31eae4ab46a91954bde7aa"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1259.obj",
+      "sha256": "f2a5c7fb06457bf61d55f8cab4048983651418f01b3bad013e9a2dea7a383b62"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1260.obj",
+      "sha256": "4dd682c058f3949b30077712296603c1c508423a58998ad909baeec5bfa56b72"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1261.obj",
+      "sha256": "529061a7fdb28af07855e7350f788f93ef6c97e3bfead2e28bb9efe0256b0728"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1262.obj",
+      "sha256": "5f45ec1015edb7c7539a3ef7a7577d4a0a723beb4dbfb18e36eca77663431c18"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1263.obj",
+      "sha256": "5811bdc8cfed255f8aa9e10fa8dd4815b5d0924c2a23f1d7e373c8521be6c65a"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1264.obj",
+      "sha256": "e882218931e8f197490f16ba8058a87502edccc5e8e1f2d50fbd715a0386d33b"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1265.obj",
+      "sha256": "bd094c59fb378809a534467b70b5b24ae0b147bc31f42c004e7ddadf8f0b7328"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1266.obj",
+      "sha256": "4df1ab640352a074623d02e755e7632de180da9dc957503f887c791a533d5ea5"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1267.obj",
+      "sha256": "44f5accf76e8b0a1ac2aefb55d031508fedad0bacda03b598aef71f88ca2462d"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1268.obj",
+      "sha256": "692c5313517c8b049fac739a068710f8bdbd1f3e201a1b88819aff6f8f1a6eda"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1269.obj",
+      "sha256": "7b3067782910e38d45b03901ba998fcf35088b9f85c523b3cc890cf11adbf17f"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1270.obj",
+      "sha256": "722d80bd11c7e814c3c1c2b20fe2621ed8327319028ad67c6e4dce24d7ee4458"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1271.obj",
+      "sha256": "220723db70ad6e5edd497977f656be1df7d407804d5ca31302bca598a3d81c41"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1272.obj",
+      "sha256": "17927707d17fa7a78f9743f90b4150d6e7b4eaa4fe5c8ad29a961b4ea795272b"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1273.obj",
+      "sha256": "43ca036b3bf66dad24be63b0f95a2a8ecf839b61d2d83981659e03b4a357f869"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1274.obj",
+      "sha256": "a7ded2520e6c1e41154d89a389b4ded0daf733f23d47e4a02fb97230c07b4907"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1275.obj",
+      "sha256": "457c1d089e24d7e120abf97c2af844ff609a58c3292446e4b1814137d3691416"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1276.obj",
+      "sha256": "95ba31eb43e4975d8f36be7595e383baf31b21b68c829a5e6c419a0125682ef6"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1277.obj",
+      "sha256": "46d0a4b9528553387811d65040836ccfe7dc971fec56254e01c9eabdc16156a0"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1278.obj",
+      "sha256": "32f4db913923278b7cbfcaf8e64d1073604951dd58493e3310da30bec1ff3829"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1279.obj",
+      "sha256": "e8b9c01f57a8a723f9ea0497dfbe2df5f95e23786d0663f196a3608f995d6b22"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1280.obj",
+      "sha256": "5c06c01ee01c337523fc9cf641c31c65856a52c74237d9d86989d93dd6847c0e"
+    },
+    {
+      "path": "bodyparts3d/teeth/FJ1281.obj",
+      "sha256": "2d8f105ee772e727e3b4ccbb6370a893a213174c0f90155054dac20bc053512c"
+    },
+    {
+      "path": "isa_element_parts.txt",
+      "sha256": "a3de74423f943b0d724ae8f59b3a817f87c423a544f8db98113b1980817cbeaf"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ3176.obj",
+      "sha256": "594ac8b2b09280022e2b73142f873fd4d622ba7a1bca590c3fdcb0231e4fb461"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ3177.obj",
+      "sha256": "d76f052f56dda3dc6f4d453c33f062ff56207ff3aea90f9678b5d295f0c916f1"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ3161.obj",
+      "sha256": "7717781b7cb53eaa24eff097e6da5f8dfd1e58a3f23aa169ec05c58eb93de2dc"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ3164.obj",
+      "sha256": "ac0dc9fe871acf68fc8fffa41666f4d7fae35626055e18c104135db80bbd8a65"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ3167.obj",
+      "sha256": "15c66e24dcef4af7b1e4c7e948d3048c87b2d772a2f182f814ae7df8059af3f5"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ3170.obj",
+      "sha256": "e9cda58b8a69602513d067ee47468c3984c223cdc501975468379b65149c7d19"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ3172.obj",
+      "sha256": "7454480761dbf6c98c04f1a59788aeba1dcdecde7a673553ec19b2da172c2916"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ2772.obj",
+      "sha256": "429d56a742a23c27c3423519191c89ae29c34faa027ee0037ad86fbcf5eda11f"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ2541.obj",
+      "sha256": "f4c8cd3c70d212b09db6319e3b218b35aecfa02f53678d6886484a31aaa11cd9"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ2808.obj",
+      "sha256": "48cd41bcd4044c7013ba10c971e212766afc970408f51875f9ef8e8c407c0687"
+    },
+    {
+      "path": "bodyparts3d/neck/FJ2440.obj",
+      "sha256": "ae1e2bab875a75035aaebdc79212fd859c2c193881462245de3252853721361d"
+    }
+  ],
+  "bodyparts3d_isa_url": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_BP3D_4.0_obj_99.zip",
+  "bodyparts3d_isa_table_url": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_element_parts.txt"
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup><PreferredToolArchitecture>x64</PreferredToolArchitecture></PropertyGroup>
+<ItemGroup Label="ProjectConfigurations"><ProjectConfiguration Include="Release|Win32"><Configuration>Release</Configuration><Platform>Win32</Platform></ProjectConfiguration></ItemGroup>
+<PropertyGroup Label="Globals"><ProjectGuid>{8B774978-68CB-4267-A1E1-7247478230EA}</ProjectGuid><Keyword>Win32Proj</Keyword><WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion></PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+<PropertyGroup Label="Configuration"><ConfigurationType>Application</ConfigurationType><PlatformToolset>v143</PlatformToolset><CharacterSet>MultiByte</CharacterSet></PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+<PropertyGroup><OutDir>$(ProjectDir)Release\</OutDir><IntDir>$(ProjectDir)Release\hitobj\</IntDir><TargetName>HeadshotProbe</TargetName><LinkIncremental>false</LinkIncremental></PropertyGroup>
+<ItemDefinitionGroup>
+<ClCompile><LanguageStandard>stdcpp17</LanguageStandard><Optimization>MinSpace</Optimization><FavorSizeOrSpeed>Size</FavorSizeOrSpeed><RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary><DebugInformationFormat>ProgramDatabase</DebugInformationFormat><PreprocessorDefinitions>WIN32;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions><WarningLevel>Level4</WarningLevel><SDLCheck>true</SDLCheck></ClCompile>
+<Link><GenerateDebugInformation>true</GenerateDebugInformation><SubSystem>Console</SubSystem><TargetMachine>MachineX86</TargetMachine></Link>
+</ItemDefinitionGroup>
+<ItemGroup><ClCompile Include="tests\HeadshotProbe.cpp" /><ClCompile Include="tests\CinematicProbe.cpp" /><ClCompile Include="tests\ShotTraceProbe.cpp" /><ClCompile Include="src\Ammunition.cpp" /></ItemGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

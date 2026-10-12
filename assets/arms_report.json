@@ -1,0 +1,186 @@
+{
+  "coordinate_space": "Bip01 Spine2 rest local, game units",
+  "meshes": [
+    {
+      "name": "left humerus",
+      "material": 0,
+      "vertices": 1302,
+      "triangles": 2600
+    },
+    {
+      "name": "left ulna",
+      "material": 0,
+      "vertices": 414,
+      "triangles": 824
+    },
+    {
+      "name": "left radius",
+      "material": 0,
+      "vertices": 318,
+      "triangles": 632
+    },
+    {
+      "name": "left hand",
+      "material": 0,
+      "vertices": 769,
+      "triangles": 1486
+    },
+    {
+      "name": "right humerus",
+      "material": 0,
+      "vertices": 1302,
+      "triangles": 2600
+    },
+    {
+      "name": "right ulna",
+      "material": 0,
+      "vertices": 419,
+      "triangles": 834
+    },
+    {
+      "name": "right radius",
+      "material": 0,
+      "vertices": 338,
+      "triangles": 672
+    },
+    {
+      "name": "right hand",
+      "material": 0,
+      "vertices": 784,
+      "triangles": 1516
+    }
+  ],
+  "registration": {
+    "left": {
+      "upper_length_scale": 0.06067802084295347,
+      "fore_length_scale": 0.07704564545702311,
+      "hand_length_scale": 0.08587376149564017,
+      "girth_scale": 0.06806357053527938,
+      "radius_pronation_degrees": 60.791873915765635,
+      "donor_shoulder": [
+        164.41584542532937,
+        -75.81179239917412,
+        1315.1041536705422
+      ],
+      "donor_elbow": [
+        219.15808809370978,
+        -71.1503518453145,
+        1034.2668897090289
+      ],
+      "donor_wrist": [
+        255.09792319870542,
+        -116.47835452434559,
+        806.1915537573882
+      ],
+      "donor_knuckle": [
+        264.6700898876404,
+        -135.2654943820224,
+        724.6457752808988
+      ],
+      "game_shoulder": [
+        -13.82096653397271,
+        -3.0982009669306487,
+        102.62318992337525
+      ],
+      "game_elbow": [
+        -29.101021245108544,
+        -3.791755844053152,
+        94.40516050435198
+      ],
+      "game_wrist": [
+        -44.40438454048238,
+        -0.3382215902604283,
+        85.32074920673583
+      ],
+      "game_knuckle": [
+        -51.14650969268147,
+        1.0882939025682976,
+        83.1243209887262
+      ]
+    },
+    "right": {
+      "upper_length_scale": 0.06053537645456691,
+      "fore_length_scale": 0.07727054373381917,
+      "hand_length_scale": 0.08573403973193215,
+      "girth_scale": 0.06806494586528652,
+      "radius_pronation_degrees": -58.6759405979502,
+      "donor_shoulder": [
+        -164.43432944944354,
+        -75.64351196921734,
+        1315.3819125311747
+      ],
+      "donor_elbow": [
+        -218.6697949275363,
+        -71.4673608695652,
+        1033.7519202898548
+      ],
+      "donor_wrist": [
+        -255.27636845495775,
+        -115.87192135642132,
+        806.3073306534736
+      ],
+      "donor_knuckle": [
+        -264.51161176470583,
+        -135.85249411764704,
+        724.8647764705881
+      ],
+      "game_shoulder": [
+        13.666440618352942,
+        -3.098162833040232,
+        102.62319692137963
+      ],
+      "game_elbow": [
+        28.946498796867598,
+        -3.7916711103620924,
+        94.40517131824332
+      ],
+      "game_wrist": [
+        44.24984255155359,
+        -0.33809182659112413,
+        85.32074383328107
+      ],
+      "game_knuckle": [
+        50.991965852895476,
+        1.08831090930201,
+        83.12429778959341
+      ]
+    }
+  },
+  "cage": {
+    "left": {
+      "upper": [
+        0
+      ],
+      "fore": [
+        0
+      ],
+      "hand": [
+        1,
+        0
+      ]
+    },
+    "right": {
+      "upper": [
+        0
+      ],
+      "fore": [
+        0
+      ],
+      "hand": [
+        0
+      ]
+    }
+  },
+  "outside_skin": {
+    "left humerus": 0,
+    "left ulna": 0,
+    "left radius": 0,
+    "left hand": 0,
+    "right humerus": 0,
+    "right ulna": 0,
+    "right radius": 0,
+    "right hand": 0
+  },
+  "bytes": 270384,
+  "triangles": 11164
+}

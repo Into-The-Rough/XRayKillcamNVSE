@@ -1,0 +1,72 @@
+X-Ray Killcam anatomy credits
+
+Skull, teeth, cerebellum, cervical vertebrae, hyoid, thyroid and cricoid
+cartilage, trachea and eye fitting references:
+BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International
+https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html
+https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
+https://creativecommons.org/licenses/by/4.0/
+
+Cerebral hemispheres:
+Anderson M. Winkler, Brain for Blender (Brainder).
+https://brainder.org/research/brain-for-blender/
+https://creativecommons.org/licenses/by-sa/3.0/
+The original cerebral mesh is CC BY-SA 3.0; the adapted combined anatomy
+uses CC BY-SA 4.0, a later version permitted by the original license.
+
+Changes: source components selected, welded, reduced, registered together,
+rescaled, registered to eye/chin/crown landmarks and cage-fitted to an adult game head; closed skull cutaway generated
+in Blender; normals and vertex ambient occlusion generated; custom XRA export.
+28 teeth from the IS-A archive were fitted using the same registration and
+cage as the skull, reduced into two arches, and cleaned of tiny disconnected
+fragments. The reveal's tissue shading and edge treatment are procedural.
+The combined anatomy asset and editable Blender scene are distributed under
+CC BY-SA 4.0, with the original BodyParts3D attribution retained.
+https://creativecommons.org/licenses/by-sa/4.0/ This applies
+to anatomy assets, not to the independent plugin code.
+
+The ethmoid and third molars remain absent. These meshes
+are adapted from different donors and are an artistic fit, not a medical model.
+No Sniper Elite assets, restricted Nexus assets or Bethesda meshes are included.
+
+The neck uses BodyParts3D atlas, axis and third to seventh cervical
+vertebrae, hyoid and trachea (part-of archive) and thyroid and cricoid
+cartilage (is-a archive), registered with the same transform as the skull.
+BodyParts3D has no cervical spinal cord, so the plugin's build generates a
+tube that follows the vertebral canal measured from those donors.
+
+The torso uses BodyParts3D first to twelfth thoracic and first to fifth
+lumbar vertebrae, sacrum, hip bones, first to twelfth ribs, first to seventh
+costal cartilages, manubrium, body of sternum, xiphoid process, clavicles,
+scapulae, heart, liver, stomach, duodenum, jejunum, ileum, large intestine
+and kidneys (part-of archive), registered into an adult game body by its hip
+and shoulder joints and its skin profile, cage-fitted under that skin,
+reduced, and closed by voxel remeshing where the donor parts are many
+pieces. BodyParts3D models the lungs only as airway and vessel trees, so
+each lung is grown from the hull of its own trees with the heart, liver and
+stomach carved out; the spinal cord is a generated tube through the measured
+vertebral canal. The femoral and humeral heads are used only to locate the
+hip and shoulder joints and the donor skin only to measure the body's
+profile; neither is distributed.
+
+The legs use BodyParts3D femur, patella, tibia, fibula, tarsal, metatarsal
+and phalanx bones of both sides (part-of archive), each segment registered
+onto an adult game leg by its hip, knee, ankle and ball of the foot, cage-
+fitted under that skin and reduced; the foot bones of each side are joined
+into one simplified foot.
+
+The arms use BodyParts3D humerus, radius, ulna, carpal and metacarpal bones
+of both sides (part-of archive), each segment registered onto an adult game
+arm by its shoulder, elbow, wrist and knuckle, the radius turned about its
+own pronation axis to the game's hand, cage-fitted under that skin and
+reduced; the carpals and metacarpals of each side are joined into one
+simplified hand.
+
+The men's torso uses BodyParts3D left and right testis, epididymis, corpus
+cavernosum and corpus spongiosum of penis and glans penis (is-a archive),
+anchored at the registered pubic symphysis at the torso's scale and fitted
+inside an adult game body's crotch. Women's torso leaves them out.
+
+Fractures are carved at runtime from the donor skull, teeth and brain
+themselves, so every fragment retains the anatomy attribution above. The
+flying lumps of torn brain are procedurally generated in the plugin.

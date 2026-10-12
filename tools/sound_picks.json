@@ -1,0 +1,7 @@
+{
+  "hit": ["fnv:fx_bullet_impact_flesh_06", "fnv:fx_bullet_impact_flesh_07", "fnv:fx_bullet_impact_flesh_08", "fnv:fx_bullet_impact_flesh_09", "jse:squish_FlshImpacts01_08"],
+  "bone": ["jse:crunch_BoneCelery02_02", "jse:crunch_FlshCracksRippingLettuce03_11", "jse:crunch_BoneCelery04_03", "jse:crunch_BoneBarkShortCracks_13", "jse:crunch_BoneBarkShortCracks_06", "jse:crunch_BoneRippingPepper02_08"],
+  "organ": ["jse:squish_SqshSquish03_02", "jse:squish_SqshShortSqueezesTomato_03", "jse:squish_SqshSqueezesNoodles_18", "jse:crunch_FlshCracksRippingLettuce03_11"],
+  "burst": ["jse:splat_BloodGrapefruitSmashHandling01_12", "jse:splat_FlshHitsMelon_02", "jse:splat_SpltImpact01_03", "jse:splat_SpltImpact01_02", "fnv:fx_flinder_body_head_01", "fnv:fx_flinder_body_head_02"],
+  "spray": ["jse:splat_SpltImpactSplatTail03_10", "jse:splat_SpltImpactSplatTail01_02", "fnv:fx_flinder_body_bloodspout_01", "fnv:fx_flinder_body_bloodspout_02"]
+}

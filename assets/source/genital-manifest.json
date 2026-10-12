@@ -1,0 +1,56 @@
+{
+  "bodyparts3d_url": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_BP3D_4.0_obj_99.zip",
+  "parts": {
+    "left testis": [
+      "FJ3138"
+    ],
+    "right testis": [
+      "FJ3142"
+    ],
+    "left epididymis": [
+      "FJ3136"
+    ],
+    "right epididymis": [
+      "FJ3141"
+    ],
+    "corpus cavernosum of penis": [
+      "FJ3132"
+    ],
+    "corpus spongiosum of penis": [
+      "FJ3133"
+    ],
+    "glans penis": [
+      "FJ3134"
+    ]
+  },
+  "files": [
+    {
+      "path": "bodyparts3d/genitals/FJ3132.obj",
+      "sha256": "81a9ef903f013d7f5eed82bdb6740709cfc19c04b7f5ad41595ac6e46327557f"
+    },
+    {
+      "path": "bodyparts3d/genitals/FJ3133.obj",
+      "sha256": "e90e440d57d2e6b0b85c622650c46bafe34c0886a6eed898062b914b5df1f14e"
+    },
+    {
+      "path": "bodyparts3d/genitals/FJ3134.obj",
+      "sha256": "30e1b727121b6f105f9156af132171f9a79bdd3588567148572479ad6c2a1efe"
+    },
+    {
+      "path": "bodyparts3d/genitals/FJ3136.obj",
+      "sha256": "b593e1536bdf93f9c9115207e979d94df238d088e08509b2e2751d8d4ebcd52a"
+    },
+    {
+      "path": "bodyparts3d/genitals/FJ3138.obj",
+      "sha256": "bb9e548f7059fb21370b8c9612ce10fe70aa9b96945c1faea33d7cc9ed113639"
+    },
+    {
+      "path": "bodyparts3d/genitals/FJ3141.obj",
+      "sha256": "23469ccd7ac340ef3f4184fb850c7658420e9f7f294d91331f10cb3187824bf5"
+    },
+    {
+      "path": "bodyparts3d/genitals/FJ3142.obj",
+      "sha256": "1dc84c4d16139902662f08c97bc2581cb698cf8411855bcca5474e154f4ad86e"
+    }
+  ]
+}

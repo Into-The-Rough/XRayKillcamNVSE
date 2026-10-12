@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup><PreferredToolArchitecture>x64</PreferredToolArchitecture></PropertyGroup>
+<ItemGroup Label="ProjectConfigurations"><ProjectConfiguration Include="Release|Win32"><Configuration>Release</Configuration><Platform>Win32</Platform></ProjectConfiguration></ItemGroup>
+<PropertyGroup Label="Globals"><ProjectGuid>{061E777B-6067-4EAC-BE60-9EDBCE3A3FA5}</ProjectGuid><Keyword>Win32Proj</Keyword><WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion><ProjectName>XRayKillcamNVSE</ProjectName></PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+<PropertyGroup Label="Configuration"><ConfigurationType>DynamicLibrary</ConfigurationType><PlatformToolset>v143</PlatformToolset><WholeProgramOptimization>true</WholeProgramOptimization><CharacterSet>MultiByte</CharacterSet></PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+<PropertyGroup><OutDir>$(ProjectDir)Release\</OutDir><IntDir>$(ProjectDir)Release\obj\</IntDir><TargetName>XRayKillcamNVSE</TargetName><LinkIncremental>false</LinkIncremental><FxcPath>$(WindowsSdkDir)bin\$(WindowsTargetPlatformVersion)\x64\fxc.exe</FxcPath></PropertyGroup>
+<ItemDefinitionGroup>
+<ClCompile><LanguageStandard>stdcpp17</LanguageStandard><Optimization>MinSpace</Optimization><FavorSizeOrSpeed>Size</FavorSizeOrSpeed><RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary><DebugInformationFormat>ProgramDatabase</DebugInformationFormat><PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions><AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories><FunctionLevelLinking>true</FunctionLevelLinking><IntrinsicFunctions>true</IntrinsicFunctions><PrecompiledHeader>NotUsing</PrecompiledHeader><MultiProcessorCompilation>true</MultiProcessorCompilation><WarningLevel>Level4</WarningLevel><SDLCheck>true</SDLCheck></ClCompile>
+<Link><ModuleDefinitionFile>exports.def</ModuleDefinitionFile><GenerateDebugInformation>true</GenerateDebugInformation><SubSystem>Windows</SubSystem><TargetMachine>MachineX86</TargetMachine><OptimizeReferences>true</OptimizeReferences><EnableCOMDATFolding>true</EnableCOMDATFolding><AdditionalDependencies>kernel32.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies></Link>
+<PreBuildEvent><Command>if not exist "$(IntDir)" mkdir "$(IntDir)"
+"$(FxcPath)" /nologo /O3 /WX /T vs_3_0 /E MaskVS /Vn g_MaskVS /Fh "$(IntDir)MaskVS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E MaskPS /Vn g_MaskPS /Fh "$(IntDir)MaskPS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T vs_3_0 /E AnatomyVS /Vn g_AnatomyVS /Fh "$(IntDir)AnatomyVS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T vs_3_0 /E PlateVS /Vn g_PlateVS /Fh "$(IntDir)PlateVS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T vs_3_0 /E DebrisVS /Vn g_DebrisVS /Fh "$(IntDir)DebrisVS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T vs_3_0 /E SprayVS /Vn g_SprayVS /Fh "$(IntDir)SprayVS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E AnatomyPS /Vn g_AnatomyPS /Fh "$(IntDir)AnatomyPS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E AnatomyExteriorPS /Vn g_AnatomyExteriorPS /Fh "$(IntDir)AnatomyExteriorPS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T vs_3_0 /E CompositeVS /Vn g_CompositeVS /Fh "$(IntDir)CompositeVS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E CompositePS /Vn g_CompositePS /Fh "$(IntDir)CompositePS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T vs_3_0 /E BulletVS /Vn g_BulletVS /Fh "$(IntDir)BulletVS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E BulletPS /Vn g_BulletPS /Fh "$(IntDir)BulletPS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E DamagePS /Vn g_DamagePS /Fh "$(IntDir)DamagePS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E ExteriorPS /Vn g_ExteriorPS /Fh "$(IntDir)ExteriorPS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1
+"$(FxcPath)" /nologo /O3 /WX /T ps_3_0 /E SprayThroughPS /Vn g_SprayThroughPS /Fh "$(IntDir)SprayThroughPS.h" "$(ProjectDir)shaders\Anatomy.hlsl"
+if errorlevel 1 exit /b 1</Command></PreBuildEvent>
+<PostBuildEvent><Command>if "$(XRayModDir)"=="" exit /b 0
+if not exist "$(XRayModDir)\NVSE\Plugins" mkdir "$(XRayModDir)\NVSE\Plugins"
+if not exist "$(XRayModDir)\config" mkdir "$(XRayModDir)\config"
+if not exist "$(XRayModDir)\meshes\XRayKillcamNVSE" mkdir "$(XRayModDir)\meshes\XRayKillcamNVSE"
+copy /Y "$(TargetPath)" "$(XRayModDir)\NVSE\Plugins\XRayKillcamNVSE.dll"
+if errorlevel 1 exit /b 1
+copy /Y "$(TargetDir)$(TargetName).pdb" "$(XRayModDir)\NVSE\Plugins\XRayKillcamNVSE.pdb"
+if errorlevel 1 exit /b 1
+copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\head.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\head.xra"
+if errorlevel 1 exit /b 1
+copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\torso.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\torso.xra"
+if errorlevel 1 exit /b 1
+copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\torso-female.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\torso-female.xra"
+if errorlevel 1 exit /b 1
+copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\legs.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\legs.xra"
+if errorlevel 1 exit /b 1
+copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\arms.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\arms.xra"
+if errorlevel 1 exit /b 1
+copy /Y "$(ProjectDir)package\Anatomy-Credits.txt" "$(XRayModDir)\Anatomy-Credits.txt"
+if errorlevel 1 exit /b 1
+if not exist "$(XRayModDir)\config\XRayKillcamNVSE.ini" copy "$(ProjectDir)package\config\XRayKillcamNVSE.ini" "$(XRayModDir)\config\XRayKillcamNVSE.ini"
+if errorlevel 1 exit /b 1</Command></PostBuildEvent>
+</ItemDefinitionGroup>
+<ItemGroup><ClCompile Include="src\Main.cpp" /><ClCompile Include="src\Headshots.cpp" /><ClCompile Include="src\Interop.cpp" /><ClCompile Include="src\ShotTrace.cpp" /><ClCompile Include="src\Cinematic.cpp" /><ClCompile Include="src\Model.cpp" /><ClCompile Include="src\Impact.cpp" /><ClCompile Include="src\ShotAudit.cpp" /><ClCompile Include="src\Damage.cpp" /><ClCompile Include="src\Fracture.cpp" /><ClCompile Include="src\Debris.cpp" /><ClCompile Include="src\Rupture.cpp" /><ClCompile Include="src\Spray.cpp" /><ClCompile Include="src\Cues.cpp" /><ClCompile Include="src\DamageSurface.cpp" /><ClCompile Include="src\Ammunition.cpp" /><ClCompile Include="src\Graphics.cpp" /><ClCompile Include="src\RevealMask.cpp" /><ClCompile Include="src\FaceFit.cpp" /><ClCompile Include="src\Head.cpp" /><ClCompile Include="src\SkinCapture.cpp" /><ClCompile Include="src\RegionCapture.cpp" /><ClCompile Include="src\Proportions.cpp" /><ClCompile Include="src\BodySkin.cpp" /><ClCompile Include="src\Groin.cpp" /><ClCompile Include="src\CloseUp.cpp" /><ClCompile Include="src\Clearance.cpp" /><ClCompile Include="src\Sound.cpp" /><ClCompile Include="src\GoreSound.cpp" /><ClCompile Include="src\ProjectileAmmo.cpp" /><ClCompile Include="src\Runtime.cpp" /><ClCompile Include="src\Commands.cpp" /></ItemGroup>
+<ItemGroup><ClInclude Include="src\PluginAPI.h" /><ClInclude Include="src\Headshots.h" /><ClInclude Include="src\ShotTrace.h" /><ClInclude Include="src\Cinematic.h" /><ClInclude Include="src\Runtime.h" /><ClInclude Include="src\Engine.h" /><ClInclude Include="src\Proportions.h" /><ClInclude Include="src\Hooks.h" /><ClInclude Include="src\Graphics.h" /><ClInclude Include="src\RevealMask.h" /><ClInclude Include="src\FaceFit.h" /><ClInclude Include="src\FitReference.h" /><ClInclude Include="src\Math.h" /><ClInclude Include="src\Impact.h" /><ClInclude Include="src\ShotAudit.h" /><ClInclude Include="src\Damage.h" /><ClInclude Include="src\Fracture.h" /><ClInclude Include="src\Debris.h" /><ClInclude Include="src\DamageSurface.h" /><ClInclude Include="src\Ammunition.h" /><ClInclude Include="src\Model.h" /><ClInclude Include="src\Commands.h" /></ItemGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

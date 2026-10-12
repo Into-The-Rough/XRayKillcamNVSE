@@ -1,0 +1,695 @@
+{
+  "coordinate_space": "Bip01 Head local; X up, Y forward, Z lateral",
+  "meshes": [
+    {
+      "name": "FJ3200",
+      "material": 0,
+      "mode": 1,
+      "vertices": 3266,
+      "triangles": 6528,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3263",
+      "material": 0,
+      "mode": 1,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3265",
+      "material": 0,
+      "mode": 1,
+      "vertices": 322,
+      "triangles": 640,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3269",
+      "material": 0,
+      "mode": 1,
+      "vertices": 1157,
+      "triangles": 2338,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3272",
+      "material": 0,
+      "mode": 1,
+      "vertices": 221,
+      "triangles": 438,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3273",
+      "material": 0,
+      "mode": 1,
+      "vertices": 438,
+      "triangles": 872,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3274",
+      "material": 0,
+      "mode": 1,
+      "vertices": 2974,
+      "triangles": 5944,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3281",
+      "material": 0,
+      "mode": 1,
+      "vertices": 1112,
+      "triangles": 2220,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3287",
+      "material": 0,
+      "mode": 1,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3289",
+      "material": 0,
+      "mode": 1,
+      "vertices": 1256,
+      "triangles": 2508,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3309",
+      "material": 0,
+      "mode": 1,
+      "vertices": 2801,
+      "triangles": 5602,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3369",
+      "material": 0,
+      "mode": 1,
+      "vertices": 346,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3371",
+      "material": 0,
+      "mode": 1,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3375",
+      "material": 0,
+      "mode": 1,
+      "vertices": 1191,
+      "triangles": 2394,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3378",
+      "material": 0,
+      "mode": 1,
+      "vertices": 210,
+      "triangles": 416,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3379",
+      "material": 0,
+      "mode": 1,
+      "vertices": 392,
+      "triangles": 780,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3380",
+      "material": 0,
+      "mode": 1,
+      "vertices": 2927,
+      "triangles": 5850,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3386",
+      "material": 0,
+      "mode": 1,
+      "vertices": 1110,
+      "triangles": 2216,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3392",
+      "material": 0,
+      "mode": 1,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3394",
+      "material": 0,
+      "mode": 1,
+      "vertices": 1822,
+      "triangles": 3668,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3395",
+      "material": 0,
+      "mode": 1,
+      "vertices": 1626,
+      "triangles": 3248,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3200_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 2413,
+      "triangles": 4575,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3200_cut",
+      "material": 2,
+      "mode": 2,
+      "vertices": 251,
+      "triangles": 247,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3263_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3265_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 322,
+      "triangles": 640,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3269_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1157,
+      "triangles": 2338,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3272_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 221,
+      "triangles": 438,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3273_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 438,
+      "triangles": 872,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3274_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1679,
+      "triangles": 2789,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3274_cut",
+      "material": 2,
+      "mode": 2,
+      "vertices": 557,
+      "triangles": 545,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3281_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1065,
+      "triangles": 2083,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3281_cut",
+      "material": 2,
+      "mode": 2,
+      "vertices": 45,
+      "triangles": 43,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3287_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3289_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1256,
+      "triangles": 2508,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3309_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 2453,
+      "triangles": 4819,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3309_cut",
+      "material": 2,
+      "mode": 2,
+      "vertices": 91,
+      "triangles": 87,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3369_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 346,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3371_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3375_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1191,
+      "triangles": 2394,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3378_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 210,
+      "triangles": 416,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3379_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 392,
+      "triangles": 780,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3380_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 3000,
+      "triangles": 5720,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3380_cut",
+      "material": 2,
+      "mode": 2,
+      "vertices": 312,
+      "triangles": 276,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3386_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1110,
+      "triangles": 2216,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3392_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 352,
+      "triangles": 700,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3394_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1822,
+      "triangles": 3612,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3394_cut",
+      "material": 2,
+      "mode": 2,
+      "vertices": 58,
+      "triangles": 56,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "FJ3395_cut",
+      "material": 0,
+      "mode": 2,
+      "vertices": 1626,
+      "triangles": 3248,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "lh.pial",
+      "material": 1,
+      "mode": 3,
+      "vertices": 16002,
+      "triangles": 32000,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "rh.pial",
+      "material": 1,
+      "mode": 3,
+      "vertices": 16002,
+      "triangles": 32000,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "cerebellum_FJ1781",
+      "material": 1,
+      "mode": 3,
+      "vertices": 2002,
+      "triangles": 4000,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "cerebellum_FJ1830",
+      "material": 1,
+      "mode": 3,
+      "vertices": 2001,
+      "triangles": 3998,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "upper_teeth",
+      "material": 3,
+      "mode": 3,
+      "vertices": 6024,
+      "triangles": 11992,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "lower_teeth",
+      "material": 3,
+      "mode": 3,
+      "vertices": 6028,
+      "triangles": 12000,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck C1",
+      "material": 0,
+      "mode": 3,
+      "vertices": 696,
+      "triangles": 1400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck C2",
+      "material": 0,
+      "mode": 3,
+      "vertices": 696,
+      "triangles": 1400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck C3",
+      "material": 0,
+      "mode": 3,
+      "vertices": 696,
+      "triangles": 1400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck C4",
+      "material": 0,
+      "mode": 3,
+      "vertices": 696,
+      "triangles": 1400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck C5",
+      "material": 0,
+      "mode": 3,
+      "vertices": 696,
+      "triangles": 1400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck C6",
+      "material": 0,
+      "mode": 3,
+      "vertices": 696,
+      "triangles": 1400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck C7",
+      "material": 0,
+      "mode": 3,
+      "vertices": 696,
+      "triangles": 1400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck hyoid",
+      "material": 0,
+      "mode": 3,
+      "vertices": 600,
+      "triangles": 1196,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck thyroid cartilage",
+      "material": 4,
+      "mode": 3,
+      "vertices": 802,
+      "triangles": 1600,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck cricoid cartilage",
+      "material": 4,
+      "mode": 3,
+      "vertices": 600,
+      "triangles": 1200,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck trachea",
+      "material": 4,
+      "mode": 3,
+      "vertices": 1202,
+      "triangles": 2400,
+      "nonmanifold_edges": 0
+    },
+    {
+      "name": "neck spinal cord",
+      "material": 1,
+      "mode": 3,
+      "vertices": 642,
+      "triangles": 1280,
+      "nonmanifold_edges": 0
+    }
+  ],
+  "dentition": {
+    "upper": [
+      "FJ1261",
+      "FJ1262",
+      "FJ1263",
+      "FJ1264",
+      "FJ1265",
+      "FJ1266",
+      "FJ1267",
+      "FJ1275",
+      "FJ1276",
+      "FJ1277",
+      "FJ1278",
+      "FJ1279",
+      "FJ1280",
+      "FJ1281"
+    ],
+    "upper_discarded_degenerate_vertices": 8,
+    "lower": [
+      "FJ1254",
+      "FJ1255",
+      "FJ1256",
+      "FJ1257",
+      "FJ1258",
+      "FJ1259",
+      "FJ1260",
+      "FJ1268",
+      "FJ1269",
+      "FJ1270",
+      "FJ1271",
+      "FJ1272",
+      "FJ1273",
+      "FJ1274"
+    ],
+    "lower_discarded_degenerate_vertices": 0
+  },
+  "registration": {
+    "source_eye_front": [
+      6.055206298828125,
+      5.7074079513549805,
+      -0.04644286632537842
+    ],
+    "target_eye_corners": [
+      7.075211524963379,
+      6.135578632354736,
+      1.0728836059570312e-05
+    ],
+    "eye_height_correction": 1.020005226135254,
+    "eye_forward_correction": 0.42817068099975586,
+    "chin_forward_correction": 0.7041925430297855,
+    "eye_width_scale": 1.0463371689016168,
+    "source_chin_height": -0.5518302917480469,
+    "target_chin_height": -0.37323181629180907,
+    "source_crown_height": 14.151040077209473,
+    "target_crown_height": 14.537394714355468,
+    "cut_height": 8.406923294067383
+  },
+  "neck": {
+    "canal": [
+      [
+        -4.032021522521973,
+        -0.8022171258926392,
+        0.0
+      ],
+      [
+        -3.7176060676574707,
+        -0.5496501922607422,
+        0.0
+      ],
+      [
+        -3.403190851211548,
+        -0.43417251110076904,
+        0.0
+      ],
+      [
+        -2.8376357555389404,
+        -0.470292329788208,
+        0.0
+      ],
+      [
+        -2.5692825317382812,
+        -0.30450576543807983,
+        0.0
+      ],
+      [
+        -1.865450382232666,
+        -0.4197480082511902,
+        0.0
+      ],
+      [
+        -1.5850181579589844,
+        -0.3105723261833191,
+        0.0
+      ],
+      [
+        -1.3045860528945923,
+        -0.24942174553871155,
+        0.0
+      ],
+      [
+        -0.620069146156311,
+        -0.5483825206756592,
+        0.0
+      ],
+      [
+        -0.3010503053665161,
+        -0.7097931504249573,
+        0.0
+      ],
+      [
+        0.04715459793806076,
+        -0.5630008578300476,
+        0.0
+      ],
+      [
+        0.38116663694381714,
+        -0.5644673109054565,
+        0.0
+      ],
+      [
+        0.7151786684989929,
+        -0.6222364902496338,
+        0.0
+      ],
+      [
+        1.7367503643035889,
+        -0.8040295243263245,
+        0.0
+      ],
+      [
+        3.2808375358581543,
+        -0.9042388200759888,
+        0.0
+      ],
+      [
+        3.50361704826355,
+        -0.9764014482498169,
+        0.0
+      ]
+    ],
+    "bind_slope": 0.54,
+    "bind_low": -4.300000000000017,
+    "bind_high": 1.9999999999999822,
+    "bind_rms": 0.020377110371868293,
+    "vertices_outside_skin": {
+      "neck C1": 0,
+      "neck C2": 0,
+      "neck C3": 0,
+      "neck C4": 0,
+      "neck C5": 0,
+      "neck C6": 0,
+      "neck C7": 0,
+      "neck hyoid": 0,
+      "neck thyroid cartilage": 0,
+      "neck cricoid cartilage": 0,
+      "neck trachea": 0,
+      "neck spinal cord": 0
+    }
+  },
+  "bytes": 4594980,
+  "triangles_intact": 162628,
+  "triangles_cutaway": 157668
+}

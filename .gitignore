@@ -1,0 +1,9 @@
+Release/
+.vs/
+*.user
+*.blend1
+assets/source/*.nif.json
+assets/source/extracted/
+assets/previews/
+tests/output/
+tools/__pycache__/

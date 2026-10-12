@@ -1,0 +1,5 @@
+LIBRARY XRayKillcamNVSE
+EXPORTS
+    NVSEPlugin_Query
+    NVSEPlugin_Load
+    XRayKillcamShownActor

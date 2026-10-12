@@ -1,0 +1,1642 @@
+{
+  "coordinate_space": "Bip01 Spine1 rest local; X up the spine, game units",
+  "meshes": [
+    {
+      "name": "T1",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T2",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T3",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T4",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T5",
+      "material": 0,
+      "vertices": 649,
+      "triangles": 1298
+    },
+    {
+      "name": "T6",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T7",
+      "material": 0,
+      "vertices": 649,
+      "triangles": 1298
+    },
+    {
+      "name": "T8",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T9",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T10",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T11",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "T12",
+      "material": 0,
+      "vertices": 650,
+      "triangles": 1300
+    },
+    {
+      "name": "L1",
+      "material": 0,
+      "vertices": 700,
+      "triangles": 1400
+    },
+    {
+      "name": "L2",
+      "material": 0,
+      "vertices": 700,
+      "triangles": 1400
+    },
+    {
+      "name": "L3",
+      "material": 0,
+      "vertices": 700,
+      "triangles": 1400
+    },
+    {
+      "name": "L4",
+      "material": 0,
+      "vertices": 700,
+      "triangles": 1400
+    },
+    {
+      "name": "L5",
+      "material": 0,
+      "vertices": 700,
+      "triangles": 1400
+    },
+    {
+      "name": "sacrum",
+      "material": 0,
+      "vertices": 1186,
+      "triangles": 2400
+    },
+    {
+      "name": "left rib 1",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 2",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 3",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 4",
+      "material": 0,
+      "vertices": 451,
+      "triangles": 898
+    },
+    {
+      "name": "left rib 5",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 6",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 7",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 8",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 9",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 10",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 11",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left rib 12",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left costal cartilage 1",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "left costal cartilage 2",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "left costal cartilage 3",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "left costal cartilage 4",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "left costal cartilage 5",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "left costal cartilage 6",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "left costal cartilage 7",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "left clavicle",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "left scapula",
+      "material": 0,
+      "vertices": 1302,
+      "triangles": 2600
+    },
+    {
+      "name": "left hip bone",
+      "material": 0,
+      "vertices": 1166,
+      "triangles": 2332
+    },
+    {
+      "name": "right rib 1",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 2",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 3",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 4",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 5",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 6",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 7",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 8",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 9",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 10",
+      "material": 0,
+      "vertices": 451,
+      "triangles": 898
+    },
+    {
+      "name": "right rib 11",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right rib 12",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right costal cartilage 1",
+      "material": 4,
+      "vertices": 251,
+      "triangles": 498
+    },
+    {
+      "name": "right costal cartilage 2",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "right costal cartilage 3",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "right costal cartilage 4",
+      "material": 4,
+      "vertices": 251,
+      "triangles": 498
+    },
+    {
+      "name": "right costal cartilage 5",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "right costal cartilage 6",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "right costal cartilage 7",
+      "material": 4,
+      "vertices": 252,
+      "triangles": 500
+    },
+    {
+      "name": "right clavicle",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "right scapula",
+      "material": 0,
+      "vertices": 1302,
+      "triangles": 2600
+    },
+    {
+      "name": "right hip bone",
+      "material": 0,
+      "vertices": 1187,
+      "triangles": 2374
+    },
+    {
+      "name": "manubrium",
+      "material": 0,
+      "vertices": 402,
+      "triangles": 800
+    },
+    {
+      "name": "sternum",
+      "material": 0,
+      "vertices": 452,
+      "triangles": 900
+    },
+    {
+      "name": "xiphoid",
+      "material": 0,
+      "vertices": 152,
+      "triangles": 300
+    },
+    {
+      "name": "heart",
+      "material": 5,
+      "vertices": 3984,
+      "triangles": 8000
+    },
+    {
+      "name": "liver",
+      "material": 7,
+      "vertices": 3502,
+      "triangles": 7000
+    },
+    {
+      "name": "stomach",
+      "material": 8,
+      "vertices": 1502,
+      "triangles": 3000
+    },
+    {
+      "name": "left lung",
+      "material": 6,
+      "vertices": 3002,
+      "triangles": 6000
+    },
+    {
+      "name": "right lung",
+      "material": 6,
+      "vertices": 3252,
+      "triangles": 6500
+    },
+    {
+      "name": "intestines",
+      "material": 8,
+      "vertices": 5984,
+      "triangles": 12000
+    },
+    {
+      "name": "left kidney",
+      "material": 9,
+      "vertices": 1002,
+      "triangles": 2000
+    },
+    {
+      "name": "right kidney",
+      "material": 9,
+      "vertices": 1002,
+      "triangles": 2000
+    },
+    {
+      "name": "spinal cord",
+      "material": 1,
+      "vertices": 1474,
+      "triangles": 2944
+    },
+    {
+      "name": "left testis",
+      "material": 10,
+      "vertices": 802,
+      "triangles": 1600
+    },
+    {
+      "name": "right testis",
+      "material": 10,
+      "vertices": 802,
+      "triangles": 1600
+    },
+    {
+      "name": "penis",
+      "material": 11,
+      "vertices": 1202,
+      "triangles": 2400
+    }
+  ],
+  "registration": {
+    "scale": 0.06915781345038029,
+    "donor_hip_height": 811.2892166166156,
+    "donor_shoulder_height": 1315.2430331008586,
+    "game_hip_height": 67.77084939435298,
+    "game_shoulder_height": 102.62319342237744,
+    "shoulder_width_ratio": 1.2086329904819215,
+    "levels": [
+      {
+        "height": 56.0,
+        "donor_front": 107.65022754669188,
+        "donor_back": 46.84688186645507,
+        "game_front": 9.416216850280762,
+        "game_back": -5.212285518646241,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 57.0,
+        "donor_front": 107.65022754669188,
+        "donor_back": 46.84688186645507,
+        "game_front": 9.416216850280762,
+        "game_back": -5.212285518646241,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 58.0,
+        "donor_front": 107.7610497159324,
+        "donor_back": 46.78880322814997,
+        "game_front": 9.417006921357725,
+        "game_back": -5.21485568081167,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 59.0,
+        "donor_front": 108.2615926017496,
+        "donor_back": 46.51386500547662,
+        "game_front": 9.420415833117744,
+        "game_back": -5.226125152560331,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 60.0,
+        "donor_front": 109.83058112231208,
+        "donor_back": 45.600516630059495,
+        "game_front": 9.431390313417335,
+        "game_back": -5.262135573290814,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 61.0,
+        "donor_front": 113.7214904544651,
+        "donor_back": 43.22362268317005,
+        "game_front": 9.458990746869507,
+        "game_back": -5.352342057387209,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 62.0,
+        "donor_front": 121.27881357976479,
+        "donor_back": 38.3071144558236,
+        "game_front": 9.513958797108426,
+        "game_back": -5.530197287194045,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 63.0,
+        "donor_front": 132.7681031671928,
+        "donor_back": 30.135675634863265,
+        "game_front": 9.601523588815688,
+        "game_back": -5.8078528587840585,
+        "width": 1.0098059618646598
+      },
+      {
+        "height": 64.0,
+        "donor_front": 146.46315264906121,
+        "donor_back": 19.109266009306108,
+        "game_front": 9.714825670421085,
+        "game_back": -6.152755673540025,
+        "width": 1.0212433787049764
+      },
+      {
+        "height": 65.0,
+        "donor_front": 159.35960552330553,
+        "donor_back": 6.885089057864218,
+        "game_front": 9.83699736676443,
+        "game_back": -6.4948473155549085,
+        "width": 1.0243597339381296
+      },
+      {
+        "height": 66.0,
+        "donor_front": 169.22212931143127,
+        "donor_back": -4.355523633562204,
+        "game_front": 9.951535250177981,
+        "game_back": -6.764516514940054,
+        "width": 1.0283051802075083
+      },
+      {
+        "height": 67.0,
+        "donor_front": 175.8748632141713,
+        "donor_back": -12.914421197411654,
+        "game_front": 10.051113728705198,
+        "game_back": -6.925671865343978,
+        "width": 1.0338930936943038
+      },
+      {
+        "height": 68.0,
+        "donor_front": 180.54545412057223,
+        "donor_back": -18.10481465547173,
+        "game_front": 10.137827136730468,
+        "game_back": -6.977779369006397,
+        "width": 1.0357399318560179
+      },
+      {
+        "height": 69.0,
+        "donor_front": 184.41698091323207,
+        "donor_back": -20.15671551243287,
+        "game_front": 10.217856853746499,
+        "game_back": -6.936787019422603,
+        "width": 1.0367227099827965
+      },
+      {
+        "height": 70.0,
+        "donor_front": 187.9610815616637,
+        "donor_back": -19.807052170482596,
+        "game_front": 10.296798285280712,
+        "game_back": -6.818185925605808,
+        "width": 1.0392365760136186
+      },
+      {
+        "height": 71.0,
+        "donor_front": 191.15354612030933,
+        "donor_back": -17.852972343998484,
+        "game_front": 10.377873141453874,
+        "game_back": -6.6318665587717005,
+        "width": 1.0365016801916127
+      },
+      {
+        "height": 72.0,
+        "donor_front": 193.92437937847453,
+        "donor_back": -14.913445195233617,
+        "game_front": 10.46250818121179,
+        "game_back": -6.387838739496043,
+        "width": 1.0264086030590562
+      },
+      {
+        "height": 73.0,
+        "donor_front": 196.21880124720622,
+        "donor_back": -11.372546063805569,
+        "game_front": 10.549991117284563,
+        "game_back": -6.1001016426151695,
+        "width": 1.0063053288112929
+      },
+      {
+        "height": 74.0,
+        "donor_front": 197.91506761820253,
+        "donor_back": -7.529707332389434,
+        "game_front": 10.6381987649311,
+        "game_back": -5.789763251150585,
+        "width": 1.0015840607605946
+      },
+      {
+        "height": 75.0,
+        "donor_front": 198.92128566140647,
+        "donor_back": -3.7337778782808253,
+        "game_front": 10.724418171993442,
+        "game_back": -5.483061641082385,
+        "width": 0.999122528040071
+      },
+      {
+        "height": 76.0,
+        "donor_front": 199.32047666636424,
+        "donor_back": -0.3684036442399728,
+        "game_front": 10.806413428671634,
+        "game_back": -5.204615786341886,
+        "width": 1.023313283629988
+      },
+      {
+        "height": 77.0,
+        "donor_front": 199.499292057059,
+        "donor_back": 2.2562525851741615,
+        "game_front": 10.882889039545487,
+        "game_back": -4.971776503098129,
+        "width": 1.0472818284364285
+      },
+      {
+        "height": 78.0,
+        "donor_front": 200.03395680098816,
+        "donor_back": 4.003290911800842,
+        "game_front": 10.952270605246804,
+        "game_back": -4.7931992463781645,
+        "width": 1.0782783683073156
+      },
+      {
+        "height": 79.0,
+        "donor_front": 201.33671054734984,
+        "donor_back": 4.914267983536026,
+        "game_front": 11.0109417599461,
+        "game_back": -4.672189781951286,
+        "width": 1.1032786991078014
+      },
+      {
+        "height": 80.0,
+        "donor_front": 203.37917775076224,
+        "donor_back": 5.153980938293059,
+        "game_front": 11.052968025622224,
+        "game_back": -4.614145976374912,
+        "width": 1.1196755958643196
+      },
+      {
+        "height": 81.0,
+        "donor_front": 205.77010863354047,
+        "donor_back": 4.943492144478129,
+        "game_front": 11.072678913532684,
+        "game_back": -4.6328509279236,
+        "width": 1.1293216598719036
+      },
+      {
+        "height": 82.0,
+        "donor_front": 208.06815647509754,
+        "donor_back": 4.507697312915995,
+        "game_front": 11.068445221490624,
+        "game_back": -4.74873542203793,
+        "width": 1.1170390277877618
+      },
+      {
+        "height": 83.0,
+        "donor_front": 210.00644186114553,
+        "donor_back": 4.0273697759694995,
+        "game_front": 11.044551111925696,
+        "game_back": -4.976646092654667,
+        "width": 1.1122074298244808
+      },
+      {
+        "height": 84.0,
+        "donor_front": 211.50392254463503,
+        "donor_back": 3.5831369785249416,
+        "game_front": 11.009560498632014,
+        "game_back": -5.311451844439095,
+        "width": 1.1101571339043415
+      },
+      {
+        "height": 85.0,
+        "donor_front": 212.58095313704607,
+        "donor_back": 3.122875868553877,
+        "game_front": 10.972938802945844,
+        "game_back": -5.725097166745961,
+        "width": 1.1090905075333415
+      },
+      {
+        "height": 86.0,
+        "donor_front": 213.2912934114305,
+        "donor_back": 2.490644869457446,
+        "game_front": 10.942525161269216,
+        "game_back": -6.178231965751459,
+        "width": 1.1107685859027256
+      },
+      {
+        "height": 87.0,
+        "donor_front": 213.7107287385608,
+        "donor_back": 1.5091981063636446,
+        "game_front": 10.923609502671953,
+        "game_back": -6.635794185074755,
+        "width": 1.1106687594630724
+      },
+      {
+        "height": 88.0,
+        "donor_front": 213.86985155077204,
+        "donor_back": 0.06291243325255254,
+        "game_front": 10.919016943636613,
+        "game_back": -7.074402758085234,
+        "width": 1.1098107658038578
+      },
+      {
+        "height": 89.0,
+        "donor_front": 213.73241383981795,
+        "donor_back": -1.861663382383627,
+        "game_front": 10.92869894563496,
+        "game_back": -7.480654953538936,
+        "width": 1.112604268604796
+      },
+      {
+        "height": 90.0,
+        "donor_front": 213.24744497088633,
+        "donor_back": -4.180935564714146,
+        "game_front": 10.947379946004549,
+        "game_back": -7.8466876023799585,
+        "width": 1.1189709872141014
+      },
+      {
+        "height": 91.0,
+        "donor_front": 212.4550315219849,
+        "donor_back": -6.735358336786947,
+        "game_front": 10.962947537213235,
+        "game_back": -8.168709306105967,
+        "width": 1.1177669289918717
+      },
+      {
+        "height": 92.0,
+        "donor_front": 211.49576686081593,
+        "donor_back": -9.317918896262995,
+        "game_front": 10.956406060416564,
+        "game_back": -8.447850153317336,
+        "width": 1.1166051992530202
+      },
+      {
+        "height": 93.0,
+        "donor_front": 210.46097786397095,
+        "donor_back": -11.713043414653058,
+        "game_front": 10.905072705367104,
+        "game_back": -8.689122977141997,
+        "width": 1.1240297600107365
+      },
+      {
+        "height": 94.0,
+        "donor_front": 209.20753923804546,
+        "donor_back": -13.731356424640909,
+        "game_front": 10.787437843062662,
+        "game_back": -8.89875745002681,
+        "width": 1.1334037750340453
+      },
+      {
+        "height": 95.0,
+        "donor_front": 207.34951053557765,
+        "donor_back": -15.230769315924196,
+        "game_front": 10.588013869110112,
+        "game_back": -9.081025832000565,
+        "width": 1.1441385693013157
+      },
+      {
+        "height": 96.0,
+        "donor_front": 204.47951141711346,
+        "donor_back": -16.129870814128424,
+        "game_front": 10.300888492640325,
+        "game_back": -9.236160140076624,
+        "width": 1.1556454677909165
+      },
+      {
+        "height": 97.0,
+        "donor_front": 200.4117834820704,
+        "donor_back": -16.44165886731197,
+        "game_front": 9.930089524557319,
+        "game_back": -9.359800110759991,
+        "width": 1.1673357954812165
+      },
+      {
+        "height": 98.0,
+        "donor_front": 195.21795921271493,
+        "donor_back": -16.307290102317808,
+        "game_front": 9.485295134148108,
+        "game_back": -9.444943313945076,
+        "width": 1.1786208773505844
+      },
+      {
+        "height": 99.0,
+        "donor_front": 189.04200899032074,
+        "donor_back": -15.963863713325559,
+        "game_front": 8.977474939936313,
+        "game_back": -9.485869265846086,
+        "width": 1.1889120383773895
+      },
+      {
+        "height": 100.0,
+        "donor_front": 181.89781471348604,
+        "donor_back": -15.618238034266897,
+        "game_front": 8.417790115581022,
+        "game_back": -9.480140868464828,
+        "width": 1.1976206035400003
+      },
+      {
+        "height": 101.0,
+        "donor_front": 173.78940221045676,
+        "donor_back": -15.31185475141807,
+        "game_front": 7.825008149700378,
+        "game_back": -9.427101906586591,
+        "width": 1.2041578978167857
+      },
+      {
+        "height": 102.0,
+        "donor_front": 165.0560412185225,
+        "donor_back": -14.868370174220933,
+        "game_front": 7.235249549741693,
+        "game_back": -9.325962212448584,
+        "width": 1.2079352461861148
+      },
+      {
+        "height": 103.0,
+        "donor_front": 156.56555341857236,
+        "donor_back": -14.014268792417235,
+        "game_front": 6.7023287970059995,
+        "game_back": -9.179932407187998,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 104.0,
+        "donor_front": 149.42550665756553,
+        "donor_back": -12.597907048265006,
+        "game_front": 6.279594569193739,
+        "game_back": -9.003613457662514,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 105.0,
+        "donor_front": 144.3859505798101,
+        "donor_back": -10.755191818179782,
+        "game_front": 5.993890742786525,
+        "game_back": -8.824201885403816,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 106.0,
+        "donor_front": 141.45928622990436,
+        "donor_back": -8.873037356359514,
+        "game_front": 5.833191607634919,
+        "game_back": -8.671722780001641,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 107.0,
+        "donor_front": 140.0811509256632,
+        "donor_back": -7.354839117900511,
+        "game_front": 5.759306631668922,
+        "game_back": -8.564577438317514,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 108.0,
+        "donor_front": 139.56306472252686,
+        "donor_back": -6.385682349007251,
+        "game_front": 5.732002829932341,
+        "game_back": -8.50297685685453,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 109.0,
+        "donor_front": 139.41089803463234,
+        "donor_back": -5.896929291109821,
+        "game_front": 5.7241489148492,
+        "game_back": -8.474281094883574,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 110.0,
+        "donor_front": 139.38001632690433,
+        "donor_back": -5.702815522895042,
+        "game_front": 5.722582817077636,
+        "game_back": -8.46359437307618,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 111.0,
+        "donor_front": 139.38001632690433,
+        "donor_back": -5.642573305438001,
+        "game_front": 5.722582817077636,
+        "game_back": -8.460513322562427,
+        "width": 1.2086329904819215
+      },
+      {
+        "height": 112.0,
+        "donor_front": 139.38001632690433,
+        "donor_back": -5.629158020019533,
+        "game_front": 5.722582817077636,
+        "game_back": -8.459897994995117,
+        "width": 1.2086329904819215
+      }
+    ],
+    "cage_passes": [
+      41,
+      5,
+      3,
+      3
+    ]
+  },
+  "remeshed_bones": [
+    "right costal cartilage 2",
+    "right costal cartilage 6",
+    "right costal cartilage 7",
+    "sternum"
+  ],
+  "organs": {
+    "heart": {
+      "islands": 40,
+      "removed_vertices": 320
+    },
+    "liver": {
+      "islands": 1,
+      "removed_vertices": 0
+    },
+    "stomach": {
+      "islands": 1,
+      "removed_vertices": 0
+    },
+    "left lung": {
+      "islands": 1,
+      "removed_vertices": 0,
+      "from": "hull of the airway and vessel tree"
+    },
+    "right lung": {
+      "islands": 5,
+      "removed_vertices": 32,
+      "from": "hull of the airway and vessel tree"
+    },
+    "intestines": {
+      "islands": 2,
+      "removed_vertices": 8
+    },
+    "left kidney": {
+      "islands": 1,
+      "removed_vertices": 0
+    },
+    "right kidney": {
+      "islands": 1,
+      "removed_vertices": 0
+    },
+    "left testis": {
+      "islands": 1,
+      "removed_vertices": 0
+    },
+    "right testis": {
+      "islands": 1,
+      "removed_vertices": 0
+    },
+    "penis": {
+      "islands": 1,
+      "removed_vertices": 0
+    }
+  },
+  "lung_stages": {
+    "left lung": [
+      [
+        "hull",
+        187
+      ],
+      [
+        "remeshed",
+        11800
+      ],
+      [
+        "grown",
+        14388
+      ],
+      [
+        "without heart",
+        15481
+      ],
+      [
+        "without stomach",
+        15732
+      ]
+    ],
+    "right lung": [
+      [
+        "hull",
+        251
+      ],
+      [
+        "remeshed",
+        15760
+      ],
+      [
+        "grown",
+        18946
+      ],
+      [
+        "without heart",
+        19832
+      ],
+      [
+        "without liver",
+        20849
+      ]
+    ]
+  },
+  "cord": {
+    "canal_samples": 36,
+    "top": [
+      -0.07726812362670898,
+      -2.1756694316864014,
+      105.65669250488281
+    ],
+    "bottom": [
+      -0.07726812362670898,
+      -0.9413454532623291,
+      76.733154296875
+    ]
+  },
+  "genitals": {
+    "donor_anchor": [
+      0.0,
+      -136.744,
+      802.722
+    ],
+    "game_anchor": [
+      -0.07726812286637474,
+      6.604977130889893,
+      67.12593841552734
+    ],
+    "scale": 0.06915781345038029,
+    "shrink": 1.0,
+    "lift": 0.75,
+    "back": -2.25,
+    "outside": {
+      "left testis": 0,
+      "right testis": 0,
+      "penis": 0
+    }
+  },
+  "outside_skin": {
+    "T1": 3,
+    "T2": 0,
+    "T3": 0,
+    "T4": 0,
+    "T5": 0,
+    "T6": 0,
+    "T7": 0,
+    "T8": 0,
+    "T9": 0,
+    "T10": 0,
+    "T11": 0,
+    "T12": 0,
+    "L1": 0,
+    "L2": 0,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0,
+    "sacrum": 0,
+    "left rib 1": 0,
+    "left rib 2": 0,
+    "left rib 3": 0,
+    "left rib 4": 0,
+    "left rib 5": 0,
+    "left rib 6": 0,
+    "left rib 7": 0,
+    "left rib 8": 0,
+    "left rib 9": 0,
+    "left rib 10": 0,
+    "left rib 11": 0,
+    "left rib 12": 0,
+    "left costal cartilage 1": 0,
+    "left costal cartilage 2": 0,
+    "left costal cartilage 3": 0,
+    "left costal cartilage 4": 0,
+    "left costal cartilage 5": 0,
+    "left costal cartilage 6": 0,
+    "left costal cartilage 7": 0,
+    "left clavicle": 0,
+    "left scapula": 0,
+    "left hip bone": 0,
+    "right rib 1": 0,
+    "right rib 2": 0,
+    "right rib 3": 0,
+    "right rib 4": 0,
+    "right rib 5": 0,
+    "right rib 6": 0,
+    "right rib 7": 0,
+    "right rib 8": 0,
+    "right rib 9": 0,
+    "right rib 10": 0,
+    "right rib 11": 0,
+    "right rib 12": 0,
+    "right costal cartilage 1": 0,
+    "right costal cartilage 2": 0,
+    "right costal cartilage 3": 0,
+    "right costal cartilage 4": 0,
+    "right costal cartilage 5": 0,
+    "right costal cartilage 6": 0,
+    "right costal cartilage 7": 0,
+    "right clavicle": 0,
+    "right scapula": 0,
+    "right hip bone": 0,
+    "manubrium": 0,
+    "sternum": 0,
+    "xiphoid": 0,
+    "heart": 0,
+    "liver": 0,
+    "stomach": 0,
+    "left lung": 0,
+    "right lung": 0,
+    "intestines": 0,
+    "left kidney": 0,
+    "right kidney": 0,
+    "spinal cord": 0,
+    "left testis": 0,
+    "right testis": 0,
+    "penis": 0
+  },
+  "outside_points": [
+    [
+      "T1",
+      -1.3,
+      -1.31,
+      106.82
+    ],
+    [
+      "T1",
+      1.28,
+      -1.26,
+      106.79
+    ],
+    [
+      "T1",
+      1.25,
+      -1.32,
+      106.81
+    ]
+  ],
+  "binding": {
+    "T1": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Neck1",
+      "bind_min": 0.5694971260787696,
+      "bind_max": 0.5694971260787696
+    },
+    "T2": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Neck1",
+      "bind_min": 0.5929756481525855,
+      "bind_max": 0.5929756481525855
+    },
+    "T3": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Neck1",
+      "bind_min": 0.7068398344014771,
+      "bind_max": 0.7068398344014771
+    },
+    "T4": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.7760857765928901,
+      "bind_max": 0.7760857765928901
+    },
+    "T5": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.8196616349750354,
+      "bind_max": 0.8196616349750354
+    },
+    "T6": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.7728056207886996,
+      "bind_max": 0.7728056207886996
+    },
+    "T7": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.697599882631258,
+      "bind_max": 0.697599882631258
+    },
+    "T8": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.641516411395102,
+      "bind_max": 0.641516411395102
+    },
+    "T9": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5869583238309264,
+      "bind_max": 0.5869583238309264
+    },
+    "T10": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5289076538795158,
+      "bind_max": 0.5289076538795158
+    },
+    "T11": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5318686857028398,
+      "bind_max": 0.5318686857028398
+    },
+    "T12": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.6104394035720875,
+      "bind_max": 0.6104394035720875
+    },
+    "L1": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.700677673434102,
+      "bind_max": 0.700677673434102
+    },
+    "L2": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.7016046729340628,
+      "bind_max": 0.7016046729340628
+    },
+    "L3": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.6487253604247473,
+      "bind_max": 0.6487253604247473
+    },
+    "L4": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.568853878755754,
+      "bind_max": 0.568853878755754
+    },
+    "L5": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5382269161290707,
+      "bind_max": 0.5382269161290707
+    },
+    "sacrum": {
+      "first": "Bip01 Pelvis",
+      "second": "Bip01 Spine",
+      "bind_min": 0.6210887865427839,
+      "bind_max": 0.6210887865427839
+    },
+    "left rib 1": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 L Clavicle",
+      "bind_min": 0.6818124014816132,
+      "bind_max": 0.6818124014816132
+    },
+    "left rib 2": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 L Clavicle",
+      "bind_min": 0.5549701346959117,
+      "bind_max": 0.5549701346959117
+    },
+    "left rib 3": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 L Clavicle",
+      "bind_min": 0.5357114301796573,
+      "bind_max": 0.5357114301796573
+    },
+    "left rib 4": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 L Clavicle",
+      "bind_min": 0.6093792707301648,
+      "bind_max": 0.6093792707301648
+    },
+    "left rib 5": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 L Clavicle",
+      "bind_min": 0.6621947558952859,
+      "bind_max": 0.6621947558952859
+    },
+    "left rib 6": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.70037694028384,
+      "bind_max": 0.70037694028384
+    },
+    "left rib 7": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.624408721362963,
+      "bind_max": 0.624408721362963
+    },
+    "left rib 8": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5525350706591955,
+      "bind_max": 0.5525350706591955
+    },
+    "left rib 9": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5019872229060306,
+      "bind_max": 0.5019872229060306
+    },
+    "left rib 10": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5509032309633521,
+      "bind_max": 0.5509032309633521
+    },
+    "left rib 11": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5738742224515372,
+      "bind_max": 0.5738742224515372
+    },
+    "left rib 12": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.6777359350142572,
+      "bind_max": 0.6777359350142572
+    },
+    "left costal cartilage 1": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 L Clavicle",
+      "bind_min": 0.9597517218744387,
+      "bind_max": 0.9597517218744387
+    },
+    "left costal cartilage 2": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.9716355419219972,
+      "bind_max": 0.9716355419219972
+    },
+    "left costal cartilage 3": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.8386491506738454,
+      "bind_max": 0.8386491506738454
+    },
+    "left costal cartilage 4": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.7087575703187522,
+      "bind_max": 0.7087575703187522
+    },
+    "left costal cartilage 5": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5823802846507153,
+      "bind_max": 0.5823802846507153
+    },
+    "left costal cartilage 6": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5003665434169485,
+      "bind_max": 0.5003665434169485
+    },
+    "left costal cartilage 7": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5691356165909198,
+      "bind_max": 0.5691356165909198
+    },
+    "left clavicle": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 L Clavicle",
+      "bind_min": 0.5330949743426652,
+      "bind_max": 0.5330949743426652
+    },
+    "left scapula": {
+      "first": "Bip01 L Clavicle",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.7012775069381452,
+      "bind_max": 0.7012775069381452
+    },
+    "left hip bone": {
+      "first": "Bip01 Pelvis",
+      "second": "Bip01 Spine",
+      "bind_min": 0.7703175114977866,
+      "bind_max": 0.7703175114977866
+    },
+    "right rib 1": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.6835330214618833,
+      "bind_max": 0.6835330214618833
+    },
+    "right rib 2": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.5593092043885777,
+      "bind_max": 0.5593092043885777
+    },
+    "right rib 3": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.5364848986105266,
+      "bind_max": 0.5364848986105266
+    },
+    "right rib 4": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.6075413378261694,
+      "bind_max": 0.6075413378261694
+    },
+    "right rib 5": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.6606668501261381,
+      "bind_max": 0.6606668501261381
+    },
+    "right rib 6": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.6996676748800514,
+      "bind_max": 0.6996676748800514
+    },
+    "right rib 7": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.6228506203872013,
+      "bind_max": 0.6228506203872013
+    },
+    "right rib 8": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5486522903430905,
+      "bind_max": 0.5486522903430905
+    },
+    "right rib 9": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5003559230475395,
+      "bind_max": 0.5003559230475395
+    },
+    "right rib 10": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5526443350354182,
+      "bind_max": 0.5526443350354182
+    },
+    "right rib 11": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5802689667066085,
+      "bind_max": 0.5802689667066085
+    },
+    "right rib 12": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.6780620190823365,
+      "bind_max": 0.6780620190823365
+    },
+    "right costal cartilage 1": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Neck1",
+      "bind_min": 0.9617205011442352,
+      "bind_max": 0.9617205011442352
+    },
+    "right costal cartilage 2": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.9713764667160366,
+      "bind_max": 0.9713764667160366
+    },
+    "right costal cartilage 3": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.8393032327431861,
+      "bind_max": 0.8393032327431861
+    },
+    "right costal cartilage 4": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.7089259946111544,
+      "bind_max": 0.7089259946111544
+    },
+    "right costal cartilage 5": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5810432747815454,
+      "bind_max": 0.5810432747815454
+    },
+    "right costal cartilage 6": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5049563441240945,
+      "bind_max": 0.5049563441240945
+    },
+    "right costal cartilage 7": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.5754392588923417,
+      "bind_max": 0.5754392588923417
+    },
+    "right clavicle": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 R Clavicle",
+      "bind_min": 0.5237434579985802,
+      "bind_max": 0.5237434579985802
+    },
+    "right scapula": {
+      "first": "Bip01 R Clavicle",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.6966258539410439,
+      "bind_max": 0.6966258539410439
+    },
+    "right hip bone": {
+      "first": "Bip01 Pelvis",
+      "second": "Bip01 Spine",
+      "bind_min": 0.7733089857412002,
+      "bind_max": 0.7733089857412002
+    },
+    "manubrium": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine2",
+      "bind_min": 1.0,
+      "bind_max": 1.0
+    },
+    "sternum": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.7449224546985161,
+      "bind_max": 0.7449224546985161
+    },
+    "xiphoid": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5170549139625518,
+      "bind_max": 0.5170549139625518
+    },
+    "heart": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5433270019905923,
+      "bind_max": 1.0
+    },
+    "liver": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine2",
+      "bind_min": 0.3483608739346756,
+      "bind_max": 0.8229993715895163
+    },
+    "stomach": {
+      "first": "Bip01 Spine1",
+      "second": "Bip01 Spine",
+      "bind_min": 0.3285797783647289,
+      "bind_max": 0.7891921711198856
+    },
+    "left lung": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.3955285952419169,
+      "bind_max": 1.0
+    },
+    "right lung": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.02720363053418255,
+      "bind_max": 1.0
+    },
+    "intestines": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Pelvis",
+      "bind_min": 0.0,
+      "bind_max": 1.0
+    },
+    "left kidney": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5499299040915582,
+      "bind_max": 0.7964758775464961
+    },
+    "right kidney": {
+      "first": "Bip01 Spine",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.5548999579082644,
+      "bind_max": 0.8030886067012362
+    },
+    "spinal cord": {
+      "first": "Bip01 Spine2",
+      "second": "Bip01 Spine1",
+      "bind_min": 0.010762413253324275,
+      "bind_max": 1.0
+    },
+    "left testis": {
+      "first": "Bip01 Pelvis",
+      "second": "Bip01 Pelvis",
+      "bind_min": 1.0,
+      "bind_max": 1.0
+    },
+    "right testis": {
+      "first": "Bip01 Pelvis",
+      "second": "Bip01 Pelvis",
+      "bind_min": 1.0,
+      "bind_max": 1.0
+    },
+    "penis": {
+      "first": "Bip01 Pelvis",
+      "second": "Bip01 Pelvis",
+      "bind_min": 1.0,
+      "bind_max": 1.0
+    }
+  },
+  "bytes": 2939664,
+  "triangles": 122338,
+  "female": {
+    "bytes": 2805000,
+    "triangles": 116738
+  }
+}

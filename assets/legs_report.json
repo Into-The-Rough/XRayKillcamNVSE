@@ -1,0 +1,209 @@
+{
+  "coordinate_space": "Bip01 Pelvis rest local, game units",
+  "meshes": [
+    {
+      "name": "left femur",
+      "material": 0,
+      "vertices": 1502,
+      "triangles": 3000
+    },
+    {
+      "name": "left patella",
+      "material": 0,
+      "vertices": 157,
+      "triangles": 310
+    },
+    {
+      "name": "left tibia",
+      "material": 0,
+      "vertices": 848,
+      "triangles": 1692
+    },
+    {
+      "name": "left fibula",
+      "material": 0,
+      "vertices": 564,
+      "triangles": 1124
+    },
+    {
+      "name": "left foot",
+      "material": 0,
+      "vertices": 2026,
+      "triangles": 3944
+    },
+    {
+      "name": "right femur",
+      "material": 0,
+      "vertices": 1502,
+      "triangles": 3000
+    },
+    {
+      "name": "right patella",
+      "material": 0,
+      "vertices": 155,
+      "triangles": 306
+    },
+    {
+      "name": "right tibia",
+      "material": 0,
+      "vertices": 834,
+      "triangles": 1664
+    },
+    {
+      "name": "right fibula",
+      "material": 0,
+      "vertices": 573,
+      "triangles": 1142
+    },
+    {
+      "name": "right foot",
+      "material": 0,
+      "vertices": 1990,
+      "triangles": 3872
+    }
+  ],
+  "registration": {
+    "left": {
+      "thigh_scale": 0.07307924143348621,
+      "shank_scale": 0.07747824390468128,
+      "donor_hip": [
+        87.17398541969288,
+        -78.96777672404818,
+        811.2079648829151
+      ],
+      "donor_knee": [
+        73.97243912413443,
+        -78.77951208490967,
+        373.9998910698881
+      ],
+      "donor_ankle": [
+        69.59448365492167,
+        -80.29008714345636,
+        -1.0704716864326995
+      ],
+      "donor_ball": [
+        123.89997100000001,
+        -174.84522999999996,
+        -59.235724000000005
+      ],
+      "game_hip": [
+        -7.057778693855044,
+        0.6572242439844377,
+        67.77084938362383
+      ],
+      "game_knee": [
+        -6.827550909305508,
+        2.1095373822410566,
+        35.83928899782242
+      ],
+      "game_ankle": [
+        -6.672633609718633,
+        -2.034198303992998,
+        7.074627017342945
+      ],
+      "game_toe": [
+        -8.258319722781835,
+        9.599132088022959,
+        1.1858952599004449
+      ]
+    },
+    "right": {
+      "thigh_scale": 0.07304032836924643,
+      "shank_scale": 0.07755626431232919,
+      "donor_hip": [
+        -87.20493950882798,
+        -78.95194460633485,
+        811.3704683503161
+      ],
+      "donor_knee": [
+        -73.34585440653254,
+        -77.9741066647725,
+        373.9506855018036
+      ],
+      "donor_ankle": [
+        -68.62292817915223,
+        -79.83406908291124,
+        -0.7365838031458285
+      ],
+      "donor_ball": [
+        -123.58307499999998,
+        -175.013605,
+        -58.857609000000004
+      ],
+      "game_hip": [
+        6.9032321180093135,
+        0.657244118316722,
+        67.77084940508213
+      ],
+      "game_knee": [
+        6.673005532870035,
+        2.109557228740345,
+        35.83929192548519
+      ],
+      "game_ankle": [
+        6.5181057855650995,
+        -2.034179516590049,
+        7.0746268619841475
+      ],
+      "game_toe": [
+        8.103757857199662,
+        9.599155090860375,
+        1.1858952014518422
+      ]
+    }
+  },
+  "cage": {
+    "left": {
+      "thigh": [
+        0
+      ],
+      "shank": [
+        94,
+        8,
+        2,
+        1,
+        0
+      ],
+      "foot": [
+        66,
+        24,
+        20,
+        18,
+        16
+      ]
+    },
+    "right": {
+      "thigh": [
+        0
+      ],
+      "shank": [
+        97,
+        3,
+        1,
+        1,
+        0
+      ],
+      "foot": [
+        53,
+        22,
+        15,
+        14,
+        14
+      ]
+    }
+  },
+  "outside_skin": {
+    "left femur": 0,
+    "left patella": 0,
+    "left tibia": 0,
+    "left fibula": 0,
+    "left foot": 16,
+    "right femur": 0,
+    "right patella": 0,
+    "right tibia": 0,
+    "right fibula": 0,
+    "right foot": 14
+  },
+  "bytes": 485936,
+  "triangles": 20054
+}
