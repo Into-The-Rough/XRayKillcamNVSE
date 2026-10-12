@@ -1,0 +1,43 @@
+{
+  "coordinate_space": "Bip01 Spine2 rest local, game units",
+  "meshes": [
+    {
+      "name": "bone Bip01 L Forearm",
+      "material": 0,
+      "vertices": 1472,
+      "triangles": 2904
+    },
+    {
+      "name": "bone Bip01 L Hand",
+      "material": 0,
+      "vertices": 623,
+      "triangles": 1234
+    },
+    {
+      "name": "bone Bip01 L UpperArm",
+      "material": 0,
+      "vertices": 1004,
+      "triangles": 2008
+    },
+    {
+      "name": "bone Bip01 R Forearm",
+      "material": 0,
+      "vertices": 1454,
+      "triangles": 2868
+    },
+    {
+      "name": "bone Bip01 R Hand",
+      "material": 0,
+      "vertices": 627,
+      "triangles": 1242
+    },
+    {
+      "name": "bone Bip01 R UpperArm",
+      "material": 0,
+      "vertices": 1004,
+      "triangles": 2008
+    }
+  ],
+  "bytes": 296320,
+  "triangles": 12264
+}

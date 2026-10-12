@@ -3,3 +3,5 @@
 *.zip binary
 *.xra binary
 *.png binary
+package/NVSE/**/*.txt text eol=crlf
+package/NVSE/**/*.gek text eol=crlf

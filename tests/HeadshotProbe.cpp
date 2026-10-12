@@ -47,9 +47,14 @@ uint64_t HoldForKillcam(uint64_t,uint64_t until){return until;}
 bool groinStub=false;unsigned groinCalls=0;
 bool GroinHit(uint32_t,const Impact::Sample&){++groinCalls;return groinStub;}
 void Clear(){Headshots::Clear();HideAutomaticHead();}
+bool torsoReady=true;
+bool RegionReady(uint32_t anatomy,uint32_t region){return anatomy==HumanAnatomy&&(region!=TorsoRegion||torsoReady);}
 }
 namespace XRay::Engine {
-bool regionStub=true;
+bool regionStub=true,routeToHead=false;unsigned classified=0;
+bool HorseBase(uint32_t){return false;}
+void ClassifyHorse(Form*){++classified;}
+uint32_t HorseRegion(Form*,uint32_t region,Vec3){return routeToHead&&region==TorsoRegion?HeadRegion:region;}
 bool HasRegion(Form*,uint32_t){return regionStub;}
 Impact::Sample CaptureImpact(Form*,Form* projectile,Vec3 point,bool capturePose,uint32_t region) {
     capturedRegion=region;
@@ -115,6 +120,10 @@ int main() {
     Check(hit.region==TorsoRegion&&hit.count==1,"the latest hit decides the region and restarts the count");
     invoke(&target,data,7);invoke(&target,data,7);Check(Take().count==2,"torso hits on one target accumulate");
     settings.regions[TorsoRegion]=false;invoke(&target,data,7);Check(!Take().target,"config disables torso hits");settings.regions[TorsoRegion]=true;
+    torsoReady=false;invoke(&target,data,7);Check(!Take().target,"a region whose anatomy failed to load opens nothing");torsoReady=true;
+    Engine::routeToHead=true;Headshots::Clear();invoke(&target,data,7);hit=Take();Engine::routeToHead=false;
+    Check(hit.target==target.id&&hit.region==HeadRegion&&hit.location==0&&capturedRegion==HeadRegion,"a torso hit the body routes to its neck opens the head with the head's frame pose");
+    Check(Engine::classified>0,"main-thread hits classify the target's skeleton before its kind is read");
     data->location=1;invoke(&target,data,7);data->location=13;invoke(&target,data,7);data->location=2;invoke(&target,data,7);
     Check(Take().count==3,"head, brain and second head parts on one target accumulate");
     //a leg hit opens the legs on every hit, with the side kept apart

@@ -41,7 +41,8 @@ struct BloodSample {uint64_t sequence=0;unsigned samples=1;float distance=-1,ang
 static BloodSample s_bloodSample;
 static BloodReport s_bloodShot,s_bloodDone;static bool s_bloodReady=false;
 static_assert(Damage::kJetKinds==4,"the blood report counts four jet kinds");
-static Damage::Scene s_scenes[kRegions];
+//one region draws at a time, so one scene holds the damage, laid out again when another region's anatomy draws
+static Damage::Scene s_scene;static const Model* s_sceneModel=nullptr;
 static unsigned s_region=HeadRegion;
 static const Model* s_models[kRegions]{};
 static IDirect3DTexture9 *s_mask=nullptr,*s_anatomy=nullptr,*s_exterior=nullptr,*s_table=nullptr;
@@ -55,20 +56,24 @@ static D3DSURFACE_DESC s_desc{};
 static DWORD s_targetCount=0;
 static HRESULT s_error=S_OK;
 static bool Check(HRESULT hr) {if(FAILED(hr)){s_error=hr;return false;}return true;}
+//a frame whose targets the reveal cannot draw into, nothing failed
+static bool Skip(){s_error=S_FALSE;return false;}
 HRESULT LastError(){return s_error;}
-unsigned DamageStatus(){return s_scenes[s_region].Status();}
-DamageReport DamageSummary(){return s_scenes[s_region].Report();}
-unsigned TakeCues(uint8_t* out,unsigned capacity){return s_scenes[s_region].TakeCues(out,capacity);}
+bool Skipped(){return s_error==S_FALSE;}
+unsigned DamageStatus(){return s_scene.Status();}
+DamageReport DamageSummary(){return s_scene.Report();}
+unsigned TakeCues(uint8_t* out,unsigned capacity){return s_scene.TakeCues(out,capacity);}
 bool TakeBlood(BloodReport& out){if(!s_bloodReady)return false;out=s_bloodDone;s_bloodReady=false;return true;}
 BloodReport BloodInFlight(){return s_bloodShot;}
 //a restore waits for the draw, after the region's anatomy is prepared, since preparing clears the scene
-static std::vector<Damage::Kept> s_restore[kRegions];static bool s_restoring[kRegions]{};
-uint32_t WoundRevision(unsigned region){return region<kRegions?s_scenes[region].WoundRevision():0;}
-void KeepWounds(unsigned region,std::vector<Damage::Kept>& out){if(region<kRegions)s_scenes[region].Keep(out);}
-void RestoreWounds(unsigned region,const std::vector<Damage::Kept>& kept){if(region<kRegions){s_restore[region]=kept;s_restoring[region]=true;}}
-void ClearDamage(){for(auto& scene:s_scenes)scene.Clear();}
-void ClearWounds(){for(auto& scene:s_scenes)scene.ClearWounds();}
-void SetAsyncDamage(bool async){for(auto& scene:s_scenes)scene.SetAsync(async);}
+static std::vector<Damage::Kept> s_restore;static unsigned s_restoreRegion=kRegions;
+static bool Holds(unsigned region){return s_sceneModel&&region==s_region;}
+uint32_t WoundRevision(unsigned region){return Holds(region)?s_scene.WoundRevision():0;}
+void KeepWounds(unsigned region,std::vector<Damage::Kept>& out){if(Holds(region))s_scene.Keep(out);}
+void RestoreWounds(unsigned region,const std::vector<Damage::Kept>& kept){if(region<kRegions){s_restore=kept;s_restoreRegion=region;}}
+void ClearDamage(){s_scene.Clear();}
+void ClearWounds(){s_scene.ClearWounds();}
+void SetAsyncDamage(bool async){s_scene.SetAsync(async);}
 void SetBloodSpray(bool enabled){s_bloodSpray=enabled;}
 void SetShotForce(float severity,float blood){s_severity=severity;s_blood=blood;}
 
@@ -76,7 +81,7 @@ void Release() {
     Drop(s_state);Drop(s_maskDecl);Drop(s_anatomyDecl);Drop(s_quadDecl);Drop(s_pieceDecl);
     Drop(s_maskVS);Drop(s_anatomyVS);Drop(s_compositeVS);Drop(s_maskPS);Drop(s_anatomyPS);Drop(s_compositePS);
     Drop(s_bulletVS);Drop(s_bulletPS);Drop(s_plateVS);Drop(s_debrisVS);Drop(s_sprayVS);
-    Drop(s_damagePS);Drop(s_exteriorPS);for(auto& scene:s_scenes)scene.Clear();
+    Drop(s_damagePS);Drop(s_exteriorPS);s_scene.Clear();s_sceneModel=nullptr;
     Drop(s_anatomyExteriorPS);Drop(s_sprayThroughPS);
     for(auto& q:s_bloodQueries)Drop(q);s_bloodPending[0]=s_bloodPending[1]=false;s_bloodSample.answered[0]=s_bloodSample.answered[1]=false;
     Drop(s_maskSurface);Drop(s_multisample);Drop(s_anatomySurface);Drop(s_depth);Drop(s_mask);Drop(s_anatomy);Drop(s_exteriorSurface);Drop(s_exterior);
@@ -139,8 +144,7 @@ static bool Create(IDirect3DDevice9* d,const D3DSURFACE_DESC& desc) {
     s_desc=desc;s_device=d;return true;
 }
 //each region's anatomy is uploaded once per device, the first time it is drawn
-static bool Prepare(IDirect3DDevice9* d,const Model& model,unsigned region) {
-    if(s_models[region]==&model)return true;
+static bool UploadAnatomy(IDirect3DDevice9* d,const Model& model,unsigned region) {
     for(auto& g:s_meshes[region]){Drop(g.vb);Drop(g.ib);}
     for(size_t i=0;i<model.meshes.size();++i) {
         const auto& m=model.meshes[i];auto& g=s_meshes[region][i];void* p=nullptr;
@@ -151,7 +155,12 @@ static bool Prepare(IDirect3DDevice9* d,const Model& model,unsigned region) {
         memcpy(p,m.vertices.data(),vs);if(!Check(g.vb->Unlock())||!Check(g.ib->Lock(0,is,&p,0)))return false;
         memcpy(p,m.indices.data(),is);if(!Check(g.ib->Unlock()))return false;
     }
-    s_scenes[region].Reserve(model);s_models[region]=&model;
+    s_models[region]=&model;
+    return true;
+}
+static bool Prepare(IDirect3DDevice9* d,const Model& model,unsigned region) {
+    if(s_models[region]!=&model&&!UploadAnatomy(d,model,region))return false;
+    if(s_sceneModel!=&model){s_scene.Reserve(model);s_sceneModel=&model;}
     return true;
 }
 
@@ -274,21 +283,26 @@ static const MaterialStyle kBlood={{.62f,.035f,.025f,70},{.3f,.02f,.012f,40}};
 
 bool Draw(IDirect3DDevice9* d,const Model& model,const CameraFrame& c,const HeadFrame& head,unsigned mode,const Appearance& style,const Impact::Frame* impact) {
     s_error=S_OK;
-    if(!d||model.meshes.empty()||model.meshes.size()>128||!c.viewport.Width||!c.viewport.Height)return false;
+    if(!d||model.meshes.empty()||model.meshes.size()>128)return false;
+    if(!c.viewport.Width||!c.viewport.Height)return Skip();
     IDirect3DSurface9 *target=nullptr,*depth=nullptr;D3DSURFACE_DESC desc{},ds{};
     if(!Check(d->GetRenderTarget(0,&target)))return false;
     HRESULT hr=target->GetDesc(&desc);Drop(target);
-    if(!Check(hr)||!Check(d->GetDepthStencilSurface(&depth)))return false;
+    if(!Check(hr))return false;
+    hr=d->GetDepthStencilSurface(&depth);
+    if(hr==D3DERR_NOTFOUND)return Skip();
+    if(!Check(hr))return false;
     hr=depth->GetDesc(&ds);Drop(depth);
-    if(!Check(hr)||desc.MultiSampleType!=ds.MultiSampleType||desc.MultiSampleQuality!=ds.MultiSampleQuality
-        ||desc.Width>ds.Width||desc.Height>ds.Height||c.viewport.X+c.viewport.Width>desc.Width||c.viewport.Y+c.viewport.Height>desc.Height)return false;
+    if(!Check(hr))return false;
+    if(desc.MultiSampleType!=ds.MultiSampleType||desc.MultiSampleQuality!=ds.MultiSampleQuality
+        ||desc.Width>ds.Width||desc.Height>ds.Height||c.viewport.X+c.viewport.Width>desc.Width||c.viewport.Y+c.viewport.Height>desc.Height)return Skip();
     if(s_device!=d||s_desc.Width!=desc.Width||s_desc.Height!=desc.Height||s_desc.MultiSampleType!=desc.MultiSampleType||s_desc.MultiSampleQuality!=desc.MultiSampleQuality) {
         if(!Create(d,desc)){Release();return false;}
     }
     unsigned region=head.region<kRegions?head.region:HeadRegion;
     if(!Prepare(d,model,region)){Release();return false;}
-    s_region=region;auto& s_damage=s_scenes[region];auto& meshes=s_meshes[region];
-    if(s_restoring[region]){s_restoring[region]=false;s_damage.Restore(s_restore[region]);s_restore[region].clear();}
+    s_region=region;auto& s_damage=s_scene;auto& meshes=s_meshes[region];
+    if(s_restoreRegion==region){s_restoreRegion=kRegions;s_damage.Restore(s_restore);s_restore.clear();}
     SavedTargets saved(d);if(!saved.Capture())return false;
     if(!Common(d,c))return false;
     bool validImpact=impact&&impact->path.valid&&Finite(impact->path.entry)&&Finite(impact->path.exit)

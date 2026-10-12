@@ -1,0 +1,58 @@
+{
+  "coordinate_space": "Bip01 Head rest local, game units",
+  "meshes": [
+    {
+      "name": "bone Bip01 Head",
+      "material": 0,
+      "vertices": 8488,
+      "triangles": 16996
+    },
+    {
+      "name": "bone Bip01 Jaw",
+      "material": 0,
+      "vertices": 2191,
+      "triangles": 4378
+    },
+    {
+      "name": "bone Bip01 Neck",
+      "material": 0,
+      "vertices": 2595,
+      "triangles": 5190
+    },
+    {
+      "name": "bone Bip01 Neck1",
+      "material": 0,
+      "vertices": 2076,
+      "triangles": 4152
+    },
+    {
+      "name": "bone Bip01 Neck2",
+      "material": 0,
+      "vertices": 1049,
+      "triangles": 2098
+    },
+    {
+      "name": "brain Bip01 Head",
+      "material": 1,
+      "vertices": 3002,
+      "triangles": 6000
+    },
+    {
+      "name": "teeth Bip01 Head",
+      "material": 3,
+      "vertices": 1275,
+      "triangles": 2478
+    },
+    {
+      "name": "teeth Bip01 Jaw",
+      "material": 3,
+      "vertices": 1137,
+      "triangles": 2202
+    }
+  ],
+  "repaired": [
+    "skull 186"
+  ],
+  "bytes": 1046376,
+  "triangles": 43494
+}

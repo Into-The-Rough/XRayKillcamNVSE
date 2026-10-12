@@ -6,7 +6,7 @@ static_assert(sizeof XRay::kHumanRest/sizeof *XRay::kHumanRest==XRay::kRegions,"
 
 namespace XRay::Engine {
 namespace {
-//one body region below the neck: its frame bone first, the influences in the order its anatomy build uses,
+//one body region: its frame bone first, the influences in the order its anatomy build uses,
 //the bones a shape must use to count as its skin, and the bones whose weight opens the reveal for each side
 struct Spec {
     const char* influences[kInfluences];
@@ -15,7 +15,11 @@ struct Spec {
     const char* required[kSkinBones];
     const char* reveal[2][kSkinBones];
 };
-const Spec kSpecs[]={
+//the head first, then the regions below it, the human set shared by people and the creatures sized to them
+const Spec kSpecs[kAnatomies][kRegions]={{
+    //a creature's head is part of its body mesh: its head bone and neck, and the head, jaw and neck weight opening the reveal
+    {{"Bip01 Head","Bip01 Neck1"},{0,0,0,0,0,0,0},{"Bip01 Head"},
+        {{"Bip01 Head","Bip01 Head2","Bip01 Neck1"},{"Bip01 Head","Bip01 Head2","Bip01 Neck1"}}},
     {{"Bip01 Spine1","Bip01 Spine2","Bip01 Spine","Bip01 Pelvis","Bip01 Neck1","Bip01 L Clavicle","Bip01 R Clavicle"},{0,0,0,2,1,1,1},
         {"Bip01 Spine","Bip01 Spine1","Bip01 Spine2","Bip01 Pelvis"},
         {{"Bip01 Pelvis","Bip01 Spine","Bip01 Spine1","Bip01 Spine2","Bip01 L Clavicle","Bip01 R Clavicle"},
@@ -28,22 +32,32 @@ const Spec kSpecs[]={
         {"Bip01 L UpperArm","Bip01 L Forearm","Bip01 L Hand","Bip01 R UpperArm","Bip01 R Forearm","Bip01 R Hand"},
         {{"Bip01 L UpperArm","Bip01 LUpArmTwistBone","Bip01 L Forearm","Bip01 L ForeTwist","Bip01 L Hand"},
          {"Bip01 R UpperArm","Bip01 RUpArmTwistBone","Bip01 R Forearm","Bip01 R ForeTwist","Bip01 R Hand"}}},
-};
-constexpr unsigned kSpecCount=sizeof kSpecs/sizeof *kSpecs;
-static_assert(kSpecCount==kRegions-1,"every region below the head has a spec");
-//a creature's head is part of its body mesh: its head bone and neck, and the head, jaw and neck weight opening the reveal
-const Spec kHeadSpec={{"Bip01 Head","Bip01 Neck1"},{0,0,0,0,0,0,0},{"Bip01 Head"},
-    {{"Bip01 Head","Bip01 Head2","Bip01 Neck1"},{"Bip01 Head","Bip01 Head2","Bip01 Neck1"}}};
+},{
+    //the horse: head and neck, the trunk with the shoulders and thighs, the hind legs below the stifle and the forelegs below the elbow
+    {{"Bip01 Head","Bip01 Jaw","Bip01 Neck2","Bip01 Neck1","Bip01 Neck"},{0,0,0,2,3,0,0},{"Bip01 Head","Bip01 Neck2"},
+        {{"Bip01 Head","Bip01 Jaw","Bip01 Ear L","Bip01 Ear R","Bip01 Neck2","Bip01 Neck1","Bip01 Neck"},
+         {"Bip01 Head","Bip01 Jaw","Bip01 Ear L","Bip01 Ear R","Bip01 Neck2","Bip01 Neck1","Bip01 Neck"}}},
+    {{"Bip01 Spine1","Bip01 Spine2","Bip01 Pelvis","Bip01 L Clavicle","Bip01 R Clavicle","Bip01 L Thigh","Bip01 R Thigh"},{0,0,0,1,1,2,2},
+        {"Bip01 Spine","Bip01 Spine1","Bip01 Spine2","Bip01 Pelvis"},
+        {{"Bip01 Pelvis","Bip01 Spine","Bip01 Spine1","Bip01 Spine2","Bip01 L Clavicle","Bip01 R Clavicle","Bip01 L Thigh","Bip01 R Thigh"},
+         {"Bip01 Pelvis","Bip01 Spine","Bip01 Spine1","Bip01 Spine2","Bip01 L Clavicle","Bip01 R Clavicle","Bip01 L Thigh","Bip01 R Thigh"}}},
+    {{"Bip01 Pelvis","Bip01 L Calf","Bip01 L HorseLink","Bip01 L Foot","Bip01 R Calf","Bip01 R HorseLink","Bip01 R Foot"},{0,0,1,2,0,4,5},
+        {"Bip01 L Calf","Bip01 L HorseLink","Bip01 L Foot","Bip01 R Calf","Bip01 R HorseLink","Bip01 R Foot"},
+        {{"Bip01 L Calf","Bip01 L HorseLink","Bip01 L Foot","Bip01 L Toe0"},{"Bip01 R Calf","Bip01 R HorseLink","Bip01 R Foot","Bip01 R Toe0"}}},
+    {{"Bip01 Spine2","Bip01 L UpperArm","Bip01 L Forearm","Bip01 L Hand","Bip01 R UpperArm","Bip01 R Forearm","Bip01 R Hand"},{0,0,1,2,0,4,5},
+        {"Bip01 L UpperArm","Bip01 L Forearm","Bip01 L Hand","Bip01 R UpperArm","Bip01 R Forearm","Bip01 R Hand"},
+        {{"Bip01 L UpperArm","Bip01 L Forearm","Bip01 L Hand","Bip01 L Finger0"},{"Bip01 R UpperArm","Bip01 R Forearm","Bip01 R Hand","Bip01 R Finger0"}}},
+}};
 struct Names {
     const char* influences[kInfluences];const char* required[kSkinBones];const char* reveal[2][kSkinBones];
     const char* reach[kInfluences];const char* chain[kChainBones];const char* widths[2][2];
 };
-Names s_names[kSpecCount]{},s_headNames{};
-const Spec& SpecOf(uint32_t region){return region==HeadRegion?kHeadSpec:kSpecs[region-1];}
-Names& NamesOf(uint32_t region){return region==HeadRegion?s_headNames:s_names[region-1];}
+Names s_names[kAnatomies][kRegions]{};
+const Spec& SpecOf(uint32_t anatomy,uint32_t region){return kSpecs[anatomy<kAnatomies?anatomy:HumanAnatomy][region<kRegions?region:HeadRegion];}
+Names& NamesOf(uint32_t anatomy,uint32_t region){return s_names[anatomy<kAnatomies?anatomy:HumanAnatomy][region<kRegions?region:HeadRegion];}
 //a creature's spans on its live skeleton, in its frame bone's units, and its head's crown from the skin capture
 Spans MeasureSpans(Object* root,uint32_t region,Object* const* bones,const SkinBinds& binds) {
-    Spans spans;const auto& names=NamesOf(region);
+    Spans spans;const auto& names=NamesOf(HumanAnatomy,region);
     float unit=bones[0]->world.scale;
     auto distance=[&](const Object* a,const Object* b){return a&&b&&a->world.Valid()&&b->world.Valid()?Length(b->world.t-a->world.t)/unit:0.f;};
     for(unsigned k=0;k<kInfluences;++k)if(names.reach[k]&&names.influences[k])spans.reach[k]=distance(bones[k],FindBone(root,names.reach[k]));
@@ -69,18 +83,28 @@ uint64_t ResolveCreature(Form* form,Object*& root) {
     return 0;
 }
 }
-const char* RegionFrameName(uint32_t region){return region<kRegions?NamesOf(region).influences[0]:nullptr;}
+const char* RegionFrameName(uint32_t anatomy,uint32_t region){return region<kRegions?NamesOf(anatomy,region).influences[0]:nullptr;}
 bool InitRegionNames() {
     auto intern=reinterpret_cast<const char*(__cdecl*)(const char*)>(0xA5B690);
     auto copy=[&](const char* name,const char*& out){if(!name){out=nullptr;return true;}return (out=intern(name))!=nullptr;};
-    for(uint32_t region=0;region<kRegions;++region) {
-        const auto& spec=SpecOf(region);auto& names=NamesOf(region);
+    for(uint32_t anatomy=0;anatomy<kAnatomies;++anatomy)for(uint32_t region=0;region<kRegions;++region) {
+        const auto& spec=SpecOf(anatomy,region);auto& names=NamesOf(anatomy,region);
         for(unsigned k=0;k<kInfluences;++k)if(!copy(spec.influences[k],names.influences[k]))return false;
         for(unsigned k=0;k<kSkinBones;++k)if(!copy(spec.required[k],names.required[k]))return false;
         for(unsigned side=0;side<2;++side)for(unsigned k=0;k<kSkinBones;++k)if(!copy(spec.reveal[side][k],names.reveal[side][k]))return false;
+        //only creatures sized to the human anatomy measure their spans
+        if(anatomy!=HumanAnatomy)continue;
         for(unsigned k=0;k<kInfluences;++k)if(!copy(kReachBones[region][k],names.reach[k]))return false;
         for(unsigned k=0;k<kChainBones;++k)if(!copy(kChainBoneNames[region][k],names.chain[k]))return false;
         for(unsigned w=0;w<2;++w)for(unsigned e=0;e<2;++e)if(!copy(kWidthBones[region][w][e],names.widths[w][e]))return false;
+    }
+    return true;
+}
+bool CarriesAnatomy(Object* root,uint32_t anatomy) {
+    if(!root||anatomy>=kAnatomies)return false;
+    for(uint32_t region=0;region<kRegions;++region) {
+        const auto& names=NamesOf(anatomy,region);
+        for(unsigned k=0;k<kInfluences;++k)if(names.influences[k]&&!FindBone(root,names.influences[k]))return false;
     }
     return true;
 }
@@ -93,7 +117,8 @@ uint64_t CaptureRegion(uint32_t refID,uint32_t region,unsigned side,HeadFrame& o
         if(region==HeadRegion)return CaptureFailure(HeadFailure::MissingRegionBone);
         if(auto failure=ResolveHuman(refID,root,head,face))return failure;
     }else if(auto failure=ResolveCreature(actor,root))return failure;
-    const auto& spec=SpecOf(region);const auto& names=NamesOf(region);
+    auto anatomy=AnatomyOf(kind);
+    const auto& spec=SpecOf(anatomy,region);const auto& names=NamesOf(anatomy,region);
     Object* bones[kInfluences];
     for(unsigned k=0;k<kInfluences;++k) {
         //an influence the region does not name rides on its parent
@@ -102,9 +127,9 @@ uint64_t CaptureRegion(uint32_t refID,uint32_t region,unsigned side,HeadFrame& o
         if(!bones[k]||!bones[k]->world.Valid())return CaptureFailure(HeadFailure::MissingRegionBone,k);
     }
     out.head=bones[0]->world;out.fit=HeadFit{};out.face=false;out.region=region;out.neckError=-1;
-    out.noGenitals=kind!=Kind::Human||IsFemale(actor);
+    out.noGenitals=kind!=Kind::Human||IsFemale(actor);out.anatomy=anatomy;
     for(unsigned k=0;k<kInfluences;++k)out.posedBones[k]=Compose(Inverse(out.head),bones[k]->world);
-    SkinRequest request;request.requireAll=false;request.crown=region==HeadRegion&&kind!=Kind::Human;
+    SkinRequest request;request.requireAll=false;request.crown=region==HeadRegion&&kind!=Kind::Human&&anatomy==HumanAnatomy;
     for(unsigned k=0;k<kSkinBones&&names.required[k];++k)if(auto bone=FindBone(root,names.required[k]))request.required[request.requiredCount++]=bone;
     for(unsigned k=0;k<kSkinBones&&names.reveal[side][k];++k)if(auto bone=FindBone(root,names.reveal[side][k]))request.reveal[request.revealCount++]=bone;
     request.frame=bones[0];for(unsigned k=0;k<kInfluences;++k)request.influences[k]=names.influences[k]?bones[k]:nullptr;
@@ -112,17 +137,17 @@ uint64_t CaptureRegion(uint32_t refID,uint32_t region,unsigned side,HeadFrame& o
     static SkinBinds binds;CaptureSkin(root,face,request,out,&binds);
     if(!out.skinTriangles)return CaptureFailure(HeadFailure::MissingRegionSkin);
     out.influences=RestInfluences();
-    //the anatomy is human: a creature places each bone's part where it sits on the human bone, whatever its own bind pose,
-    //sized by its spans over the human ones
+    //a creature with the human anatomy places each bone's part where it sits on the human bone, whatever its own bind pose,
+    //sized by its spans over the human ones, a horse places its own anatomy through its own rest pose
     bool human=kind==Kind::Human;Proportions proportions;
-    if(!human) {
+    if(!human&&anatomy==HumanAnatomy) {
         proportions=Creature::Measure(region,MeasureSpans(root,region,bones,binds));
         out.fit=Creature::Fit(proportions);
     }
     for(unsigned k=1;k<kInfluences;++k) {
         if(!names.influences[k]||(human&&!binds.found[k])){out.influences[k]=out.influences[spec.parents[k]];continue;}
         //skinned world = bone.world * skinToBone * skin position, so rest frame space reaches each bone's posed space through skin space
-        Transform bend=Compose(Inverse(out.head),Compose(bones[k]->world,human?binds.relation[k]:Creature::Retarget(region,k,proportions)));
+        Transform bend=Compose(Inverse(out.head),Compose(bones[k]->world,human?binds.relation[k]:Creature::Retarget(anatomy,region,k,proportions)));
         if(!bend.Valid())return CaptureFailure(HeadFailure::MissingRegionBind,k);
         out.influences[k]=bend;
     }
@@ -132,7 +157,7 @@ bool HasRegion(Form* form,uint32_t region) {
     if(region>=kRegions||!Supported(form))return false;
     auto root=reinterpret_cast<Object*(__thiscall*)(Form*)>(form->vtable[0x1D0/4])(form);
     if(!root)return false;
-    const auto& names=NamesOf(region);
+    const auto& names=NamesOf(AnatomyOf(KindOf(form)),region);
     for(unsigned k=0;k<kInfluences;++k)if(names.influences[k]&&!FindBone(root,names.influences[k]))return false;
     return true;
 }
@@ -140,7 +165,8 @@ bool HitCarrier(Form* form,uint32_t region,Vec3 point,uint32_t& carrier,Transfor
     if(region<=HeadRegion||region>=kRegions||!Supported(form))return false;
     auto root=reinterpret_cast<Object*(__thiscall*)(Form*)>(form->vtable[0x1D0/4])(form);
     if(!root||(root->flags&kHidden))return false;
-    const auto& spec=SpecOf(region);const auto& names=NamesOf(region);
+    auto anatomy=AnatomyOf(KindOf(form));
+    const auto& spec=SpecOf(anatomy,region);const auto& names=NamesOf(anatomy,region);
     Object* bones[kInfluences];
     for(unsigned k=0;k<kInfluences;++k) {
         bones[k]=names.influences[k]?FindBone(root,names.influences[k]):nullptr;

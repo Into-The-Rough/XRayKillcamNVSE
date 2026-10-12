@@ -4,7 +4,7 @@
 namespace XRay::Audit {
 constexpr uint32_t kMagic=0x31435258;
 struct Record {
-    uint32_t magic=kMagic,version=5,size=0,target=0,support=0,stage=0;
+    uint32_t magic=kMagic,version=6,size=0,target=0,support=0,stage=0;
     uint64_t session=0;
     HeadFrame head{};
     CameraFrame camera{};

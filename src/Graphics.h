@@ -6,11 +6,13 @@
 
 namespace XRay::Damage {struct Kept;}
 namespace XRay {
-constexpr unsigned kHeadVertices=1211,kHeadTriangles=2294,kSkinVertices=8192,kSkinTriangles=16384;
+constexpr unsigned kHeadVertices=1211,kHeadTriangles=2294,kSkinVertices=16384,kSkinTriangles=32768;
 //reveal is the skin weight of Bip01 Head plus Bip01 Neck1
 struct MaskVertex { Vec3 world,local; float reveal=1; };
 enum Region : uint32_t {HeadRegion,TorsoRegion,LegsRegion,ArmsRegion,kRegions};
 inline const char* RegionName(uint32_t region){static const char* const names[]={"head","torso","leg","arm"};return region<kRegions?names[region]:"head";}
+//which anatomy set a body carries: the human one, shown on people and on creatures sized to their skeletons, or the horse's own
+enum Anatomy : uint8_t {HumanAnatomy,HorseAnatomy,kAnatomies};
 //limb regions carry both sides, the right side's root bone at influence 4
 constexpr bool kSided[kRegions]={false,false,true,true};
 //one captured body region, the head with its face or a region below it, in the space of its frame bone
@@ -27,8 +29,8 @@ struct HeadFrame {
     uint32_t region=HeadRegion;
     //only a human head has its face, every other capture has only the skin
     bool face=true;
-    //the torso anatomy without the external genitals, for women and creatures, it sits in the padding before the skin counts
-    bool noGenitals=false;
+    //the torso anatomy without the external genitals, for women and creatures, and the anatomy set, both in the padding before the skin counts
+    bool noGenitals=false;uint8_t anatomy=HumanAnatomy;
     //body and armour shapes bound across the neck joint, posed by the game like the face, they close the head's open collar
     uint32_t skinVertices=0,skinTriangles=0,skinShapes=0,skinSkipped=0;
     MaskVertex skin[kSkinVertices];
@@ -69,6 +71,8 @@ void SetBloodSpray(bool enabled);
 //how hard the next new wound hits (1 an ordinary hit, more for a killing shot) and how much blood it throws
 void SetShotForce(float severity,float blood);
 HRESULT LastError();
+//the last draw found targets it cannot draw into this frame, nothing failed
+bool Skipped();
 unsigned DamageStatus();
 DamageReport DamageSummary();
 //the sound cues the drawn region's wounds reached since the last call, oldest first

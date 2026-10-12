@@ -8,6 +8,7 @@
 #include <cstdarg>
 #include <cstring>
 #include <limits>
+#include <memory>
 #include <vector>
 
 namespace XRay {
@@ -138,17 +139,40 @@ void TestAudit(const XRay::HeadFrame& head) {
     copy.head.skin[2].reveal=1.5f;Write(copy,invalid);Check(!Audit::Read(invalid,r),"neck skin weight outside 0..1 rejected");copy.head.skin[2].reveal=.5f;
     copy.head.vertices[9].reveal=-1;Write(copy,invalid);Check(!Audit::Read(invalid,r),"face weight outside 0..1 rejected");
     Audit::Record legacy;const Transform rest=Transform::Identity();
-    Check(Audit::Read("tests/output/captures-head/shot-04-0.xrc",legacy)&&legacy.version==5&&legacy.size==sizeof legacy
+    Check(Audit::Read("tests/output/captures-head/shot-04-0.xrc",legacy)&&legacy.version==6&&legacy.size==sizeof legacy
         &&!memcmp(&legacy.head.influences[1],&rest,sizeof rest)&&legacy.head.neckError==-1&&legacy.impact.path.valid,"version 1 captures replay with the neck at rest");
-    Check(Audit::Read("tests/output/captures-neck/shot-04-0.xrc",legacy)&&legacy.version==5&&legacy.size==sizeof legacy
+    Check(Audit::Read("tests/output/captures-neck/shot-04-0.xrc",legacy)&&legacy.version==6&&legacy.size==sizeof legacy
         &&fabsf(legacy.head.neckError-.004f)<.001f&&RotationAngle(legacy.head.influences[1])>.5f&&legacy.impact.path.valid&&!legacy.head.skinTriangles
         &&legacy.head.vertices[100].reveal==1,"version 2 captures keep their neck bend and replay with a full face reveal");
-    Check(Audit::Read("tests/output/captures-neck-skin/shot-20-0.xrc",legacy)&&legacy.version==5&&legacy.head.region==HeadRegion&&legacy.head.face
+    Check(Audit::Read("tests/output/captures-neck-skin/shot-20-0.xrc",legacy)&&legacy.version==6&&legacy.head.region==HeadRegion&&legacy.head.face
         &&legacy.head.skinTriangles==54&&legacy.head.skinShapes==1&&legacy.head.vertices[100].reveal<=1&&RotationAngle(legacy.head.influences[1])>0
         &&legacy.impact.path.valid,"version 3 captures keep their neck skin, weights and bend");
-    Check(Audit::Read("tests/output/captures-legs/shot-10-0.xrc",legacy)&&legacy.version==5&&legacy.head.region==LegsRegion&&!legacy.head.face
+    Check(Audit::Read("tests/output/captures-legs/shot-10-0.xrc",legacy)&&legacy.version==6&&legacy.head.region==LegsRegion&&!legacy.head.face
         &&legacy.head.skinTriangles>0&&legacy.source.posed&&!legacy.source.carrier&&!memcmp(&legacy.head.posedBones[3],&rest,sizeof rest),
         "version 4 captures read with their frame, skin and sample, the bones at rest and no carrier");
+    {
+        //a version 5 capture, laid out as the plugin wrote it before the larger skin and the anatomy set
+        struct HeadV5 {
+            Transform head;HeadFit fit;MaskVertex vertices[kHeadVertices];uint16_t indices[kHeadTriangles*3];Influences influences;float neckError;uint32_t region;
+            bool face,noGenitals;uint32_t skinVertices,skinTriangles,skinShapes,skinSkipped;MaskVertex skin[8192];uint16_t skinIndices[16384*3];Influences posedBones;
+        };
+        struct RecordV5 {uint32_t magic,version,size,target,support,stage;uint64_t session;HeadV5 head;CameraFrame camera;Appearance appearance;Impact::Sample source;Impact::Frame impact;};
+        Check(Audit::Read("tests/output/XRayKillcamCaptures/shot-07-1.xrc",copy),"reread capture for version 5");
+        auto old=std::make_unique<RecordV5>();memset(old.get(),0,sizeof *old);
+        old->magic=copy.magic;old->version=5;old->size=sizeof *old;old->target=copy.target;old->support=copy.support;old->stage=copy.stage;old->session=copy.session;
+        auto& h=old->head;const auto& c=copy.head;
+        h.head=c.head;h.fit=c.fit;memcpy(h.vertices,c.vertices,sizeof h.vertices);memcpy(h.indices,c.indices,sizeof h.indices);h.influences=c.influences;
+        h.neckError=c.neckError;h.region=c.region;h.face=c.face;h.noGenitals=true;h.skinVertices=c.skinVertices;h.skinTriangles=c.skinTriangles;
+        h.skinShapes=c.skinShapes;h.skinSkipped=c.skinSkipped;memcpy(h.skin,c.skin,c.skinVertices*sizeof(MaskVertex));
+        memcpy(h.skinIndices,c.skinIndices,c.skinTriangles*3*sizeof(uint16_t));h.posedBones=c.posedBones;h.posedBones[1].t={4,5,6};
+        old->camera=copy.camera;old->appearance=copy.appearance;old->source=copy.source;old->impact=copy.impact;
+        FILE* file=nullptr;fopen_s(&file,"tests/output/audit-v5.xrc","wb");Check(file&&fwrite(old.get(),sizeof *old,1,file)==1&&fclose(file)==0,"version 5 capture written");
+        Check(Audit::Read("tests/output/audit-v5.xrc",legacy)&&legacy.version==6&&legacy.head.anatomy==HumanAnatomy&&legacy.head.noGenitals
+            &&legacy.head.skinTriangles==c.skinTriangles&&!memcmp(legacy.head.skinIndices,c.skinIndices,c.skinTriangles*3*sizeof(uint16_t))
+            &&legacy.head.posedBones[1].t.z==6&&!memcmp(&legacy.source,&copy.source,sizeof copy.source),
+            "version 5 captures read with their skin, genitals flag and posed bones as human anatomy");
+        copy.head.anatomy=kAnatomies;Write(copy,invalid);Check(!Audit::Read(invalid,r),"an unknown anatomy set is rejected");
+    }
     Check(Audit::Read("tests/output/XRayKillcamCaptures/shot-07-1.xrc",copy),"reread capture for the carrier");
     Transform moved=Transform::Identity();moved.t={1,2,3};
     copy.source.carrier=2;copy.source.carrierPose=moved;copy.head.posedBones[2]=moved;Write(copy,"tests/output/audit-carrier.xrc");

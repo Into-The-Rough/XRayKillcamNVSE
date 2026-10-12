@@ -15,6 +15,8 @@ static Vec3 s_eye{};
 static Transform s_pose=Transform::Identity();static bool s_posed=false;
 //the shot's heading from the killcam's first frame and the point the camera follows
 static Vec3 s_heading{},s_follow{};
+//how far behind the wound's middle the eye must stay to be outside the shot's entry
+static float s_reach=0;
 static Framing s_framing;
 //what one killcam's close-up did, logged when it ends: frames placed and skipped by reason, restarts, wall pulls, and the
 //largest frame-to-frame eye move and turn
@@ -72,10 +74,11 @@ static void Apply() {
         //a killcam that comes back for the same target and region within one X-ray restarts the orbit from its start
         if(s_watch.frames){++s_watch.restarts;Log("close-up %08X restarted after %u frames: VATS mode %u, killcam timer %.2f",s_target,s_watch.frames,vats->mode,player->timer);}
         s_live=true;s_posed=s_reported=s_described=false;s_start=s_last=now;s_framing={};s_heading=shot;s_follow=wound;
+        s_reach=Length(shot)*frame.scale*.5f+kNearest;
     }
     float seconds=float(now-s_start),step=float(now-s_last);s_last=now;
     s_follow=Follow(s_follow,wound,step);
-    Transform want=Frame(s_framing,s_follow,s_heading,settings.closeUpDistance,settings.closeUpOrbit*seconds*.01745329f,handedness,step,
+    Transform want=Frame(s_framing,s_follow,s_heading,fmaxf(settings.closeUpDistance,s_reach),settings.closeUpOrbit*seconds*.01745329f,handedness,step,
         [&](Vec3 eye){return Engine::Clearance(target,s_follow,eye);});
     auto parent=camera->parent;
     //once a shot, when its turn is chosen, whether or not the renderer later maps the wound

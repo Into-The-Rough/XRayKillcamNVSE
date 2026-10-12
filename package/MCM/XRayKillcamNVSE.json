@@ -1,0 +1,567 @@
+{
+	"modName": "XRayKillcamNVSE",
+	"displayName": "X-Ray Killcam",
+	"description": "What opens the X-ray, the gore and the killcam",
+	"saveFile": "XRayKillcamNVSE.ini",
+	"minMCMVersion": 1.0,
+	"minModVersion": 1.0,
+	"requirements": [
+		{
+			"type": "file",
+			"file": "NVSE/plugins/scripts/ln_xraykillcam-mcm.txt"
+		},
+		{
+			"type": "file",
+			"file": "NVSE/plugins/XRayKillcamNVSE.dll"
+		}
+	],
+	"submenus": {
+		"1": {
+			"listTitle": "Triggers",
+			"pageTitle": "What opens the X-ray",
+			"columns": 1,
+			"enable": 1,
+			"active": 1,
+			"options": {
+				"1": {
+					"title": "Triggers",
+					"enable": 1,
+					"type": 0
+				},
+				"2": {
+					"title": "Automatic X-ray",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Open the X-ray on your own projectile hits",
+					"vars": [
+						{
+							"configINI": "Automatic:Enabled",
+							"default": 1
+						}
+					]
+				},
+				"3": {
+					"title": "Kills",
+					"type": 5,
+					"enable": 1,
+					"mouse": "A hit that kills opens the X-ray",
+					"vars": [
+						{
+							"configINI": "Automatic:Kills",
+							"default": 1
+						}
+					]
+				},
+				"4": {
+					"title": "Cripples",
+					"type": 5,
+					"enable": 1,
+					"mouse": "A hit that cripples a limb, the head or the torso opens the X-ray",
+					"vars": [
+						{
+							"configINI": "Automatic:Cripples",
+							"default": 1
+						}
+					]
+				},
+				"5": {
+					"title": "Criticals",
+					"type": 5,
+					"enable": 1,
+					"mouse": "A critical hit opens the X-ray",
+					"vars": [
+						{
+							"configINI": "Automatic:Criticals",
+							"default": 1
+						}
+					]
+				},
+				"6": {
+					"title": "Groin shots",
+					"type": 5,
+					"enable": 1,
+					"mouse": "A shot through a man's genitals opens the skin over them",
+					"vars": [
+						{
+							"configINI": "Automatic:Groin",
+							"default": 1
+						}
+					]
+				},
+				"7": {
+					"title": "Every hit",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Every hit opens the X-ray, overrides the four above",
+					"vars": [
+						{
+							"configINI": "Automatic:EveryHit",
+							"default": 0
+						}
+					]
+				},
+				"8": {
+					"title": "X-ray duration",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Seconds the cutaway stays open, longer while a killcam plays",
+					"vars": [
+						{
+							"configINI": "Automatic:Duration",
+							"default": 5.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 1,
+						"valueIncrement": 0.5,
+						"valueMax": 30.0,
+						"valueMin": 1.0
+					}
+				},
+				"9": {
+					"title": " ",
+					"enable": 1,
+					"type": 0
+				},
+				"10": {
+					"title": "Body parts",
+					"enable": 1,
+					"type": 0
+				},
+				"11": {
+					"title": "Torso",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Torso hits open, the head always does",
+					"vars": [
+						{
+							"configINI": "Automatic:Torso",
+							"default": 1
+						}
+					]
+				},
+				"12": {
+					"title": "Legs",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Leg hits open",
+					"vars": [
+						{
+							"configINI": "Automatic:Legs",
+							"default": 1
+						}
+					]
+				},
+				"13": {
+					"title": "Arms",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Arm hits open",
+					"vars": [
+						{
+							"configINI": "Automatic:Arms",
+							"default": 1
+						}
+					]
+				},
+				"14": {
+					"title": " ",
+					"enable": 1,
+					"type": 0
+				},
+				"15": {
+					"title": "Creatures",
+					"enable": 1,
+					"type": 0
+				},
+				"16": {
+					"title": "Feral ghouls",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Feral ghouls open too, ghoul NPCs always do",
+					"vars": [
+						{
+							"configINI": "Automatic:FeralGhouls",
+							"default": 1
+						}
+					]
+				},
+				"17": {
+					"title": "Super mutants",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Super mutants and nightkin open too, behemoths only on the head and legs",
+					"vars": [
+						{
+							"configINI": "Automatic:SuperMutants",
+							"default": 1
+						}
+					]
+				},
+				"18": {
+					"title": "Horses",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Horses open too, with a horse skeleton of their own",
+					"vars": [
+						{
+							"configINI": "Automatic:Horses",
+							"default": 1
+						}
+					]
+				}
+			}
+		},
+		"2": {
+			"listTitle": "Gore",
+			"pageTitle": "Blood and sound",
+			"columns": 1,
+			"enable": 1,
+			"options": {
+				"1": {
+					"title": "Blood",
+					"enable": 1,
+					"type": 0
+				},
+				"2": {
+					"title": "Blood spray",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Blood sprays from the entry, the exit and anything the bullet bursts",
+					"vars": [
+						{
+							"configINI": "Automatic:BloodSpray",
+							"default": 1
+						}
+					]
+				},
+				"3": {
+					"title": "Blood amount",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "How much blood every wound throws",
+					"vars": [
+						{
+							"configINI": "Automatic:BloodAmount",
+							"default": 1.5
+						}
+					],
+					"scale": {
+						"valueDecimal": 1,
+						"valueIncrement": 0.1,
+						"valueMax": 4.0,
+						"valueMin": 0.0
+					}
+				},
+				"4": {
+					"title": "Kill severity",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "How much harder a killing shot breaks, tears and bleeds",
+					"vars": [
+						{
+							"configINI": "Automatic:KillSeverity",
+							"default": 1.8
+						}
+					],
+					"scale": {
+						"valueDecimal": 1,
+						"valueIncrement": 0.1,
+						"valueMax": 3.0,
+						"valueMin": 1.0
+					}
+				},
+				"5": {
+					"title": " ",
+					"enable": 1,
+					"type": 0
+				},
+				"6": {
+					"title": "Sound",
+					"enable": 1,
+					"type": 0
+				},
+				"7": {
+					"title": "Gore sounds",
+					"type": 5,
+					"enable": 1,
+					"mouse": "A random clip from Data\\Sound\\fx\\xraykillcam for each moment of the wound",
+					"vars": [
+						{
+							"configINI": "Automatic:Sounds",
+							"default": 1
+						}
+					]
+				},
+				"8": {
+					"title": "Volume",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "The killcam slows and lowers them further",
+					"vars": [
+						{
+							"configINI": "Automatic:SoundVolume",
+							"default": 1.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 2,
+						"valueIncrement": 0.05,
+						"valueMax": 1.0,
+						"valueMin": 0.0
+					}
+				}
+			}
+		},
+		"3": {
+			"listTitle": "Killcam",
+			"pageTitle": "Killcam and close-up",
+			"columns": 1,
+			"enable": 1,
+			"options": {
+				"1": {
+					"title": "Killcam",
+					"enable": 1,
+					"type": 0
+				},
+				"2": {
+					"title": "Killcam",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Start the game's killcam on the part that opened. Kills follow the game's Kill Cam option",
+					"vars": [
+						{
+							"configINI": "Cinematic:Enabled",
+							"default": 1
+						}
+					]
+				},
+				"3": {
+					"title": "Timer",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Killcam timer in seconds, about 1.1 real seconds each in Full",
+					"vars": [
+						{
+							"configINI": "Cinematic:Duration",
+							"default": 4.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 1,
+						"valueIncrement": 0.5,
+						"valueMax": 10.0,
+						"valueMin": 0.5
+					}
+				},
+				"4": {
+					"title": "Impact speed",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "How fast the X-ray plays while the bullet crosses the part, lower is slower",
+					"vars": [
+						{
+							"configINI": "Cinematic:ImpactSpeed",
+							"default": 0.3
+						}
+					],
+					"scale": {
+						"valueDecimal": 2,
+						"valueIncrement": 0.05,
+						"valueMax": 1.0,
+						"valueMin": 0.05
+					}
+				},
+				"5": {
+					"title": " ",
+					"enable": 1,
+					"type": 0
+				},
+				"6": {
+					"title": "Close-up camera",
+					"enable": 1,
+					"type": 0
+				},
+				"7": {
+					"title": "Close-up",
+					"type": 5,
+					"enable": 1,
+					"mouse": "Hold the killcam's camera close to the wound, behind the entry",
+					"vars": [
+						{
+							"configINI": "Cinematic:CloseUp",
+							"default": 1
+						}
+					]
+				},
+				"8": {
+					"title": "Distance",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Distance from the wound in game units",
+					"vars": [
+						{
+							"configINI": "Cinematic:CloseUpDistance",
+							"default": 28.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 0,
+						"valueIncrement": 1.0,
+						"valueMax": 80.0,
+						"valueMin": 10.0
+					}
+				},
+				"9": {
+					"title": "Orbit",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "How fast the camera turns about the wound, in degrees a second",
+					"vars": [
+						{
+							"configINI": "Cinematic:CloseUpOrbit",
+							"default": 20.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 0,
+						"valueIncrement": 1.0,
+						"valueMax": 90.0,
+						"valueMin": 0.0
+					}
+				}
+			}
+		},
+		"4": {
+			"listTitle": "Appearance",
+			"pageTitle": "Anatomy appearance",
+			"columns": 1,
+			"enable": 1,
+			"options": {
+				"1": {
+					"title": "Anatomy",
+					"enable": 1,
+					"type": 0
+				},
+				"2": {
+					"title": "Opacity",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Opacity of the anatomy",
+					"vars": [
+						{
+							"configINI": "Appearance:Opacity",
+							"default": 1.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 2,
+						"valueIncrement": 0.05,
+						"valueMax": 1.0,
+						"valueMin": 0.0
+					}
+				},
+				"3": {
+					"title": " ",
+					"enable": 1,
+					"type": 0
+				},
+				"4": {
+					"title": "Head fit",
+					"enable": 1,
+					"type": 0
+				},
+				"5": {
+					"title": "Size",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Size of the head anatomy",
+					"vars": [
+						{
+							"configINI": "Appearance:Scale",
+							"default": 1.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 2,
+						"valueIncrement": 0.05,
+						"valueMax": 1.5,
+						"valueMin": 0.5
+					}
+				},
+				"6": {
+					"title": "Up",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Moves the head anatomy along its up axis, in game units",
+					"vars": [
+						{
+							"configINI": "Appearance:Up",
+							"default": 0.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 2,
+						"valueIncrement": 0.25,
+						"valueMax": 8.0,
+						"valueMin": -8.0
+					}
+				},
+				"7": {
+					"title": "Forward",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Moves the head anatomy along its forward axis, in game units",
+					"vars": [
+						{
+							"configINI": "Appearance:Forward",
+							"default": 0.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 2,
+						"valueIncrement": 0.25,
+						"valueMax": 8.0,
+						"valueMin": -8.0
+					}
+				},
+				"8": {
+					"title": "Side",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Moves the head anatomy along its side axis, in game units",
+					"vars": [
+						{
+							"configINI": "Appearance:Side",
+							"default": 0.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 2,
+						"valueIncrement": 0.25,
+						"valueMax": 8.0,
+						"valueMin": -8.0
+					}
+				},
+				"9": {
+					"title": "Depth tolerance",
+					"type": 2.5,
+					"enable": 1,
+					"mouse": "Depth allowance for the skin mask in game units, does not widen its outline",
+					"vars": [
+						{
+							"configINI": "Appearance:DepthTolerance",
+							"default": 2.0
+						}
+					],
+					"scale": {
+						"valueDecimal": 1,
+						"valueIncrement": 0.1,
+						"valueMax": 4.0,
+						"valueMin": 0.0
+					}
+				}
+			}
+		}
+	}
+}

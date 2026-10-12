@@ -1,0 +1,24 @@
+{
+  "license": "CC BY 4.0",
+  "note": "each scan voxel remeshed closed, its largest piece kept and reduced by tools/horse_organs.py",
+  "files": [
+    {
+      "path": "horse/brain.obj",
+      "sha256": "0168c16780557b0282156302db0a31e107cf46d0b87bf7602f17eafa8d4840a0",
+      "author": "jc196643",
+      "source": "https://sketchfab.com/3d-models/horse-brain-f2bb07bb7778424d850c8be09d96bbc8"
+    },
+    {
+      "path": "horse/heart.obj",
+      "sha256": "8690cc5fd760e64d8ab541ee37dbc33311389e8798c993653e3769874fe52552",
+      "author": "University of Sarajevo - Veterinary faculty",
+      "source": "https://sketchfab.com/3d-models/heart-horse-plastinated-fce338c614f44b5aae3ddd38226b97b7"
+    },
+    {
+      "path": "horse/gut.obj",
+      "sha256": "86dfe1c7e627d2e54f48b308ffcdb7b514d631976570f6037856ed273b5c7486",
+      "author": "auburton2021",
+      "source": "https://sketchfab.com/3d-models/equine-gi-tract-3692febcfa34423d9bd9b598f4fe8d04"
+    }
+  ]
+}

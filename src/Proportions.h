@@ -12,11 +12,13 @@ struct Spans {float reach[kInfluences]{},chain=0,widths[2]{},crown=0;};
 struct Proportions {float scale[kInfluences]{1,1,1,1,1,1,1};Vec3 girth{1,1,1};};
 namespace Creature {
 Proportions Measure(uint32_t region,const Spans& spans);
-//the human rest relation of influence k carried to a creature's proportions, the frame's own scale stays in the fit
-Transform Retarget(uint32_t region,unsigned k,const Proportions& proportions);
+//the anatomy set's rest relation of influence k carried to a creature's proportions, the frame's own scale stays in the fit
+Transform Retarget(uint32_t anatomy,uint32_t region,unsigned k,const Proportions& proportions);
 //the frame's scale and the region's girth, applied to the anatomy before its influences
 HeadFit Fit(const Proportions& proportions);
 }
 //how much larger than a human's a capture's body is, for bounds measured on human bodies
 float BodySize(const HeadFrame& frame);
+//a horse's body against a person's: its barrel is about three times a torso's longest path
+constexpr float kHorseBodySize=3;
 }

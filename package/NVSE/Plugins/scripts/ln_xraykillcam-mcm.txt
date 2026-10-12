@@ -1,0 +1,1 @@
+SetEventHandler "MCMExtUpdate" (CompileScript "xraykillcam\OnMCMUpdate.gek")

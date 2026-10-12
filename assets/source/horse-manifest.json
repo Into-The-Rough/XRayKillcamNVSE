@@ -1,0 +1,12 @@
+{
+  "source": "https://sketchfab.com/3d-models/horse-skeleton-eaca504567604e879b8ab2cf2763025e",
+  "author": "Diego Luján García",
+  "license": "CC BY 4.0",
+  "note": "ZBrush export SubTool-0-8550487.OBJ from the Sketchfab source archive, unmodified",
+  "files": [
+    {
+      "path": "horse/skeleton.obj",
+      "sha256": "e496e620feb2852c221c4666bd6726ac460aa529e60b58ea03a5761ee3f6d74b"
+    }
+  ]
+}

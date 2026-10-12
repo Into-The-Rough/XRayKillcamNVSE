@@ -1,0 +1,43 @@
+{
+  "coordinate_space": "Bip01 Pelvis rest local, game units",
+  "meshes": [
+    {
+      "name": "bone Bip01 L Calf",
+      "material": 0,
+      "vertices": 1488,
+      "triangles": 2968
+    },
+    {
+      "name": "bone Bip01 L Foot",
+      "material": 0,
+      "vertices": 540,
+      "triangles": 1068
+    },
+    {
+      "name": "bone Bip01 L HorseLink",
+      "material": 0,
+      "vertices": 1851,
+      "triangles": 3678
+    },
+    {
+      "name": "bone Bip01 R Calf",
+      "material": 0,
+      "vertices": 1486,
+      "triangles": 2964
+    },
+    {
+      "name": "bone Bip01 R Foot",
+      "material": 0,
+      "vertices": 539,
+      "triangles": 1066
+    },
+    {
+      "name": "bone Bip01 R HorseLink",
+      "material": 0,
+      "vertices": 1849,
+      "triangles": 3674
+    }
+  ],
+  "bytes": 371728,
+  "triangles": 15418
+}

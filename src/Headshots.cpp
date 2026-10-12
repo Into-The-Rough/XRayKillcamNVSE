@@ -72,9 +72,11 @@ static void Publish(const Hit& hit,uint32_t epoch) {
 static void __fastcall HitHook(Engine::Form* target,void*,Engine::HitData* data,char flag) {
     auto original=reinterpret_cast<HitMe>(s_hitCall.Original());
     uint32_t epoch=Epoch();
+    bool main=GetCurrentThreadId()==s_mainThread;
+    if(main)Engine::ClassifyHorse(target);
     auto kind=Engine::KindOf(target);
     if(!settings.automatic||!target||!data||data->target!=target||kind==Engine::Kind::None||(kind==Engine::Kind::FeralGhoul&&!settings.feralGhouls)
-        ||(kind==Engine::Kind::SuperMutant&&!settings.superMutants)
+        ||(kind==Engine::Kind::SuperMutant&&!settings.superMutants)||(kind==Engine::Kind::Horse&&!settings.horses)
         ||!data->source||data->source->id!=Engine::kPlayerRefID||!data->projectile) {
         original(target,data,flag);return;
     }
@@ -84,10 +86,10 @@ static void __fastcall HitHook(Engine::Form* target,void*,Engine::HitData* data,
     Vec3 point=data->impact;
     bool critical=(data->flags&Engine::kHitCritical)!=0;
     uint32_t region=Engine::PartRegion(location);
-    bool open=region<kRegions&&settings.regions[region];
+    if(main)region=Engine::HorseRegion(target,region,point);
+    bool open=region<kRegions&&settings.regions[region]&&RegionReady(Engine::AnatomyOf(kind),region);
     //actor::hitme uses this same native predicate for hitdata+0x08 at 0x89c88b
     bool isProjectile=reinterpret_cast<bool(__thiscall*)(Engine::Form*)>(projectile->vtable[0x224/4])(projectile);
-    bool main=GetCurrentThreadId()==s_mainThread;
     if(!isProjectile||!id){original(target,data,flag);return;}
     if(!open) {
         Remember(id,location,s_lifeState(target),region,region<kRegions?Disabled:NoAnatomy,NoCause);
@@ -173,23 +175,13 @@ void Update() {
     Hit hit=Take();
     if(hit.target||s_active)Advance(hit,now);
 }
-static const char* Triggers() {
-    static char text[64];text[0]=0;
-    const char* names[]={settings.kills?"kills":nullptr,settings.cripples?"cripples":nullptr,settings.criticals?"criticals":nullptr,settings.groin?"groin shots":nullptr};
-    for(auto n:names)if(n){if(text[0])strcat_s(text,", ");strcat_s(text,n);}
-    return text[0]?text:"no trigger";
-}
 bool InitHooks() {
     if(s_installed)return true;
-    if(!settings.automatic){Log("automatic headshots disabled in config");return true;}
     s_mainThread=GetCurrentThreadId();
     //combathit -> hitme: e8 23 00 00 00, ecx=victim, stack=hitdata/char, callee ret 8
     if(!s_hitCall.ReplaceCall(0x89A738,HitHook))return false;
     s_installed=true;
-    Log("automatic X-rays enabled: %.1fs or as long as their killcam (%.1fs timer, impact at %.2f speed), full-opacity cutaway; %s; head on, torso %s, legs %s, arms %s; feral ghouls %s, super mutants %s; blood spray %s; gore sounds %s; hit hook chained to %08X",settings.revealSeconds,
-        settings.cameraSeconds,settings.impactSpeed,settings.everyHit?"every hit":Triggers(),
-        settings.regions[TorsoRegion]?"on":"off",settings.regions[LegsRegion]?"on":"off",settings.regions[ArmsRegion]?"on":"off",settings.feralGhouls?"on":"off",settings.superMutants?"on":"off",settings.bloodSpray?"on":"off",settings.sounds?"on":"off",
-        static_cast<unsigned>(s_hitCall.Original()));
+    Log("hit hook chained to %08X",static_cast<unsigned>(s_hitCall.Original()));
     return true;
 }
 }

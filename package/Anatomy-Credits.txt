@@ -67,6 +67,37 @@ cavernosum and corpus spongiosum of penis and glans penis (is-a archive),
 anchored at the registered pubic symphysis at the torso's scale and fitted
 inside an adult game body's crotch. Women's torso leaves them out.
 
+Horses use "Horse Skeleton" by Diego Luján García, licensed under CC Attribution 4.0
+International:
+https://sketchfab.com/3d-models/horse-skeleton-eaca504567604e879b8ab2cf2763025e
+https://creativecommons.org/licenses/by/4.0/
+Changes: split into its bones and fitted into the HAP horse's body, the
+trunk scaled into its barrel, the skull squashed into its head, the neck
+laid along its neck bones and each leg bone re-posed onto its leg and
+stretched or shortened to its joints, then pulled under its skin where it
+poked through. The tail past the croup is left out, and the gaps in the
+skull and two rib cartilages are closed by voxel remeshing. The skull's
+braincase is carved to hold the brain, opening out of the back of the skull
+along the brainstem.
+
+The horse's organs are three scans, each licensed under CC Attribution 4.0
+International (https://creativecommons.org/licenses/by/4.0/):
+"Horse brain" by jc196643
+https://sketchfab.com/3d-models/horse-brain-f2bb07bb7778424d850c8be09d96bbc8
+"Heart (horse) Plastinated" by the University of Sarajevo Veterinary Faculty
+https://sketchfab.com/3d-models/heart-horse-plastinated-fce338c614f44b5aae3ddd38226b97b7
+"Equine GI Tract" by auburton2021
+https://sketchfab.com/3d-models/equine-gi-tract-3692febcfa34423d9bd9b598f4fe8d04
+Changes: each scan closed by voxel remeshing (the GI tract first wrapped
+over its holes by an octree remesh), its largest piece kept and reduced,
+then turned, scaled and placed in the horse: the brain in the skull, the
+heart low in the chest between the fifth and sixth ribs, and the GI tract
+in the belly behind it.
+
+The HAP horse's own body and skeleton are used only for the fit and are not
+distributed. The adapted horse anatomy is distributed under CC BY-SA 4.0
+like the rest, with the original attributions retained.
+
 Fractures are carved at runtime from the donor skull, teeth and brain
 themselves, so every fragment retains the anatomy attribution above. The
 flying lumps of torn brain are procedurally generated in the plugin.

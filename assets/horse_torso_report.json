@@ -1,0 +1,77 @@
+{
+  "coordinate_space": "Bip01 Spine1 rest local, game units",
+  "meshes": [
+    {
+      "name": "bone Bip01 L Clavicle",
+      "material": 0,
+      "vertices": 2450,
+      "triangles": 4892
+    },
+    {
+      "name": "bone Bip01 L Thigh",
+      "material": 0,
+      "vertices": 1576,
+      "triangles": 3144
+    },
+    {
+      "name": "bone Bip01 Pelvis",
+      "material": 0,
+      "vertices": 8930,
+      "triangles": 17844
+    },
+    {
+      "name": "bone Bip01 R Clavicle",
+      "material": 0,
+      "vertices": 2449,
+      "triangles": 4890
+    },
+    {
+      "name": "bone Bip01 R Thigh",
+      "material": 0,
+      "vertices": 1584,
+      "triangles": 3160
+    },
+    {
+      "name": "bone Bip01 Spine1",
+      "material": 0,
+      "vertices": 8409,
+      "triangles": 16738
+    },
+    {
+      "name": "bone Bip01 Spine2",
+      "material": 0,
+      "vertices": 9975,
+      "triangles": 19882
+    },
+    {
+      "name": "cartilage Bip01 Spine1",
+      "material": 4,
+      "vertices": 2266,
+      "triangles": 4528
+    },
+    {
+      "name": "cartilage Bip01 Spine2",
+      "material": 4,
+      "vertices": 1161,
+      "triangles": 2274
+    },
+    {
+      "name": "gut Bip01 Spine1",
+      "material": 8,
+      "vertices": 3998,
+      "triangles": 8000
+    },
+    {
+      "name": "heart Bip01 Spine2",
+      "material": 5,
+      "vertices": 1996,
+      "triangles": 3996
+    }
+  ],
+  "repaired": [
+    "cartilage 127",
+    "cartilage 130"
+  ],
+  "bytes": 2148864,
+  "triangles": 89348
+}

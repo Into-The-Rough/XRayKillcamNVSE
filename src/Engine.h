@@ -12,8 +12,10 @@ constexpr uint32_t kPlayerRefID=0x14;
 struct Form {void** vtable;uint8_t type,pad05[3];uint32_t flags,id;};
 //getiscreaturetype 0x59f300: the reference's base form (0x4181e0) is a tescreature (form type 0x2b) whose type byte at +0x12c
 //(0x59f3a0) matches, the record's DATA type: 4 for super mutants, nightkin and behemoths, 5 for feral ghouls
-constexpr uint8_t kCreatureBase=0x2B,kSuperMutantType=4,kFeralGhoulType=5;
-enum class Kind {None,Human,FeralGhoul,SuperMutant};
+constexpr uint8_t kCreatureBase=0x2B,kAnimalType=0,kSuperMutantType=4,kFeralGhoulType=5;
+enum class Kind {None,Human,FeralGhoul,SuperMutant,Horse};
+//an animal base whose skeleton carries every bone the horse anatomy rides, as ClassifyHorse last found it, any thread
+bool HorseBase(uint32_t baseID);
 //what anatomy an actor reference can show: humans and ghouls on the human skeleton, creatures on their own
 inline Kind KindOf(const Form* actor) {
     if(!actor||(actor->flags&kDeleted))return Kind::None;
@@ -22,9 +24,16 @@ inline Kind KindOf(const Form* actor) {
     auto base=reinterpret_cast<const Form*(__thiscall*)(const Form*)>(0x4181E0)(actor);
     if(!base||base->type!=kCreatureBase)return Kind::None;
     auto type=reinterpret_cast<const uint8_t*>(base)[0x12C];
+    if(type==kAnimalType)return HorseBase(base->id)?Kind::Horse:Kind::None;
     return type==kFeralGhoulType?Kind::FeralGhoul:type==kSuperMutantType?Kind::SuperMutant:Kind::None;
 }
 inline bool Supported(const Form* actor){return KindOf(actor)!=Kind::None;}
+inline uint8_t AnatomyOf(Kind kind){return kind==Kind::Horse?HorseAnatomy:HumanAnatomy;}
+//reads an animal's skeleton once its 3d is loaded and keeps whether it can show the horse anatomy, main thread only
+void ClassifyHorse(Form* actor);
+//the horse's body part data counts its neck as torso, a torso hit nearer the neck than the trunk opens the head and neck instead
+uint32_t HorseRegion(Form* actor,uint32_t region,Vec3 point);
+bool InitHorse();
 struct JIPProjectile {
     uint8_t pad00[0x60];Form* ammo;uint8_t pad64[0x14A-0x64];uint8_t numProjectiles;
     Form* GetAmmo() const {return numProjectiles?ammo:nullptr;}
@@ -145,7 +154,9 @@ void InitProjectileAmmo();
 uint32_t ProjectileAmmoID(Form* projectile);
 //the world transform of the region's frame bone, Bip01 Head, Spine1, Pelvis or Spine2
 bool FramePose(Form* form,uint32_t region,Transform& out);
-const char* RegionFrameName(uint32_t region);
+const char* RegionFrameName(uint32_t anatomy,uint32_t region);
+//whether a skeleton has every bone the anatomy set rides, main thread only
+bool CarriesAnatomy(Object* root,uint32_t anatomy);
 //the region influence whose bone, to its first child bone, passes nearest a world point, and that bone's world transform
 bool HitCarrier(Form* form,uint32_t region,Vec3 point,uint32_t& carrier,Transform& pose);
 //whether the actor's skeleton has every bone the region's anatomy rides, main thread only

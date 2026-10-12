@@ -3,6 +3,7 @@
 #include "../src/Groin.h"
 #include "ProbeRender.h"
 #include "../src/HumanRest.h"
+#include "../src/HorseRest.h"
 #include "../src/Proportions.h"
 #include <cstdio>
 #include <cstdlib>
@@ -28,16 +29,25 @@ Body LoadBody(const char* path) {
 Transform World() {
     Transform t{{0,0,-1,0,1,0,1,0,0},{500,-300,90},1};return t;
 }
-std::unique_ptr<Audit::Record> RegionRecord(const Body& body,uint32_t region,std::vector<Vec3>& scene,const char* rest=nullptr) {
+std::unique_ptr<Audit::Record> RegionRecord(const Body& body,uint32_t region,std::vector<Vec3>& scene,const char* rest=nullptr,uint8_t anatomy=HumanAnatomy) {
     auto r=std::make_unique<Audit::Record>();auto& f=r->head;
-    f.head=World();f.face=false;f.region=region;f.fit=HeadFit{};
+    f.head=World();f.face=false;f.region=region;f.fit=HeadFit{};f.anatomy=anatomy;
     std::vector<Vec3> world(body.rest.size());std::vector<uint16_t> slot;
     for(size_t i=0;i<world.size();++i)world[i]=f.head.Apply(body.rest[i]);
     Check(BodySkin::Add({world.data(),body.weight.data(),uint32_t(world.size()),body.indices.data(),uint32_t(body.indices.size())},slot,f)==BodySkin::Kept,"vanilla body as region skin");
     f.skinShapes=1;scene.clear();for(auto i:body.indices)scene.push_back(world[i]);
     //a creature fixture's own rest relations: its capture places the human anatomy through the human ones, at its bind pose,
     //sized by its spans, each influence is then the creature's bone back to the frame, out through the retargeted human bone
-    if(rest) {
+    //a horse places its own anatomy through its own rest pose, unscaled
+    if(rest&&anatomy==HorseAnatomy) {
+        FILE* file=nullptr;fopen_s(&file,rest,"rb");Check(file!=nullptr,"horse rest relations");
+        for(unsigned k=0;k<kInfluences;++k) {
+            Transform own;Check(fread(own.r,4,9,file)==9&&fread(&own.t,4,3,file)==3&&fread(&own.scale,4,1,file)==1,"horse rest relation");
+            f.influences[k]=Compose(Inverse(own),Creature::Retarget(HorseAnatomy,region,k,Proportions{}));
+        }
+        fclose(file);
+    }
+    else if(rest) {
         //a creature's capture shows the torso without the external genitals
         f.noGenitals=true;
         std::string spansPath(rest);spansPath.replace(spansPath.rfind("rest.bin"),8,"spans.bin");
@@ -49,7 +59,7 @@ std::unique_ptr<Audit::Record> RegionRecord(const Body& body,uint32_t region,std
         file=nullptr;fopen_s(&file,rest,"rb");Check(file!=nullptr,"creature rest relations");
         for(unsigned k=0;k<kInfluences;++k) {
             Transform own;Check(fread(own.r,4,9,file)==9&&fread(&own.t,4,3,file)==3&&fread(&own.scale,4,1,file)==1,"creature rest relation");
-            f.influences[k]=Compose(Inverse(own),Creature::Retarget(region,k,proportions));
+            f.influences[k]=Compose(Inverse(own),Creature::Retarget(HumanAnatomy,region,k,proportions));
         }
         fclose(file);
     }
@@ -160,7 +170,30 @@ static const Route kMutantLeftArmRoutes[]={
     {"forearm from the front",{-4,40,52.5f},{0,-1,0},{0,90,35},1,0},
     {"hand from the front",{-15,40,69},{0,-1,0},{-10,90,55},1,0},
 };
-struct Case {const char* name;uint32_t region;const char* fixture;const Route* routes;unsigned count;const char* rest=nullptr;};
+//horse frame spaces from tools/horse_reference.py: Head, Spine1, Pelvis and Spine2 in the HAP horse's rest pose
+static const Route kHorseHeadRoutes[]={
+    {"skull from the side",{9.4f,-25,1.25f},{0,1,0},{4,-60,7.1f},1,0},
+    {"neck from the side",{1.71f,-25,-31.7f},{0,1,0},{-4.5f,-60,-27.9f},1,0},
+    {"jaw from below",{43.77f,0,-24.18f},{-.678f,0,.735f},{59.4f,-20,-23.4f},1,0},
+    {"braincase from the side",{.24f,-25,2.33f},{0,1,0},{-3.8f,-60,6.7f},2,1},
+};
+static const Route kHorseTorsoRoutes[]={
+    {"ribs from the side",{7.04f,-30,12.16f},{0,1,0},{-3.1f,-70,2.8f},2,0},
+    {"shoulders through the scapulae and humeri",{5.64f,-30,42.59f},{0,1,0},{-2.6f,-70,32.7f},2,0},
+    {"spine from above",{-38.1f,0,5.44f},{1,0,-.02f},{-53.5f,-25,-16.3f},1,0},
+    {"hips through the femurs",{8.16f,-30,-32.97f},{0,1,0},{1.1f,-70,-37.3f},2,0},
+    {"heart from the side",{9.29f,-30,24.52f},{0,1,0},{2.3f,-70,24.7f},0,1},
+    {"gut from the side",{8.66f,-30,-7.48f},{0,1,0},{1.7f,-70,-7.3f},0,1},
+};
+static const Route kHorseLegRoutes[]={
+    {"shins from the side",{-10.22f,30,-46.87f},{0,-1,0},{-9.2f,60,-44.9f},1,0},
+    {"hind cannons from the side",{-15.22f,25,-66.87f},{0,-1,0},{-9.2f,55,-59.9f},1,0},
+};
+static const Route kHorseArmRoutes[]={
+    {"forearms from the side",{37.79f,30,13.41f},{0,-1,0},{32.9f,60,17.6f},1,0},
+    {"front cannons from the side",{62.74f,25,11.53f},{0,-1,0},{57.9f,55,16.7f},1,0},
+};
+struct Case {const char* name;uint32_t region;const char* fixture;const Route* routes;unsigned count;const char* rest=nullptr;uint8_t anatomy=HumanAnatomy;};
 static const Case kCases[]={
     {"torso",TorsoRegion,"tests/output/reveal/upperbody.torso.bin",kTorsoRoutes,7},
     {"leftleg",LegsRegion,"tests/output/reveal/upperbody.leftleg.bin",kLegRoutes,4},
@@ -176,6 +209,11 @@ static const Case kCases[]={
     {"mutanttorso",TorsoRegion,"tests/output/reveal/supermutant.torso.bin",kMutantTorsoRoutes,4,"tests/output/reveal/supermutant.torso.rest.bin"},
     {"mutantleftleg",LegsRegion,"tests/output/reveal/supermutant.leftleg.bin",kMutantLegRoutes,4,"tests/output/reveal/supermutant.leftleg.rest.bin"},
     {"mutantleftarm",ArmsRegion,"tests/output/reveal/supermutant.leftarm.bin",kMutantLeftArmRoutes,4,"tests/output/reveal/supermutant.leftarm.rest.bin"},
+    //the horse's own anatomy on the HAP horse body, tools/horse_reference.py
+    {"horsehead",HeadRegion,"tests/output/reveal/horse.head.bin",kHorseHeadRoutes,4,"tests/output/reveal/horse.head.rest.bin",HorseAnatomy},
+    {"horsetorso",TorsoRegion,"tests/output/reveal/horse.torso.bin",kHorseTorsoRoutes,6,"tests/output/reveal/horse.torso.rest.bin",HorseAnatomy},
+    {"horselegs",LegsRegion,"tests/output/reveal/horse.leftleg.bin",kHorseLegRoutes,2,"tests/output/reveal/horse.leftleg.rest.bin",HorseAnatomy},
+    {"horsearms",ArmsRegion,"tests/output/reveal/horse.leftarm.bin",kHorseArmRoutes,2,"tests/output/reveal/horse.leftarm.rest.bin",HorseAnatomy},
 };
 //the shot the renderer plans from a mapped path: anatomy space is the frame's posed space brought back through the fit
 static Damage::Shot PlannedShot(const HeadFrame& f,const Impact::Path& path,const Posing& posing,uint64_t sequence) {
@@ -188,7 +226,7 @@ static Damage::Shot PlannedShot(const HeadFrame& f,const Impact::Path& path,cons
 void TestRegionPlanning(const Model& anatomy,unsigned which) {
     const auto& c=kCases[which];
     auto body=LoadBody(c.fixture);
-    std::vector<Vec3> scene;auto record=RegionRecord(body,c.region,scene,c.rest);const auto& f=record->head;
+    std::vector<Vec3> scene;auto record=RegionRecord(body,c.region,scene,c.rest,c.anatomy);const auto& f=record->head;
     const Model& torso=anatomy;
     Damage::Surface surface;surface.Reserve(torso);
     auto posing=Damage::PosingOf(f,Appearance{});
@@ -352,7 +390,7 @@ void TestCarrier() {
 void TestRegionRender(IDirect3DDevice9* d,const Model& torso,unsigned which) {
     const auto& c=kCases[which];
     auto body=LoadBody(c.fixture);
-    std::vector<Vec3> scene;auto record=RegionRecord(body,c.region,scene,c.rest);
+    std::vector<Vec3> scene;auto record=RegionRecord(body,c.region,scene,c.rest,c.anatomy);
     //as the runtime does after each capture
     BodySkin::OpenOver(torso,record->head);
     unsigned index=0;uint64_t sequence=100;
@@ -569,7 +607,7 @@ void TestTorso(IDirect3DDevice9* d,const Model& torso) {
     printf("PASS: GPU torso influence blend matches CPU placement\n");
     //a creature's proportions: the frame's scale and girth in the fit, each influence scaled about its bone
     Proportions large;for(unsigned k=0;k<kInfluences;++k)large.scale[k]=1.3f+.05f*float(k);large.girth={1,1.15f,1.15f};
-    Influences grown=bent;for(unsigned k=1;k<kInfluences;++k)grown[k]=Compose(bent[k],Creature::Retarget(TorsoRegion,k,large));
+    Influences grown=bent;for(unsigned k=1;k<kInfluences;++k)grown[k]=Compose(bent[k],Creature::Retarget(HumanAnatomy,TorsoRegion,k,large));
     r.head.fit=Creature::Fit(large);r.head.influences=grown;
     r.camera=LookAt(r.head.head.Apply({20,90,-30}),r.head.head.Apply({6,0,0}),512);
     gpu=Probe::Render(d,torso,r);

@@ -1,4 +1,5 @@
 #include "../src/BodySkin.h"
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <limits>
@@ -24,7 +25,7 @@ void TestSkin() {
     for(uint16_t i=0;i+2<4000;i+=3){list.push_back(i);list.push_back(uint16_t(i+1));list.push_back(uint16_t(i+2));}
     unsigned kept=0;BodySkin::Skip last=BodySkin::Kept;
     while((last=BodySkin::Add({many.data(),weights.data(),4000,list.data(),uint32_t(list.size())},slot,f))==BodySkin::Kept)++kept;
-    Check(last==BodySkin::OverCapacity&&f.skinVertices<=kSkinVertices&&f.skinTriangles<=kSkinTriangles&&kept==2,"capacity is enforced per whole shape");
+    Check(last==BodySkin::OverCapacity&&f.skinVertices<=kSkinVertices&&f.skinTriangles<=kSkinTriangles&&kept==std::min((kSkinVertices-4)/4000,(kSkinTriangles-2)/1333),"capacity is enforced per whole shape");
     printf("PASS: skin assembly keeps whole body shapes, rejects corrupt ones and respects capacity\n");
 }
 //skin over anatomy that opens skin opens by distance, everything else keeps its weight reveal

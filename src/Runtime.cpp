@@ -16,13 +16,16 @@
 
 namespace XRay {
 Settings settings;
-static Model s_models[kRegions];
+static Model s_models[kAnatomies][kRegions];
 //the torso without the external genitals, for women and creatures
 static Model s_plainTorso;
+//which regions' anatomy loaded, written before the hooks go in
+static bool s_ready[kAnatomies][kRegions]{};
 static std::atomic<uint32_t> s_region{HeadRegion},s_side{0};
 static CallDetour s_finish;
 static std::atomic<uint32_t> s_target{0},s_generation{0};
-static std::atomic<unsigned> s_mode{2};
+//mesh visibility bit of the cutaway view
+constexpr unsigned kCutaway=2;
 static std::atomic<bool> s_automatic{false};
 //a shot through the genitals reveals only the skin over them
 static std::atomic<bool> s_groinFocus{false};
@@ -32,10 +35,11 @@ struct Remembered {uint32_t target=0,region=0;uint64_t used=0;std::vector<Damage
 constexpr unsigned kRememberedParts=64;
 static std::vector<Remembered> s_remembered;
 //whose wounds each region's scene holds, and the scene's wound count when they were last copied
-static uint32_t s_owner[kRegions]{},s_keptRevision[kRegions]{};
+//the actor and region whose wounds the renderer's one scene holds
+static uint32_t s_ownerTarget=0,s_ownerRegion=kRegions,s_keptRevision=0;
 //an actor's part brought back with its earlier wounds, logged from the main loop: target, region and count
 static std::atomic<uint64_t> s_restoredNote{0};
-static void ForgetOwners(){for(auto& owner:s_owner)owner=0;}
+static void ForgetOwner(){s_ownerTarget=0;s_ownerRegion=kRegions;}
 static Remembered* Recall(uint32_t target,uint32_t region) {
     for(auto& r:s_remembered)if(r.target==target&&r.region==region)return &r;
     return nullptr;
@@ -59,6 +63,8 @@ static int s_reportedImpact=0;
 static std::atomic_flag s_rendering=ATOMIC_FLAG_INIT;
 static std::atomic<int> s_status{0};
 static std::atomic<HRESULT> s_hresult{S_OK};
+//a frame the renderer skipped, logged once a reveal
+static std::atomic<bool> s_skipped{false};static bool s_skipLogged=false;
 static std::atomic<float> s_fitStrength{1};
 static std::atomic<uint64_t> s_captureFailure{0};
 static bool s_failed=false,s_installed=false,s_hasResources=false;
@@ -86,9 +92,9 @@ static void LogBlood(const Graphics::BloodReport& b,bool cut) {
 
 uint32_t ShownTarget(){return s_automatic.load()?s_target.load():0;}
 void HideAutomaticHead(){CloseUp::Clear();s_groinFocus=false;s_discardDamage=true;s_damageEvent=0;s_reportedDamage=0;s_target=0;s_automatic=false;s_impact.Clear();Audit::Select(++s_generation);s_status=0;s_reported=0;s_reportedCapture=0;s_impactStatus=0;s_reportedImpact=0;}
-void Clear(){Trace::Clear();Headshots::Clear();Cinematic::Clear();HideAutomaticHead();s_remembered.clear();ForgetOwners();}
+void Clear(){Trace::Clear();Headshots::Clear();Cinematic::Clear();HideAutomaticHead();s_remembered.clear();ForgetOwner();}
 static void SelectTarget(uint32_t refID) {
-    s_target=refID;Audit::Select(++s_generation);s_status=0;s_reported=0;s_reportedCapture=0;
+    s_target=refID;Audit::Select(++s_generation);s_status=0;s_reported=0;s_reportedCapture=0;s_skipLogged=false;
 }
 uint64_t ShowAutomatic(const Headshots::Hit& hit,uint64_t now) {
     auto until=s_impact.Start(hit.target,hit.impact,now,Engine::SimulationTime(),settings.revealSeconds);s_impactStatus=0;s_reportedImpact=0;
@@ -96,7 +102,7 @@ uint64_t ShowAutomatic(const Headshots::Hit& hit,uint64_t now) {
     s_side=Engine::LimbSide(hit.location);s_groinFocus=hit.groin;
     float severity=hit.cause==Headshots::Kill?settings.killSeverity:1;
     Graphics::SetShotForce(severity,settings.bloodAmount);
-    s_automatic=true;s_mode=2;SelectTarget(hit.target);
+    s_automatic=true;SelectTarget(hit.target);
     //kills follow the game's kill cam option, cripples, criticals and groin shots get their killcam whatever that says
     Cinematic::Queue(hit.target,hit.location,hit.cause==Headshots::Cripple||hit.cause==Headshots::Critical||hit.cause==Headshots::Groin);
     //the close-up starts on the contact and moves to the mapped wound once the renderer has it
@@ -126,17 +132,8 @@ uint64_t HoldForKillcam(uint64_t now,uint64_t until) {
     if(!s_automatic.load()||!Engine::KillcamShows(target)||now+kKillcamTail<=until)return until;
     s_impact.Extend(now+kKillcamTail);return now+kKillcamTail;
 }
-bool SelectHead(uint32_t refID) {
-    if(!s_installed||!refID)return false;
-    Headshots::Clear();Cinematic::Clear();s_impact.Clear();s_impactStatus=0;s_reportedImpact=0;s_automatic=false;s_groinFocus=false;s_discardDamage=true;s_region=HeadRegion;SelectTarget(refID);
-    Log("selected %08X",refID);return true;
-}
-unsigned ChangeView() {
-    unsigned mode=s_mode.load()==1?2:1;s_mode=mode;
-    Log("anatomy view: %s",mode==1?"intact":"cutaway");return mode;
-}
 static bool __cdecl ResetNotify(bool before,void*) {
-    if(before){Graphics::Release();s_hasResources=false;s_failed=false;ForgetOwners();Audit::Select(++s_generation);}
+    if(before){Graphics::Release();s_hasResources=false;s_failed=false;ForgetOwner();Audit::Select(++s_generation);}
     return true;
 }
 static int __cdecl FinishWorld(void* camera,void* accumulator,uint32_t flags) {
@@ -144,7 +141,7 @@ static int __cdecl FinishWorld(void* camera,void* accumulator,uint32_t flags) {
     if(s_rendering.test_and_set())return original(camera,accumulator,flags);
     struct Guard {~Guard(){s_rendering.clear();}} guard;
     if(!s_target.load()) {
-        if(s_hasResources){Graphics::Release();s_hasResources=false;ForgetOwners();}
+        if(s_hasResources){Graphics::Release();s_hasResources=false;ForgetOwner();}
         return original(camera,accumulator,flags);
     }
     if(s_failed)return original(camera,accumulator,flags);
@@ -170,12 +167,13 @@ static int __cdecl FinishWorld(void* camera,void* accumulator,uint32_t flags) {
         if(live==s_resetOwner&&!live->inactive&&live->device==device&&generation==s_generation.load()&&target==s_target.load()) {
             uint32_t region=s_region.load();
             auto failure=region==HeadRegion?Engine::CaptureHead(target,*s_frame):Engine::CaptureRegion(target,region,s_side.load(),*s_frame);
-            const Model& anatomy=region==TorsoRegion&&s_frame->noGenitals&&!s_plainTorso.meshes.empty()?s_plainTorso:s_models[region];
+            const Model& anatomy=s_frame->anatomy==HorseAnatomy?s_models[HorseAnatomy][region]
+                :region==TorsoRegion&&s_frame->noGenitals&&!s_plainTorso.meshes.empty()?s_plainTorso:s_models[HumanAnatomy][region];
             if(!failure)BodySkin::OpenOver(anatomy,*s_frame,region==TorsoRegion&&s_groinFocus.load());
             if(!failure) {
                 auto appearance=settings.appearance;
-                //the preview scale and offsets fit the head only
-                if(region!=HeadRegion){appearance.scale=1;appearance.up=appearance.forward=appearance.side=0;}
+                //the preview scale and offsets fit the human head only
+                if(region!=HeadRegion||s_frame->anatomy!=HumanAnatomy){appearance.scale=1;appearance.up=appearance.forward=appearance.side=0;}
                 Impact::Frame impact{};Impact::Sample source{};
                 bool automatic=s_automatic.load();
                 if(automatic) {
@@ -187,19 +185,19 @@ static int __cdecl FinishWorld(void* camera,void* accumulator,uint32_t flags) {
                     appearance.opacity*=fade;
                 }
                 if(generation!=s_generation.load()||target!=s_target.load()){device->Release();return result;}
-                if(s_discardDamage.exchange(false)){Graphics::ClearDamage();ForgetOwners();}
-                //another actor's part, or this one's again after its scene was cleared: bring back its wounds, the debris in the air flies on
-                if(automatic&&s_owner[region]!=target) {
+                if(s_discardDamage.exchange(false)){Graphics::ClearDamage();ForgetOwner();}
+                //another actor or part than the scene holds, or the same after it was cleared: bring back its wounds, the debris in the air flies on
+                if(automatic&&(s_ownerTarget!=target||s_ownerRegion!=region)) {
                     auto kept=Recall(target,region);
                     Graphics::RestoreWounds(region,kept?kept->wounds:std::vector<Damage::Kept>{});
                     if(kept&&!kept->wounds.empty())s_restoredNote=(uint64_t(target)<<32)|(region<<8)|uint32_t(kept->wounds.size());
-                    s_owner[region]=target;
+                    s_ownerTarget=target;s_ownerRegion=region;
                 }
-                if(!automatic)s_owner[region]=0;
-                if(Graphics::Draw(device,anatomy,snapshot,*s_frame,s_mode.load(),appearance,automatic?&impact:nullptr)){
+                if(!automatic)ForgetOwner();
+                if(Graphics::Draw(device,anatomy,snapshot,*s_frame,kCutaway,appearance,automatic?&impact:nullptr)){
                     s_fitStrength=s_frame->fit.strength;s_status=1;s_hasResources=true;
-                    if(automatic&&Graphics::WoundRevision(region)!=s_keptRevision[region]) {
-                        s_keptRevision[region]=Graphics::WoundRevision(region);
+                    if(automatic&&Graphics::WoundRevision(region)!=s_keptRevision) {
+                        s_keptRevision=Graphics::WoundRevision(region);
                         auto& kept=Keep(target,region);kept.used=GetTickCount64();Graphics::KeepWounds(region,kept.wounds);
                     }
                     if(automatic&&impact.path.valid){CloseUp::Track(target,region,impact.path.entry,impact.path.exit);CloseUp::Rendered(snapshot.origin);}
@@ -219,7 +217,8 @@ static int __cdecl FinishWorld(void* camera,void* accumulator,uint32_t flags) {
                     }
                     if(automatic)Audit::Submit(generation,target,snapshot,*s_frame,appearance,source,impact,Graphics::DamageStatus());
                 }
-                else{s_hresult=Graphics::LastError();s_status=-2;s_failed=true;Graphics::Release();s_hasResources=false;ForgetOwners();}
+                else if(Graphics::Skipped())s_skipped=true;
+                else{s_hresult=Graphics::LastError();s_status=-2;s_failed=true;Graphics::Release();s_hasResources=false;ForgetOwner();}
             }else {s_captureFailure=failure;s_status=-1;}
         }
         device->Release();
@@ -229,7 +228,7 @@ static int __cdecl FinishWorld(void* camera,void* accumulator,uint32_t flags) {
 //a frame of its own, so the hit test never disturbs the one being rendered
 static std::unique_ptr<HeadFrame> s_groinFrame;
 bool GroinHit(uint32_t target,const Impact::Sample& sample) {
-    const Model& torso=s_models[TorsoRegion];
+    const Model& torso=s_models[HumanAnatomy][TorsoRegion];
     if(!sample.valid||!sample.posed||torso.meshes.empty())return false;
     //the line through the contact must pass near the anatomy's rest box before anything is captured
     constexpr float kGroinMargin=8;
@@ -242,35 +241,43 @@ bool GroinHit(uint32_t target,const Impact::Sample& sample) {
     Impact::Path path;
     return Impact::Map(sample,*s_groinFrame,path)&&Groin::Crossed(torso,*s_groinFrame,path,sample.bullet.radius);
 }
+bool RegionReady(uint32_t anatomy,uint32_t region){return anatomy<kAnatomies&&region<kRegions&&s_ready[anatomy][region];}
+void ApplySettings(){s_impact.SetImpactSpeed(settings.impactSpeed);Graphics::SetBloodSpray(settings.bloodSpray);}
 bool InitRuntime(const char* modelPath) {
     if(s_installed)return true;
-    s_impact.SetImpactSpeed(settings.impactSpeed);
-    if(!s_models[HeadRegion].Load(modelPath)){Log("anatomy asset invalid or missing: %s",modelPath);return false;}
+    ApplySettings();
+    if(!s_models[HumanAnatomy][HeadRegion].Load(modelPath)){Log("anatomy asset invalid or missing: %s",modelPath);return false;}
+    s_ready[HumanAnatomy][HeadRegion]=true;
     //the body regions' assets sit next to head.xra, a missing one turns its region off
     auto beside=[&](const char* file,char (&path)[MAX_PATH]) {
         strcpy_s(path,modelPath);
         if(auto slash=strrchr(path,'\\'))strcpy_s(slash+1,path+MAX_PATH-(slash+1),file);
     };
-    auto load=[&](uint32_t region,const char* file,bool& enabled) {
+    auto load=[&](uint32_t anatomy,uint32_t region,const char* file) {
         char path[MAX_PATH];beside(file,path);
-        if(!s_models[region].Load(path)){enabled=false;Log("%s invalid or missing: %s; its hits disabled",file,path);}
+        s_ready[anatomy][region]=s_models[anatomy][region].Load(path);
+        if(!s_ready[anatomy][region])Log("%s invalid or missing: %s; its hits disabled",file,path);
     };
-    load(TorsoRegion,"torso.xra",settings.regions[TorsoRegion]);load(LegsRegion,"legs.xra",settings.regions[LegsRegion]);
-    load(ArmsRegion,"arms.xra",settings.regions[ArmsRegion]);
+    load(HumanAnatomy,TorsoRegion,"torso.xra");load(HumanAnatomy,LegsRegion,"legs.xra");load(HumanAnatomy,ArmsRegion,"arms.xra");
+    load(HorseAnatomy,HeadRegion,"horse-head.xra");load(HorseAnatomy,TorsoRegion,"horse-torso.xra");
+    load(HorseAnatomy,LegsRegion,"horse-legs.xra");load(HorseAnatomy,ArmsRegion,"horse-arms.xra");
     char plain[MAX_PATH];beside("torso-female.xra",plain);
-    if(settings.regions[TorsoRegion]&&!s_plainTorso.Load(plain))Log("torso-female.xra invalid or missing: %s; women and creatures use the men's torso",plain);
+    if(s_ready[HumanAnatomy][TorsoRegion]&&!s_plainTorso.Load(plain))Log("torso-female.xra invalid or missing: %s; women and creatures use the men's torso",plain);
     s_frame=std::make_unique<HeadFrame>();
-    Graphics::SetAsyncDamage(true);Graphics::SetBloodSpray(settings.bloodSpray);
-    if(settings.closeUp&&!CloseUp::Install())Log("close-up camera hook unavailable; killcams keep the game's camera");
-    if(!Engine::InitNames()||!Engine::InitRegionNames())return false;
+    Graphics::SetAsyncDamage(true);
+    if(!CloseUp::Install())Log("close-up camera hook unavailable; killcams keep the game's camera");
+    if(!Engine::InitNames()||!Engine::InitRegionNames()||!Engine::InitHorse())return false;
     Engine::InitProjectileAmmo();
     //0x8741db is e8/cdecl(camera, accumulator, flags), the caller pops 0x0c
     if(!s_finish.ReplaceCall(0x8741DB,FinishWorld))return false;
-    s_installed=true;Log("world hook chained to %08X; %u head, %u torso (%u for women), %u leg and %u arm anatomy batches",static_cast<unsigned>(s_finish.Original()),
-        static_cast<unsigned>(s_models[HeadRegion].meshes.size()),static_cast<unsigned>(s_models[TorsoRegion].meshes.size()),static_cast<unsigned>(s_plainTorso.meshes.size()),
-        static_cast<unsigned>(s_models[LegsRegion].meshes.size()),static_cast<unsigned>(s_models[ArmsRegion].meshes.size()));
-    if(!Headshots::InitHooks())Log("ERROR: automatic headshot hook unavailable; manual preview still works");
-    else if(settings.automatic&&!Trace::InitHooks())Log("WARNING: shot ray capture unavailable; projectile-vector fallback active");
+    const auto& human=s_models[HumanAnatomy];const auto& horse=s_models[HorseAnatomy];
+    s_installed=true;Log("world hook chained to %08X; %u head, %u torso (%u for women), %u leg and %u arm anatomy batches; horse %u/%u/%u/%u",
+        static_cast<unsigned>(s_finish.Original()),static_cast<unsigned>(human[HeadRegion].meshes.size()),static_cast<unsigned>(human[TorsoRegion].meshes.size()),
+        static_cast<unsigned>(s_plainTorso.meshes.size()),static_cast<unsigned>(human[LegsRegion].meshes.size()),static_cast<unsigned>(human[ArmsRegion].meshes.size()),
+        static_cast<unsigned>(horse[HeadRegion].meshes.size()),static_cast<unsigned>(horse[TorsoRegion].meshes.size()),
+        static_cast<unsigned>(horse[LegsRegion].meshes.size()),static_cast<unsigned>(horse[ArmsRegion].meshes.size()));
+    if(!Headshots::InitHooks())Log("hit hook unavailable; automatic X-rays disabled");
+    else if(!Trace::InitHooks())Log("shot ray capture unavailable; projectile-vector fallback active");
     return true;
 }
 //the bend each region reports: the frame's first influence, or the larger of both limb roots
@@ -333,11 +340,15 @@ void Update() {
     if(status!=s_reported||(status==-1&&static_cast<uint32_t>(failure)!=static_cast<uint32_t>(s_reportedCapture))) {
         s_reported=status;
         s_reportedCapture=failure;
-        if(status==1)Log("rendering %s %08X, mode %u, fit strength %.0f%%",RegionName(s_region.load()),s_target.load(),s_mode.load(),s_fitStrength.load()*100);
+        if(status==1)Log("rendering %s %08X, fit strength %.0f%%",RegionName(s_region.load()),s_target.load(),s_fitStrength.load()*100);
         else if(status==-1)Log("%s %08X capture rejected: %s; value=%u (0x%08X)",RegionName(s_region.load()),s_target.load(),
             Engine::DescribeHeadFailure(static_cast<Engine::HeadFailure>(static_cast<uint32_t>(failure))),
             static_cast<uint32_t>(failure>>32),static_cast<uint32_t>(failure>>32));
         else if(status==-2)Log("render failed: HRESULT %08X; disabled until device reset",static_cast<unsigned>(s_hresult.load()));
+    }
+    if(s_skipped.exchange(false)&&!s_skipLogged) {
+        s_skipLogged=true;
+        Log("render skipped: this frame's render target, depth buffer or viewport cannot take the X-ray, it draws once they can");
     }
     Cinematic::Update();
 }

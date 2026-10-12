@@ -211,7 +211,14 @@ static void RevealContract(IDirect3DDevice9* d) {
     for(unsigned y=0;y<128;++y)for(unsigned x=0;x<128;++x)
         if(x<24||x>=104||y<16||y>=112)Require(offsetPixels[y*128+x]==0xFF2040C0,"offset viewport bounds preserved");
     Require(offsetPixels[64*128+30]!=0xFF2040C0,"offset viewport contains reveal");
-    printf("PASS: overlapping mask coverage, continuous cavity, skin-independent interior, bounded rim, offset viewport and zero opacity\n");
+    auto beyond=c;beyond.viewport={100,16,80,96,0,1};Model empty;Hr(d->BeginScene());
+    Require(!Graphics::Draw(d,m,beyond,f,2,{})&&Graphics::Skipped(),"a viewport past the target skips the frame without failing");
+    Hr(d->SetDepthStencilSurface(nullptr));
+    Require(!Graphics::Draw(d,m,c,f,2,{})&&Graphics::Skipped(),"a frame without a depth buffer skips without failing");
+    Hr(d->SetDepthStencilSurface(ds));
+    Require(!Graphics::Draw(d,empty,c,f,2,{})&&!Graphics::Skipped(),"an unusable model fails rather than skips");
+    Require(Graphics::Draw(d,m,c,f,2,{}),"the next fitting frame draws after skipped ones");Hr(d->EndScene());
+    printf("PASS: overlapping mask coverage, continuous cavity, skin-independent interior, bounded rim, offset viewport, skipped frames and zero opacity\n");
     Graphics::Release();rt->Release();ds->Release();
 }
 //the face quad fades from no head or neck weight on the left to full weight on the right
@@ -531,6 +538,11 @@ int main(int argc,char** argv) {
         Model plain;Require(plain.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"torso without genitals for feral ghouls");
         TestRegionPlanning(model,5);TestRegionPlanning(plain,6);TestRegionPlanning(legs,7);TestRegionPlanning(arms,8);
         TestRegionPlanning(model,9);TestRegionPlanning(plain,10);TestRegionPlanning(legs,11);TestRegionPlanning(arms,12);
+        const char* horseFiles[]={"horse-head","horse-torso","horse-legs","horse-arms"};
+        for(unsigned region=0;region<kRegions;++region) {
+            Model horse;char path[MAX_PATH];sprintf_s(path,"package\\meshes\\XRayKillcamNVSE\\%s.xra",horseFiles[region]);
+            Require(horse.Load(path),"valid horse anatomy load");TestRegionPlanning(horse,13+region);
+        }
         TestAudit(reference);
     }
     if(argc==3&&!strcmp(argv[2],"--geometry"))return 0;
@@ -561,6 +573,11 @@ int main(int argc,char** argv) {
     Model plain;Require(plain.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"torso without genitals for feral ghouls");
     TestRegionRender(d,model,5);TestRegionRender(d,plain,6);TestRegionRender(d,legs,7);TestRegionRender(d,arms,8);
     TestRegionRender(d,model,9);TestRegionRender(d,plain,10);TestRegionRender(d,legs,11);TestRegionRender(d,arms,12);
+    const char* horseFiles[]={"horse-head","horse-torso","horse-legs","horse-arms"};
+    for(unsigned region=0;region<kRegions;++region) {
+        Model horse;char path[MAX_PATH];sprintf_s(path,"package\\meshes\\XRayKillcamNVSE\\%s.xra",horseFiles[region]);
+        Require(horse.Load(path),"valid horse anatomy load");TestRegionRender(d,horse,13+region);
+    }
     TestFractureGPU(d,model,reference);
     TestGameplay(d,model,reference);
     if(argc==3){d->Release();api->Release();DestroyWindow(window);return 0;}

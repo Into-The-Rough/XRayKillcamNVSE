@@ -39,7 +39,7 @@ bool CentreRay(const CameraFrame& camera,Vec3& origin,Vec3& direction) {
     return Finite(origin)&&Normalize(direction);
 }
 //version 1 predates the neck bend, version 2 the skin weights and neck skin, version 3 the region and influence table,
-//version 4 the posed bones and the hit's carrier bone, which both sit last in their structs so a version 4 frame and sample are their prefixes
+//version 4 the posed bones and the hit's carrier bone, version 5 the larger skin and the anatomy set
 struct LegacyVertex {Vec3 world,local;};
 struct HeadV1 {Transform head;HeadFit fit;LegacyVertex vertices[kHeadVertices];uint16_t indices[kHeadTriangles*3];};
 struct HeadV2:HeadV1 {Transform neck;float neckError;};
@@ -47,13 +47,18 @@ struct HeadV3 {
     Transform head;HeadFit fit;MaskVertex vertices[kHeadVertices];uint16_t indices[kHeadTriangles*3];Transform neck;float neckError;
     uint32_t skinVertices,skinTriangles,skinShapes,skinSkipped;MaskVertex skin[8192];uint16_t skinIndices[16384*3];
 };
-struct alignas(HeadFrame) HeadV4 {uint8_t bytes[offsetof(HeadFrame,posedBones)];};
-static_assert(offsetof(HeadFrame,noGenitals)==offsetof(HeadFrame,face)+1&&offsetof(HeadFrame,skinVertices)==offsetof(HeadFrame,face)+4,
-    "the genitals flag lives in padding every capture version already has");
+struct HeadV5 {
+    Transform head;HeadFit fit;MaskVertex vertices[kHeadVertices];uint16_t indices[kHeadTriangles*3];Influences influences;float neckError;uint32_t region;
+    bool face,noGenitals;uint32_t skinVertices,skinTriangles,skinShapes,skinSkipped;MaskVertex skin[8192];uint16_t skinIndices[16384*3];Influences posedBones;
+};
+//version 4 is version 5 up to the posed bones, with the genitals flag still padding
+struct alignas(HeadV5) HeadV4 {uint8_t bytes[offsetof(HeadV5,posedBones)];};
+static_assert(offsetof(HeadFrame,noGenitals)==offsetof(HeadFrame,face)+1&&offsetof(HeadFrame,anatomy)==offsetof(HeadFrame,face)+2
+    &&offsetof(HeadFrame,skinVertices)==offsetof(HeadFrame,face)+4,"the genitals flag and anatomy set live in padding before the skin counts");
 struct alignas(Impact::Sample) SampleV4 {uint8_t bytes[offsetof(Impact::Sample,carrier)];};
 template<class Head> struct LegacyRecord {
     uint32_t magic,version,size,target,support,stage;uint64_t session;
-    Head head;CameraFrame camera;Appearance appearance;SampleV4 source;Impact::Frame impact;
+    Head head;CameraFrame camera;Appearance appearance;std::conditional_t<std::is_same_v<Head,HeadV5>,Impact::Sample,SampleV4> source;Impact::Frame impact;
 };
 static_assert(sizeof(LegacyRecord<HeadV3>)==376136,"version 3 capture size");
 static_assert(sizeof(LegacyRecord<HeadV4>)==376456,"version 4 capture size");
@@ -65,15 +70,25 @@ template<class Head> static bool Legacy(FILE* file,uint32_t version,Record& out)
     out.session=legacy->session;
     memcpy(&out.source,&legacy->source,sizeof legacy->source);
     out.camera=legacy->camera;out.appearance=legacy->appearance;out.impact=legacy->impact;
-    //captures before the genitals flag held men's and women's anatomy alike
-    if constexpr(std::is_same_v<Head,HeadV4>){memcpy(&out.head,&legacy->head,sizeof legacy->head);out.head.noGenitals=false;return true;}
+    if constexpr(std::is_same_v<Head,HeadV4>||std::is_same_v<Head,HeadV5>) {
+        const auto& h=*reinterpret_cast<const HeadV5*>(&legacy->head);auto& o=out.head;
+        if(h.skinVertices>8192||h.skinTriangles>16384)return false;
+        o.head=h.head;o.fit=h.fit;memcpy(o.vertices,h.vertices,sizeof o.vertices);memcpy(o.indices,h.indices,sizeof o.indices);
+        o.influences=h.influences;o.neckError=h.neckError;o.region=h.region;o.face=h.face;
+        //captures before the genitals flag held men's and women's anatomy alike, and every capture before the anatomy set was human
+        o.noGenitals=std::is_same_v<Head,HeadV5>&&h.noGenitals;o.anatomy=HumanAnatomy;
+        o.skinVertices=h.skinVertices;o.skinTriangles=h.skinTriangles;o.skinShapes=h.skinShapes;o.skinSkipped=h.skinSkipped;
+        memcpy(o.skin,h.skin,h.skinVertices*sizeof(MaskVertex));memcpy(o.skinIndices,h.skinIndices,h.skinTriangles*3*sizeof(uint16_t));
+        if constexpr(std::is_same_v<Head,HeadV5>)o.posedBones=h.posedBones;
+        return true;
+    }
     else {
     out.head.head=legacy->head.head;out.head.fit=legacy->head.fit;
     memcpy(out.head.indices,legacy->head.indices,sizeof out.head.indices);
     if constexpr(std::is_same_v<Head,HeadV3>) {
         memcpy(out.head.vertices,legacy->head.vertices,sizeof out.head.vertices);
         const auto& h=legacy->head;
-        if(h.skinVertices>kSkinVertices||h.skinTriangles>kSkinTriangles)return false;
+        if(h.skinVertices>8192||h.skinTriangles>16384)return false;
         out.head.skinVertices=h.skinVertices;out.head.skinTriangles=h.skinTriangles;out.head.skinShapes=h.skinShapes;out.head.skinSkipped=h.skinSkipped;
         memcpy(out.head.skin,h.skin,h.skinVertices*sizeof(MaskVertex));memcpy(out.head.skinIndices,h.skinIndices,h.skinTriangles*3*sizeof(uint16_t));
     }else for(unsigned i=0;i<kHeadVertices;++i)out.head.vertices[i]={legacy->head.vertices[i].world,legacy->head.vertices[i].local,1};
@@ -85,7 +100,8 @@ static bool Load(FILE* file,Record& out) {
     if(fseek(file,0,SEEK_END))return false;
     long length=ftell(file);
     if(fseek(file,0,SEEK_SET))return false;
-    if(length==long(sizeof(Record)))return fread(&out,sizeof out,1,file)==1&&out.version==5&&out.size==sizeof out;
+    if(length==long(sizeof(Record)))return fread(&out,sizeof out,1,file)==1&&out.version==6&&out.size==sizeof out;
+    if(length==long(sizeof(LegacyRecord<HeadV5>)))return Legacy<HeadV5>(file,5,out);
     if(length==long(sizeof(LegacyRecord<HeadV4>)))return Legacy<HeadV4>(file,4,out);
     if(length==long(sizeof(LegacyRecord<HeadV3>)))return Legacy<HeadV3>(file,3,out);
     if(length==long(sizeof(LegacyRecord<HeadV2>)))return Legacy<HeadV2>(file,2,out);
@@ -98,7 +114,7 @@ bool Read(const char* path,Record& out) {
     bool influences=true;for(const auto& t:out.head.influences)influences&=t.Valid();
     for(const auto& t:out.head.posedBones)influences&=t.Valid();
     if(out.source.carrier>=kInfluences||(out.source.carrier&&!out.source.carrierPose.Valid()))return false;
-    if(!ok||out.magic!=kMagic||!out.head.head.Valid()||!influences||!std::isfinite(out.head.neckError)||out.head.region>=kRegions
+    if(!ok||out.magic!=kMagic||!out.head.head.Valid()||!influences||!std::isfinite(out.head.neckError)||out.head.region>=kRegions||out.head.anatomy>=kAnatomies
         ||!out.camera.viewport.Width||!out.camera.viewport.Height||out.camera.viewport.X>8192||out.camera.viewport.Y>8192
         ||out.camera.viewport.Width>8192-out.camera.viewport.X||out.camera.viewport.Height>8192-out.camera.viewport.Y)return false;
     for(float x:out.camera.view)if(!std::isfinite(x))return false;

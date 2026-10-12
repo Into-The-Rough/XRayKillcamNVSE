@@ -28,8 +28,9 @@ Object* FindBone(Object* root,const char* interned) {
     return bone||interned!=s_neck?bone:Find(root,s_creatureNeck);
 }
 bool FramePose(Form* form,uint32_t region,Transform& out) {
-    const char* name=region==HeadRegion?s_head:RegionFrameName(region);
-    if(!name||!Supported(form))return false;
+    if(!Supported(form))return false;
+    const char* name=region==HeadRegion?s_head:RegionFrameName(AnatomyOf(KindOf(form)),region);
+    if(!name)return false;
     auto root=reinterpret_cast<Object*(__thiscall*)(Form*)>(form->vtable[0x1D0/4])(form);
     if(!root||(root->flags&kHidden))return false;
     auto bone=FindBone(root,name);
@@ -154,7 +155,7 @@ uint64_t CaptureHead(uint32_t refID,HeadFrame& out) {
     for(unsigned j=0;j<sd->bones[headBone].count;++j)headWeight[sd->bones[headBone].weights[j].vertex]=sd->bones[headBone].weights[j].weight;
     if(neckBone!=~0u)for(unsigned j=0;j<sd->bones[neckBone].count;++j)neckWeight[sd->bones[neckBone].weights[j].vertex]=sd->bones[neckBone].weights[j].weight;
     for(unsigned i=0;i<kHeadVertices;++i)out.vertices[i].reveal=fminf(headWeight[i]+neckWeight[i],1);
-    out.influences=RestInfluences();out.posedBones=RestInfluences();out.neckError=-1;out.region=HeadRegion;out.face=true;
+    out.influences=RestInfluences();out.posedBones=RestInfluences();out.neckError=-1;out.region=HeadRegion;out.face=true;out.anatomy=HumanAnatomy;
     auto actor=Lookup(refID);out.noGenitals=actor&&IsFemale(actor);
     if(neckBone!=~0u) {
         //skinned world = bone.world * skinToBone * skin position, so rest head space reaches posed neck space through skin space

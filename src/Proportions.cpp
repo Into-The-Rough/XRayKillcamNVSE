@@ -1,6 +1,7 @@
 #include "Proportions.h"
 #include "Graphics.h"
 #include "HumanRest.h"
+#include "HorseRest.h"
 
 namespace XRay {
 namespace {
@@ -28,8 +29,8 @@ Proportions Measure(uint32_t region,const Spans& spans) {
     }
     return out;
 }
-Transform Retarget(uint32_t region,unsigned k,const Proportions& proportions) {
-    Transform t=kHumanRest[region<kRegions?region:0][k%kInfluences];
+Transform Retarget(uint32_t anatomy,uint32_t region,unsigned k,const Proportions& proportions) {
+    Transform t=(anatomy==HorseAnatomy?kHorseRest:kHumanRest)[region<kRegions?region:0][k%kInfluences];
     float s=proportions.scale[k%kInfluences];
     t.t=t.t*s;t.scale*=s/proportions.scale[0];
     return t;
@@ -44,6 +45,6 @@ float BodySize(const HeadFrame& frame) {
     const auto& c=frame.fit.coefficients;
     float size=fmaxf(fmaxf(1+c[kFitAnchors+1][0],1+c[kFitAnchors+2][1]),fmaxf(1+c[kFitAnchors+3][2],1));
     for(const auto& t:frame.influences)if(t.Valid())size=fmaxf(size,t.scale);
-    return size;
+    return frame.anatomy==HorseAnatomy?fmaxf(size,kHorseBodySize):size;
 }
 }
