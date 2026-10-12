@@ -23,7 +23,7 @@ fragments. The reveal's tissue shading and edge treatment are procedural.
 The combined anatomy asset and editable Blender scene are distributed under
 CC BY-SA 4.0, with the original BodyParts3D attribution retained.
 https://creativecommons.org/licenses/by-sa/4.0/ This applies
-to anatomy assets, not to the independent plugin code.
+to anatomy assets, not to the independent plugin code, which is GPLv3.
 
 The ethmoid and third molars remain absent. These meshes
 are adapted from different donors and are an artistic fit, not a medical model.

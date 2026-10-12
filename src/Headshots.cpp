@@ -2,13 +2,10 @@
 #include "Engine.h"
 #include "Hooks.h"
 #include "Runtime.h"
-#include <cstdio>
 #include <cstring>
 
 namespace XRay::Headshots {
 using HitMe=void(__thiscall*)(Engine::Form*,Engine::HitData*,char);
-using Notify=bool(__cdecl*)(const char*,uint32_t,const char*,const char*,float,uint8_t);
-static auto s_notify=reinterpret_cast<Notify>(0x7052F0);
 static auto s_lifeState=Engine::LifeState;
 static auto s_limbValue=Engine::LimbActorValue;
 static auto s_actorValue=Engine::ActorValue;
@@ -163,9 +160,6 @@ static void Advance(Hit hit,uint64_t now) {
         const char* kind=kKinds[hit.region<kRegions?hit.region:HeadRegion];
         Log("automatic %s %u: target=%08X bodyPart=%d cause=%s hits=%u remaining=%.1fs",kind,s_total,hit.target,hit.location,
             kCauses[hit.cause<=EveryHit?hit.cause:NoCause],hit.count,float(s_until-now)*.001f);
-        char text[80];sprintf_s(text,"X-Ray %s %u",kind,s_total);
-        //queueuimessage copies text into its hud record, true brings this message forward
-        s_notify(text,0,nullptr,nullptr,1.0f,1);
     }else if(s_active) {
         s_until=HoldForKillcam(now,s_until);
         if(now>=s_until){s_active=false;HideAutomaticHead();}

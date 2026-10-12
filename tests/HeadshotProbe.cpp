@@ -7,11 +7,11 @@ void TestCinematic();
 void TestShotTrace();
 
 namespace {
-unsigned checks=0,calls=0,shown=0,hidden=0,notices=0;
+unsigned checks=0,calls=0,shown=0,hidden=0;
 uint32_t selected=0,selectedRegion=0,capturedRegion=0;
 enum class Action {None,Clear,Mutate,Reenter};
 Action action=Action::None;
-bool projectileResult=true,clearInPredicate=false,clearInNotice=false;
+bool projectileResult=true,clearInPredicate=false;
 XRay::Engine::Form ammoForm{};
 XRay::Engine::Form *expectedTarget=nullptr;
 XRay::Engine::HitData *expectedData=nullptr;
@@ -35,12 +35,6 @@ void __fastcall PriorHook(XRay::Engine::Form* target,void*,XRay::Engine::HitData
     if(current==Action::Clear)XRay::Headshots::Clear();
     else if(current==Action::Mutate){data->location=0;data->impact={9,9,9};target->id=0xBADC0DE;ammoForm.id=0x8ECFF;}
     else if(current==Action::Reenter)invoke(target,data,7);
-}
-bool __cdecl Notice(const char* text,uint32_t emotion,const char* icon,const char* sound,float duration,uint8_t immediate) {
-    Check((strncmp(text,"X-Ray headshot ",15)==0||strncmp(text,"X-Ray torso hit ",16)==0||strncmp(text,"X-Ray leg hit ",14)==0||strncmp(text,"X-Ray arm hit ",14)==0)&&emotion==0&&!icon&&!sound&&duration==1&&immediate==1,"native notification contract");
-    ++notices;
-    if(clearInNotice)XRay::Clear();
-    return true;
 }
 }
 namespace XRay {
@@ -75,7 +69,7 @@ int main() {
     memcpy(caller+9,&relative,4);memcpy(code,caller,sizeof caller);
     Check(s_hitCall.ReplaceCall(reinterpret_cast<uintptr_t>(code+8),HitHook),"install e8 hook over a preexisting plugin target");
     Check(s_hitCall.Original()==reinterpret_cast<uintptr_t>(PriorHook),"chain actual overwritten target");
-    invoke=reinterpret_cast<HitMe>(code);s_notify=Notice;s_lifeState=LifeStateStub;s_limbValue=LimbStub;s_actorValue=ValueStub;s_mainThread=GetCurrentThreadId();
+    invoke=reinterpret_cast<HitMe>(code);s_lifeState=LifeStateStub;s_limbValue=LimbStub;s_actorValue=ValueStub;s_mainThread=GetCurrentThreadId();
     s_lookup=[](uint32_t)->Engine::Form*{return nullptr;};
     //the routing and threading checks below open on every hit, kills and cripples follow at the end
     settings.everyHit=true;
@@ -101,7 +95,7 @@ int main() {
     invoke(&target,data,7);
     auto hit=Take();Check(hit.target==target.id&&hit.location==1&&hit.count==1,"head hit accepted with zero damage and no fatal flag");
     Check(hit.impact.point.x==2&&hit.impact.point.y==3&&hit.impact.point.z==4&&hit.impact.posed,"native impact point and main-thread pose copied");
-    Advance(hit,1000);Check(selected==target.id&&s_until==6000&&notices==1,"automatic reveal starts for five seconds");
+    Advance(hit,1000);Check(selected==target.id&&s_until==6000,"automatic reveal starts for five seconds");
     Advance({},5999);Check(selected==target.id,"reveal remains before deadline");
     invoke(&target,data,7);Advance(Take(),5999);
     Advance({},6000);Check(selected==target.id&&s_until==10999&&s_total==2,"same actor retriggers without cooldown");
@@ -168,8 +162,6 @@ int main() {
     clearInPredicate=true;invoke(&target,data,7);Check(!Take().target,"generation rejects hit after predicate reentry");clearInPredicate=false;
     action=Action::Reenter;invoke(&target,data,7);Check(Take().count==2,"nested hit chains once and both hits are counted");
     invoke(&target,data,7);Headshots::Clear();Check(!Take().target,"load/off discards pending hits");
-    Advance({id,1,1},20000);clearInNotice=true;Advance({id,1,1},20001);
-    Check(!s_active&&!selected&&!Take().target,"notification callback can clear without stale state being restored");clearInNotice=false;
     Advance({id,1,1},30000);Headshots::Clear();selected=0x654321;Advance({},40000);
     Check(selected==0x654321,"manual selection cancels automatic timeout");
 
@@ -256,7 +248,7 @@ int main() {
     targetPresent=false;lifeState=2;Judge(s_deferred.hit.time+1);Check(!Take().target&&s_deferred.hit.target,"an unresolved target is not read");
     Headshots::Clear();Check(!s_deferred.hit.target,"load clears a waiting hit");targetPresent=true;lifeState=0;
     VirtualFree(code,0,MEM_RELEASE);
-    printf("PASS: %u checks; %u chained hit calls; %u reveals; %u notifications\n",checks,calls,shown,notices);
+    printf("PASS: %u checks; %u chained hit calls; %u reveals\n",checks,calls,shown);
     TestCinematic();
     TestShotTrace();
     return 0;
