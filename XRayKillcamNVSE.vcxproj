@@ -49,39 +49,44 @@ copy /Y "$(TargetPath)" "$(XRayModDir)\NVSE\Plugins\XRayKillcamNVSE.dll"
 if errorlevel 1 exit /b 1
 copy /Y "$(TargetDir)$(TargetName).pdb" "$(XRayModDir)\NVSE\Plugins\XRayKillcamNVSE.pdb"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\head.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\head.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\head.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\head.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\torso.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\torso.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\torso.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\torso.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\torso-female.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\torso-female.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\torso-female.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\torso-female.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\legs.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\legs.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\legs.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\legs.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\arms.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\arms.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\arms.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\arms.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\horse-head.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-head.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\horse-head.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-head.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\horse-torso.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-torso.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\horse-torso.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-torso.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\horse-legs.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-legs.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\horse-legs.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-legs.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\meshes\XRayKillcamNVSE\horse-arms.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-arms.xra"
+copy /Y "$(ProjectDir)mod\meshes\XRayKillcamNVSE\horse-arms.xra" "$(XRayModDir)\meshes\XRayKillcamNVSE\horse-arms.xra"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\Anatomy-Credits.txt" "$(XRayModDir)\Anatomy-Credits.txt"
+copy /Y "$(ProjectDir)mod\Anatomy-Credits.txt" "$(XRayModDir)\Anatomy-Credits.txt"
 if errorlevel 1 exit /b 1
 if not exist "$(XRayModDir)\MCM" mkdir "$(XRayModDir)\MCM"
 if not exist "$(XRayModDir)\NVSE\Plugins\scripts" mkdir "$(XRayModDir)\NVSE\Plugins\scripts"
 if not exist "$(XRayModDir)\NVSE\user_defined_functions\xraykillcam" mkdir "$(XRayModDir)\NVSE\user_defined_functions\xraykillcam"
-copy /Y "$(ProjectDir)package\MCM\XRayKillcamNVSE.json" "$(XRayModDir)\MCM\XRayKillcamNVSE.json"
+copy /Y "$(ProjectDir)mod\MCM\XRayKillcamNVSE.json" "$(XRayModDir)\MCM\XRayKillcamNVSE.json"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\NVSE\Plugins\scripts\ln_xraykillcam-mcm.txt" "$(XRayModDir)\NVSE\Plugins\scripts\ln_xraykillcam-mcm.txt"
+copy /Y "$(ProjectDir)mod\NVSE\Plugins\scripts\ln_xraykillcam-mcm.txt" "$(XRayModDir)\NVSE\Plugins\scripts\ln_xraykillcam-mcm.txt"
 if errorlevel 1 exit /b 1
-copy /Y "$(ProjectDir)package\NVSE\user_defined_functions\xraykillcam\OnMCMUpdate.gek" "$(XRayModDir)\NVSE\user_defined_functions\xraykillcam\OnMCMUpdate.gek"
+copy /Y "$(ProjectDir)mod\NVSE\user_defined_functions\xraykillcam\OnMCMUpdate.gek" "$(XRayModDir)\NVSE\user_defined_functions\xraykillcam\OnMCMUpdate.gek"
 if errorlevel 1 exit /b 1
-if not exist "$(XRayModDir)\config\XRayKillcamNVSE.ini" copy "$(ProjectDir)package\config\XRayKillcamNVSE.ini" "$(XRayModDir)\config\XRayKillcamNVSE.ini"
+if not exist "$(XRayModDir)\config\XRayKillcamNVSE.ini" copy "$(ProjectDir)mod\config\XRayKillcamNVSE.ini" "$(XRayModDir)\config\XRayKillcamNVSE.ini"
 if errorlevel 1 exit /b 1</Command></PostBuildEvent>
 </ItemDefinitionGroup>
 <ItemGroup><ClCompile Include="src\Main.cpp" /><ClCompile Include="src\Config.cpp" /><ClCompile Include="src\Headshots.cpp" /><ClCompile Include="src\Interop.cpp" /><ClCompile Include="src\ShotTrace.cpp" /><ClCompile Include="src\Cinematic.cpp" /><ClCompile Include="src\Model.cpp" /><ClCompile Include="src\Impact.cpp" /><ClCompile Include="src\ShotAudit.cpp" /><ClCompile Include="src\Damage.cpp" /><ClCompile Include="src\Fracture.cpp" /><ClCompile Include="src\Debris.cpp" /><ClCompile Include="src\Rupture.cpp" /><ClCompile Include="src\Spray.cpp" /><ClCompile Include="src\Cues.cpp" /><ClCompile Include="src\DamageSurface.cpp" /><ClCompile Include="src\Ammunition.cpp" /><ClCompile Include="src\Graphics.cpp" /><ClCompile Include="src\RevealMask.cpp" /><ClCompile Include="src\FaceFit.cpp" /><ClCompile Include="src\Head.cpp" /><ClCompile Include="src\SkinCapture.cpp" /><ClCompile Include="src\RegionCapture.cpp" /><ClCompile Include="src\Horse.cpp" /><ClCompile Include="src\Proportions.cpp" /><ClCompile Include="src\BodySkin.cpp" /><ClCompile Include="src\Groin.cpp" /><ClCompile Include="src\CloseUp.cpp" /><ClCompile Include="src\Clearance.cpp" /><ClCompile Include="src\Sound.cpp" /><ClCompile Include="src\GoreSound.cpp" /><ClCompile Include="src\ProjectileAmmo.cpp" /><ClCompile Include="src\Runtime.cpp" /></ItemGroup>
 <ItemGroup><ClInclude Include="src\PluginAPI.h" /><ClInclude Include="src\Config.h" /><ClInclude Include="src\Headshots.h" /><ClInclude Include="src\ShotTrace.h" /><ClInclude Include="src\Cinematic.h" /><ClInclude Include="src\Runtime.h" /><ClInclude Include="src\Engine.h" /><ClInclude Include="src\Proportions.h" /><ClInclude Include="src\HorseRest.h" /><ClInclude Include="src\Hooks.h" /><ClInclude Include="src\Graphics.h" /><ClInclude Include="src\RevealMask.h" /><ClInclude Include="src\FaceFit.h" /><ClInclude Include="src\FitReference.h" /><ClInclude Include="src\Math.h" /><ClInclude Include="src\Impact.h" /><ClInclude Include="src\ShotAudit.h" /><ClInclude Include="src\Damage.h" /><ClInclude Include="src\Fracture.h" /><ClInclude Include="src\Debris.h" /><ClInclude Include="src\DamageSurface.h" /><ClInclude Include="src\Ammunition.h" /><ClInclude Include="src\Model.h" /></ItemGroup>
 <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Target Name="StageMod" BeforeTargets="PostBuildEvent" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <MakeDir Directories="$(ProjectDir)mod\NVSE\Plugins" />
+    <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ProjectDir)mod\NVSE\Plugins" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(ProjectDir)LICENSE" DestinationFolder="$(ProjectDir)mod" SkipUnchangedFiles="true" />
+  </Target>
 </Project>

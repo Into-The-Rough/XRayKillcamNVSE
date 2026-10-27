@@ -11,7 +11,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from anatomy_build import *
 
 extract(('donors.zip','manifest.json'),('limb-donors.zip','limb-manifest.json'))
-OUTPUT=ROOT/'package/meshes/XRayKillcamNVSE/legs.xra'
+OUTPUT=ROOT/'mod/meshes/XRayKillcamNVSE/legs.xra'
 PREVIEW='--preview' in sys.argv
 bpy.ops.wm.read_factory_settings(use_empty=True)
 report={'coordinate_space':'Bip01 Pelvis rest local, game units','meshes':[]}

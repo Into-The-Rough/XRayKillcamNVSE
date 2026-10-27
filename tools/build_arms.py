@@ -10,7 +10,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from anatomy_build import *
 
 extract(('donors.zip','manifest.json'),('arm-donors.zip','arm-manifest.json'))
-OUTPUT=ROOT/'package/meshes/XRayKillcamNVSE/arms.xra'
+OUTPUT=ROOT/'mod/meshes/XRayKillcamNVSE/arms.xra'
 PREVIEW='--preview' in sys.argv
 bpy.ops.wm.read_factory_settings(use_empty=True)
 report={'coordinate_space':'Bip01 Spine2 rest local, game units','meshes':[]}

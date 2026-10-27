@@ -265,8 +265,9 @@ void TestGroin(const Model& torso) {
         Check(!isCrossed||isNear,"a crossing route passes the cheap check");
         crossed+=isCrossed;passing+=isNear;
     }
-    Model female;Check(female.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"women's torso");
-    Check(!Groin::Near(female,{-20,30,0},{0,-1,0},8),"women's torso has nothing to cross");
+	Model female;
+	Check(female.Load("mod\\meshes\\XRayKillcamNVSE\\torso-female.xra"), "women's torso");
+	Check(!Groin::Near(female,{-20,30,0},{0,-1,0},8),"women's torso has nothing to cross");
     printf("PASS: groin test crosses on %u of %u torso routes, %u pass the cheap check\n",crossed,kCases[0].count,passing);
 }
 //a route's mapped path and the shot the renderer plans from it
@@ -295,8 +296,9 @@ void TestRupture(const Model& torso) {
     }
     Check(burst[5]==2,"the side shot through both testes bursts both");
     Check(!burst[0]&&!burst[1]&&!burst[2]&&!burst[3]&&!burst[4],"shots above the groin burst nothing");
-    Model female;Check(female.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"women's torso");
-    {Impact::Path path;auto shot=RouteShot(f,kTorsoRoutes[5],posing,320,path);Damage::Rupture none[Damage::kRuptures];
+	Model female;
+	Check(female.Load("mod\\meshes\\XRayKillcamNVSE\\torso-female.xra"), "women's torso");
+	{Impact::Path path;auto shot=RouteShot(f,kTorsoRoutes[5],posing,320,path);Damage::Rupture none[Damage::kRuptures];
      Check(!Damage::PlanRuptures(female,shot,none,Damage::kRuptures),"women's torso has nothing to burst");}
     auto damage=std::make_unique<Damage::Scene>();damage->Reserve(torso);
     Impact::Frame frame{side,0,5,Ammunition::Resolve(0),330,0,10};frame.bullet.radius=.15f;
@@ -569,8 +571,9 @@ void TestTorso(IDirect3DDevice9* d,const Model& torso) {
     Check(bone>=40&&cartilage==14&&soft[0]==1&&soft[1]==1&&soft[2]==2&&soft[3]==1&&soft[4]==2&&soft[5]==2&&soft[6]==2&&soft[7]==1,
         "skeleton, costal cartilage, cord, heart, lungs, liver, stomach and intestines, kidneys, testes and penis");
     //women's torso is the same anatomy without the external genitals
-    Model female;Check(female.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"women's torso loads");
-    unsigned genital=0;for(const auto& m:female.meshes)genital+=m.material==kTestisMaterial||m.material==kPenisMaterial;
+	Model female;
+	Check(female.Load("mod\\meshes\\XRayKillcamNVSE\\torso-female.xra"), "women's torso loads");
+	unsigned genital=0;for(const auto& m:female.meshes)genital+=m.material==kTestisMaterial||m.material==kPenisMaterial;
     Check(!genital&&female.meshes.size()+3==torso.meshes.size(),"women's torso leaves out exactly the testes and penis");
     printf("PASS: men's torso %zu batches, women's %zu without the genitals\n",torso.meshes.size(),female.meshes.size());
     TestRegionRender(d,torso,0);

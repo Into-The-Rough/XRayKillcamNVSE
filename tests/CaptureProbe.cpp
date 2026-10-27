@@ -228,14 +228,14 @@ void ReplayCapture(IDirect3DDevice9* d,const XRay::Model& model,const char* path
     std::vector<Vec3> scene;
     //each body region replays with its own anatomy, the head with the asset on the command line
     static Model regions[kRegions];
-    static const char* const files[kRegions]={nullptr,"package\\meshes\\XRayKillcamNVSE\\torso.xra","package\\meshes\\XRayKillcamNVSE\\legs.xra","package\\meshes\\XRayKillcamNVSE\\arms.xra"};
-    uint32_t region=r.head.region<kRegions?r.head.region:HeadRegion;
+	static const char* const files[kRegions] = {nullptr, "mod\\meshes\\XRayKillcamNVSE\\torso.xra", "mod\\meshes\\XRayKillcamNVSE\\legs.xra", "mod\\meshes\\XRayKillcamNVSE\\arms.xra"};
+	uint32_t region=r.head.region<kRegions?r.head.region:HeadRegion;
     if(region!=HeadRegion&&regions[region].meshes.empty())Check(regions[region].Load(files[region]),"region anatomy for its captures");
     static Model female;
     //women and creatures show the torso without the external genitals
     bool women=region==TorsoRegion&&r.head.noGenitals;
-    if(women&&female.meshes.empty())Check(female.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"torso without genitals for their captures");
-    const Model& anatomy=region==HeadRegion?model:women?female:regions[region];
+	if (women && female.meshes.empty()) Check(female.Load("mod\\meshes\\XRayKillcamNVSE\\torso-female.xra"), "torso without genitals for their captures");
+	const Model& anatomy=region==HeadRegion?model:women?female:regions[region];
     //a groin replay reveals what the runtime shows for a shot through the genitals
     BodySkin::OpenOver(anatomy,r.head,groin&&region==TorsoRegion);
     if(!r.head.skinTriangles&&r.head.face)VanillaNeck(r,scene);

@@ -83,7 +83,7 @@ for region,(file,influences) in REGIONS.items():
         anatomy.append(obj)
     #positions leave the build in the frame bone's rest space
     to_frame(anatomy,numpy.linalg.inv(rest[influences[0]]).T)
-    export(anatomy,MATERIALS,ROOT/'package/meshes/XRayKillcamNVSE'/file,report)
+    export(anatomy,MATERIALS,ROOT/'mod/meshes/XRayKillcamNVSE'/file,report)
     (ROOT/f'assets/horse_{region}_report.json').write_text(json.dumps(report,indent=2))
     summary[region]={'meshes':len(report['meshes']),'triangles':report['triangles'],'bytes':report['bytes'],'repaired':report.get('repaired',[])}
     if PREVIEW:

@@ -12,7 +12,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from anatomy_build import *
 
 extract(('donors.zip','manifest.json'),('torso-donors.zip','torso-manifest.json'),('genital-donors.zip','genital-manifest.json'))
-OUTPUT=ROOT/'package/meshes/XRayKillcamNVSE/torso.xra'
+OUTPUT=ROOT/'mod/meshes/XRayKillcamNVSE/torso.xra'
 PREVIEW='--preview' in sys.argv
 bpy.ops.wm.read_factory_settings(use_empty=True)
 report={'coordinate_space':'Bip01 Spine1 rest local; X up the spine, game units','meshes':[]}

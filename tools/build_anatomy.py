@@ -23,7 +23,7 @@ with zipfile.ZipFile(ROOT/'assets/source/donors.zip') as archive:
             raise RuntimeError('source path escapes extraction directory')
         destination.parent.mkdir(parents=True,exist_ok=True)
         destination.write_bytes(data)
-OUTPUT = ROOT/'package/meshes/XRayKillcamNVSE/head.xra'
+OUTPUT = ROOT/'mod/meshes/XRayKillcamNVSE/head.xra'
 bpy.ops.wm.read_factory_settings(use_empty=True)
 report = {'coordinate_space':'Bip01 Head local; X up, Y forward, Z lateral', 'meshes':[]}
 

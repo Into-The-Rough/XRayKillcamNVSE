@@ -529,19 +529,25 @@ int main(int argc,char** argv) {
         TestFracture(model,reference);
         TestNeck(model);
         TestSkin();TestSkinBinds();TestOpenOver();TestCloseUpPose();TestCloseUpWalls();TestCloseUpFollow();
-        Model torso;Require(torso.Load("package\\meshes\\XRayKillcamNVSE\\torso.xra"),"valid torso anatomy load");
-        TestRegionPlanning(torso,0);TestGroin(torso);TestRupture(torso);TestKillShot(torso);
-        Model legs;Require(legs.Load("package\\meshes\\XRayKillcamNVSE\\legs.xra"),"valid leg anatomy load");
-        TestRegionPlanning(legs,1);TestRegionPlanning(legs,2);TestCarrier();
-        Model arms;Require(arms.Load("package\\meshes\\XRayKillcamNVSE\\arms.xra"),"valid arm anatomy load");
-        TestRegionPlanning(arms,3);TestRegionPlanning(arms,4);
-        Model plain;Require(plain.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"torso without genitals for feral ghouls");
-        TestRegionPlanning(model,5);TestRegionPlanning(plain,6);TestRegionPlanning(legs,7);TestRegionPlanning(arms,8);
+		Model torso;
+		Require(torso.Load("mod\\meshes\\XRayKillcamNVSE\\torso.xra"), "valid torso anatomy load");
+		TestRegionPlanning(torso,0);TestGroin(torso);TestRupture(torso);TestKillShot(torso);
+		Model legs;
+		Require(legs.Load("mod\\meshes\\XRayKillcamNVSE\\legs.xra"), "valid leg anatomy load");
+		TestRegionPlanning(legs,1);TestRegionPlanning(legs,2);TestCarrier();
+		Model arms;
+		Require(arms.Load("mod\\meshes\\XRayKillcamNVSE\\arms.xra"), "valid arm anatomy load");
+		TestRegionPlanning(arms,3);TestRegionPlanning(arms,4);
+		Model plain;
+		Require(plain.Load("mod\\meshes\\XRayKillcamNVSE\\torso-female.xra"), "torso without genitals for feral ghouls");
+		TestRegionPlanning(model,5);TestRegionPlanning(plain,6);TestRegionPlanning(legs,7);TestRegionPlanning(arms,8);
         TestRegionPlanning(model,9);TestRegionPlanning(plain,10);TestRegionPlanning(legs,11);TestRegionPlanning(arms,12);
         const char* horseFiles[]={"horse-head","horse-torso","horse-legs","horse-arms"};
         for(unsigned region=0;region<kRegions;++region) {
-            Model horse;char path[MAX_PATH];sprintf_s(path,"package\\meshes\\XRayKillcamNVSE\\%s.xra",horseFiles[region]);
-            Require(horse.Load(path),"valid horse anatomy load");TestRegionPlanning(horse,13+region);
+			Model horse;
+			char path[MAX_PATH];
+			sprintf_s(path, "mod\\meshes\\XRayKillcamNVSE\\%s.xra", horseFiles[region]);
+			Require(horse.Load(path),"valid horse anatomy load");TestRegionPlanning(horse,13+region);
         }
         TestAudit(reference);
     }
@@ -564,19 +570,25 @@ int main(int argc,char** argv) {
         ReplayCapture(d,model,argv[3],ages,count,close,bare,groin,severity);d->Release();api->Release();DestroyWindow(window);return 0;
     }
     TestAuditRender(d,model);
-    Model torso;Require(torso.Load("package\\meshes\\XRayKillcamNVSE\\torso.xra"),"valid torso anatomy load");
-    TestTorso(d,torso);TestGroinRender(d,torso);TestKillRender(d,torso);TestBloodSeen(d,torso);TestRestoreRender(d,torso);
-    Model legs;Require(legs.Load("package\\meshes\\XRayKillcamNVSE\\legs.xra"),"valid leg anatomy load");
-    TestRegionRender(d,legs,1);TestRegionRender(d,legs,2);
-    Model arms;Require(arms.Load("package\\meshes\\XRayKillcamNVSE\\arms.xra"),"valid arm anatomy load");
-    TestRegionRender(d,arms,3);TestRegionRender(d,arms,4);
-    Model plain;Require(plain.Load("package\\meshes\\XRayKillcamNVSE\\torso-female.xra"),"torso without genitals for feral ghouls");
-    TestRegionRender(d,model,5);TestRegionRender(d,plain,6);TestRegionRender(d,legs,7);TestRegionRender(d,arms,8);
+	Model torso;
+	Require(torso.Load("mod\\meshes\\XRayKillcamNVSE\\torso.xra"), "valid torso anatomy load");
+	TestTorso(d,torso);TestGroinRender(d,torso);TestKillRender(d,torso);TestBloodSeen(d,torso);TestRestoreRender(d,torso);
+	Model legs;
+	Require(legs.Load("mod\\meshes\\XRayKillcamNVSE\\legs.xra"), "valid leg anatomy load");
+	TestRegionRender(d,legs,1);TestRegionRender(d,legs,2);
+	Model arms;
+	Require(arms.Load("mod\\meshes\\XRayKillcamNVSE\\arms.xra"), "valid arm anatomy load");
+	TestRegionRender(d,arms,3);TestRegionRender(d,arms,4);
+	Model plain;
+	Require(plain.Load("mod\\meshes\\XRayKillcamNVSE\\torso-female.xra"), "torso without genitals for feral ghouls");
+	TestRegionRender(d,model,5);TestRegionRender(d,plain,6);TestRegionRender(d,legs,7);TestRegionRender(d,arms,8);
     TestRegionRender(d,model,9);TestRegionRender(d,plain,10);TestRegionRender(d,legs,11);TestRegionRender(d,arms,12);
     const char* horseFiles[]={"horse-head","horse-torso","horse-legs","horse-arms"};
     for(unsigned region=0;region<kRegions;++region) {
-        Model horse;char path[MAX_PATH];sprintf_s(path,"package\\meshes\\XRayKillcamNVSE\\%s.xra",horseFiles[region]);
-        Require(horse.Load(path),"valid horse anatomy load");TestRegionRender(d,horse,13+region);
+		Model horse;
+		char path[MAX_PATH];
+		sprintf_s(path, "mod\\meshes\\XRayKillcamNVSE\\%s.xra", horseFiles[region]);
+		Require(horse.Load(path),"valid horse anatomy load");TestRegionRender(d,horse,13+region);
     }
     TestFractureGPU(d,model,reference);
     TestGameplay(d,model,reference);
