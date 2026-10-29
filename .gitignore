@@ -17,7 +17,8 @@ Release/
 *.VC.opendb
 ipch/
 /wiki_pages/
-/nexus_description.txt
+/nexus[-_]description*
+/NEXUS[-_]DESCRIPTION*
 /docs/
 /mod/LICENSE
 *.log
@@ -28,5 +29,3 @@ __pycache__/
 /assets/previews/
 /assets/source/extracted/
 /assets/source/*.nif.json
-/nexus_description.bbcode
-/NEXUS_DESCRIPTION.txt
